@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Connexion">
+    tools:context=".ConnexionGoogle"
+    android:id="@+id/ecran" >
 
 
     <com.google.android.gms.common.SignInButton
@@ -26,7 +27,7 @@
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.878" />
+        app:layout_constraintVertical_bias="0.143" />
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"

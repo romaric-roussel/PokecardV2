@@ -27,9 +27,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.squareup.picasso.Picasso;
@@ -41,7 +45,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Arrays;
 
-public class Connexion extends AppCompatActivity implements View.OnClickListener{
+
+
+
+
+public class Connexion extends AppCompatActivity implements
+        View.OnClickListener,GoogleApiClient.OnConnectionFailedListener{
 
 
     private SignInButton signin;
@@ -54,13 +63,7 @@ public class Connexion extends AppCompatActivity implements View.OnClickListener
     private ProgressDialog mDialog;
     private ImageView imgAvatar;
     private GoogleApiClient googleApiClient;
-    GoogleSignInOptions signInOptions=
-            new GoogleSignInOptions.
-                    Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                    .requestEmail().build();
-    googleApiClient=new GoogleApiClient.Builder(this)
-                    .enableAutoManage(this,this).addApi
-                    (Auth.GOOGLE_SIGN_IN_API,signInOptions).build();
+
 
     ImageView avatar;
 
@@ -73,10 +76,21 @@ public class Connexion extends AppCompatActivity implements View.OnClickListener
         setContentView(R.layout.connexion);
 
         //GOOGLE
+        GoogleSignInOptions signInOptions=
+                new GoogleSignInOptions.
+                        Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        .requestEmail().build();
+        googleApiClient=new GoogleApiClient.Builder(this)
+                .enableAutoManage(this,this).addApi
+                        (Auth.GOOGLE_SIGN_IN_API,signInOptions).build();
+
 
 
         // Configure sign-in to request the user's ID, email address, and basic
         // profile. ID and basic profile are included in DEFAULT_SIGN_IN.
+
+
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -108,11 +122,70 @@ public class Connexion extends AppCompatActivity implements View.OnClickListener
 
     }
 
+    private void signIn() {
+        Intent intent=Auth.GoogleSignInApi.getSignInIntent(googleApiClient);
+        startActivityForResult(intent,RC_SIGN_IN);
+
+    }
+
+    private void signOut() {
+
+        Auth.GoogleSignInApi.signOut(googleApiClient).setResultCallback(new ResultCallback<Status>() {
+            @Override
+            public void onResult(@NonNull Status status) {
+                updateUI(false);
+            }
+        });
+
+    }
+
+
+
+
+    private void handleSignInResult(GoogleSignInResult result){
+        Log.d("handleresult1", String.valueOf(result));
+        Log.d("ctn: ", "skut");
+        if(result.isSuccess()){
+            Log.d("ctn: ", "skut");
+            GoogleSignInAccount account=result.getSignInAccount();
+            String name=account.getDisplayName();
+            String mail=account.getEmail();
+            String img_url=account.getPhotoUrl().toString();
+            Log.d("Utilisateur: ", name+" "+mail);
+
+            txtFriends.setText(name);
+            txtEmail.setText(mail);
+            Picasso.with(this).load(img_url).into(imgAvatar);
+            updateUI(true);
+        }
+        else updateUI(false);
+    }
+
+    private void updateUI(boolean islogin) {
+        if (islogin){
+
+            findViewById(R.id.txtFriends).setVisibility(View.VISIBLE);
+            findViewById(R.id.txtEmail).setVisibility(View.VISIBLE);
+            signin.setVisibility(View.GONE);
+            loginButton.setVisibility(View.GONE);
+
+        }
+        else{
+            findViewById(R.id.txtFriends).setVisibility(View.GONE);
+            findViewById(R.id.txtEmail).setVisibility(View.GONE);
+            signin.setVisibility(View.VISIBLE);
+            loginButton.setVisibility(View.VISIBLE);
+
+        }
+
+    }
 
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+/*
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
 
@@ -137,8 +210,8 @@ public class Connexion extends AppCompatActivity implements View.OnClickListener
 
         }
 
-        /*super.onActivityResult(requestCode, resultCode, data);*/
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+
+        *//*callbackManager.onActivityResult(requestCode, resultCode, data);
 
         txtBirthday=findViewById(R.id.txtBirthday);
         txtEmail=findViewById(R.id.txtEmail);
@@ -147,76 +220,22 @@ public class Connexion extends AppCompatActivity implements View.OnClickListener
 
         loginButton.setReadPermissions(Arrays.asList("public_profile","email","user_birthday","user_friends"));
 
-        ;
-
-
-
+        ;*/
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             // The Task returned from this call is always completed, no need to attach
             // a listener.
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
-
+            Log.d("requestcode:issoufle", "onActivityResult: ");
+            GoogleSignInResult result=Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            handleSignInResult(result);
+            Log.d("resultat", String.valueOf(result));
         }
     }
 
-    private void handleSignInResult(Task<GoogleSignInAccount> completedTask){
-        try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
-            // Signed in successfully, show authenticated UI.
-            updateUI(account);
-        } catch (ApiException e) {
-
-            updateUI(null);
-        }
-    }
-
-    private void updateUI(GoogleSignInAccount o) {
-
-
-    }
-
-
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
 
 
 
-        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(Connexion.this);
 
-        if (acct != null) {
-            txtEmail.setText(acct.getEmail());
-
-                /*String personGivenName = acct.getGivenName();
-                String personFamilyName = acct.getFamilyName();
-                String personEmail = acct.getEmail();
-                String personId = acct.getId();
-                Uri personPhoto = acct.getPhotoUrl();*/
-
-        }
-
-        startActivityForResult(signInIntent, RC_SIGN_IN);
-        findViewById(R.id.sign_in_button).setVisibility(View.INVISIBLE);
-        findViewById(R.id.button2).setVisibility(View.VISIBLE);
-        findViewById(R.id.login_button).setVisibility(View.INVISIBLE);
-    }
-
-    private void signOut() {
-
-
-        mGoogleSignInClient.signOut()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        findViewById(R.id.login_button).setVisibility(View.VISIBLE);
-                        findViewById(R.id.button2).setVisibility(View.INVISIBLE);
-                        findViewById(R.id.sign_in_button).setVisibility(View.VISIBLE);
-
-                    }
-                });
-    }
 
 
     @Override
@@ -309,6 +328,12 @@ public class Connexion extends AppCompatActivity implements View.OnClickListener
 
     }
 
+
+
+
+
+
+
     private void getData(JSONObject object) {
         try{
             URL profile_picture=new URL("https://graph.facebook.com/"+object.getString("id") +"/picture?width=250&height=250");
@@ -331,4 +356,8 @@ public class Connexion extends AppCompatActivity implements View.OnClickListener
     }
 
 
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
+    }
 }
