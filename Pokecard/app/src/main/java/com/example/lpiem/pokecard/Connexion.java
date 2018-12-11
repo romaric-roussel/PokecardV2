@@ -54,13 +54,13 @@ public class Connexion extends AppCompatActivity implements View.OnClickListener
     private ProgressDialog mDialog;
     private ImageView imgAvatar;
     private GoogleApiClient googleApiClient;
-    GoogleSignInOptions signInOptions=
+    /*GoogleSignInOptions signInOptions=
             new GoogleSignInOptions.
                     Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestEmail().build();
     googleApiClient=new GoogleApiClient.Builder(this)
                     .enableAutoManage(this,this).addApi
-                    (Auth.GOOGLE_SIGN_IN_API,signInOptions).build();
+                    (Auth.GOOGLE_SIGN_IN_API,signInOptions).build();*/
 
     ImageView avatar;
 
