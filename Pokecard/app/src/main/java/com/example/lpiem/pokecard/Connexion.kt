@@ -56,7 +56,7 @@ class Connexion : AppCompatActivity() {
         button.setOnClickListener { signIn() }
         mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
             if (firebaseAuth.currentUser != null) {
-                startActivity(Intent(this@Connexion, Accueil::class.java))
+                startActivity(Intent(this@Connexion, MainActivity::class.java))
             }
         }
 
@@ -138,7 +138,7 @@ class Connexion : AppCompatActivity() {
     private fun updateUI() {
         Toast.makeText(this@Connexion, "You're logged in", Toast.LENGTH_SHORT).show()
 
-        val intent = Intent(this, Accueil::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
 
