@@ -1,4 +1,4 @@
-package com.example.lpiem.pokecard
+/*package com.example.lpiem.pokecard
 
 import android.content.Intent
 import android.os.Bundle
@@ -39,4 +39,4 @@ class Accueil : AppCompatActivity() {
     }
 
 
-}
+}*/

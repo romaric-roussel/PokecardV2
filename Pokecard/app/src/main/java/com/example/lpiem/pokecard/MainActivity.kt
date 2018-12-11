@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
 import com.facebook.all.All
+import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.uiThread
@@ -28,13 +29,33 @@ class MainActivity() : AppCompatActivity() {
     internal lateinit var liste: ListView
     lateinit var button: Button
     lateinit var button2 : Button
+    lateinit var mAuth: FirebaseAuth
+    lateinit var mAuthStateListener: FirebaseAuth.AuthStateListener
 
+    override fun onStart() {
+        super.onStart()
+        mAuth.addAuthStateListener(mAuthStateListener)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         button2=findViewById(R.id.deco)
-        button2.setOnClickListener { startActivity(Intent(this, Connexion::class.java))}
+
+        mAuth = FirebaseAuth.getInstance()
+
+
+        mAuthStateListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
+            if (firebaseAuth.currentUser == null) {
+                val intent= Intent(this, Connexion::class.java)
+                startActivity(intent)
+            }
+        }
+        button2.setOnClickListener { mAuth.signOut() }
+
+
         val lstItems = ArrayList<String>()
         liste = findViewById(R.id.listView)
 
