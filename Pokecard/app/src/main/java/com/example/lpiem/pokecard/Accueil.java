@@ -35,7 +35,7 @@ public class Accueil extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if (firebaseAuth.getCurrentUser()==null) {
-                    startActivity(new Intent(Accueil.this, ConnexionGoogle.class));
+                    startActivity(new Intent(Accueil.this, Connexion.class));
                 }   }
         };
         button.setOnClickListener(new View.OnClickListener() {

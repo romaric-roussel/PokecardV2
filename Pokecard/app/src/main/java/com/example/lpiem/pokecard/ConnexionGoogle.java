@@ -1,3 +1,4 @@
+/*
 package com.example.lpiem.pokecard;
 
 import android.app.ProgressDialog;
@@ -188,7 +189,8 @@ FirebaseAuth.AuthStateListener mAuthListener;
 
 
 
-   /* @Override
+   */
+/* @Override
     protected void onCreate(Bundle savedInstanceState)   {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.connexion);
