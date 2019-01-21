@@ -47,7 +47,7 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
-        <activity
+       <!-- <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
@@ -62,12 +62,12 @@
 
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
-        </activity>
-        <activity
+        </activity>-->
+       <!-- <activity
             android:name=".Accueil"
             android:label="@string/title_activity_accueil"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Connexion"></activity>
+        <activity android:name=".Connexion"></activity>-->
     </application>
 
 </manifest>

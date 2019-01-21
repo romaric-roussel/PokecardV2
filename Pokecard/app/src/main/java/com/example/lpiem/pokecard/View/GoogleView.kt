@@ -1,4 +1,4 @@
-package com.example.lpiem.pokecard.View
+/*package com.example.lpiem.pokecard.View
 
 import android.content.Intent
 import android.os.Bundle
@@ -125,4 +125,4 @@ class GoogleView : AppCompatActivity(){
     }
 
 
-}
+}*/

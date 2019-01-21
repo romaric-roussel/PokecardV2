@@ -1,4 +1,4 @@
-package com.example.lpiem.pokecard
+/*package com.example.lpiem.pokecard
 
 //3gm6wp3jThW8ssPN1P8ULbiBTrc=
 //https://www.youtube.com/watch?v=mapLbSKNc6I
@@ -200,4 +200,4 @@ class Connexion : AppCompatActivity() {
 
 
 
-
+*/
