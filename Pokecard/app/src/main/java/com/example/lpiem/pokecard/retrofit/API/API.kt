@@ -1,4 +1,4 @@
-package com.example.lpiem.pokecard
+package com.example.lpiem.pokecard.retrofit.API
 
 import com.example.lpiem.pokecard.Model.AllResult
 import retrofit2.Call

@@ -1,4 +1,4 @@
-package com.example.lpiem.pokecard
+package com.example.lpiem.pokecard.retrofit.API
 
 object C {
 

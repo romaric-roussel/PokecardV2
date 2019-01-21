@@ -7,11 +7,9 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lpiem.pokecard.Accueil
-import com.example.lpiem.pokecard.C
-import com.example.lpiem.pokecard.Connexion
+import com.example.lpiem.pokecard.retrofit.API.C
 import com.example.lpiem.pokecard.R
 import com.facebook.CallbackManager
-import com.facebook.login.widget.LoginButton
 import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount

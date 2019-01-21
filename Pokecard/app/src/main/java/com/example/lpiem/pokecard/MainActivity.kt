@@ -1,58 +1,70 @@
 package com.example.lpiem.pokecard
 
-import android.content.Context
 import android.content.Intent
 
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
+
+
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.ArrayAdapter
+
 import android.widget.Button
-import android.widget.ListView
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.facebook.all.All
+import com.example.lpiem.pokecard.adapter.AllPokemonListeAdapter
+import com.example.lpiem.pokecard.fragment.FragmentAllPokemon
+
+import com.example.lpiem.pokecard.retrofit.GestionRetrofit
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_display_pokemon.view.*
-import kotlinx.android.synthetic.main.item_pokemon.view.*
+import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.fragment_all_pokemon.view.*
+//import com.squareup.picasso.Picasso
 import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.notificationManager
 import org.jetbrains.anko.uiThread
 
 
 import java.util.ArrayList
-import javax.security.auth.callback.Callback
 
 
 class MainActivity() : AppCompatActivity() {
+
 
     val api by lazy {
         GestionRetrofit.initRetrofit()
     }
 
-    internal lateinit var liste: RecyclerView
+    lateinit var rvAllPokemon: RecyclerView
     lateinit var button: Button
     lateinit var button2 : Button
+    lateinit var toolbar: ActionBar
     lateinit var mAuth: FirebaseAuth
     lateinit var mAuthStateListener: FirebaseAuth.AuthStateListener
+    lateinit var bottomNavigation: BottomNavigationView
+    var listeAllPokemon: ArrayList<String> = ArrayList()
 
     override fun onStart() {
         super.onStart()
         mAuth.addAuthStateListener(mAuthStateListener)
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_display_pokemon)
+        setContentView(R.layout.activity_main)
 
-       /* button2=findViewById(R.id.deco)*/
+        //rvAllPokemon = findViewById(R.id.rv_pokemon_fragment)
+       // rvAllPokemon.layoutManager = LinearLayoutManager(this)
+        //rvAllPokemon.adapter = AllPokemonListeAdapter(listeAllPokemon)
+
+        toolbar = supportActionBar!!
+        bottomNavigation = findViewById(R.id.navigationView)
+        bottomNavigation.selectedItemId = R.id.pokedex
+        bottomNavigation.navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
         mAuth = FirebaseAuth.getInstance()
 
@@ -63,16 +75,13 @@ class MainActivity() : AppCompatActivity() {
                 startActivity(intent)
             }
         }
-       /* button2.setOnClickListener { mAuth.signOut() }*/
 
-
-        val lstItems= ArrayList<String> ()
-        liste = findViewById(R.id.rv_pokeon_fragment)
-
+        populateListeAllPokemon()
+       // (rvAllPokemon.adapter as AllPokemonListeAdapter).notifyDataSetChanged()
         //val layoutManager = GridLayoutManager(this,2)
 
-        val test=liste.adapter
-        doAsync {
+        //val test=liste.adapter
+      /*  doAsync {
             var allResult = api.getListPokemon().execute().body()
             uiThread {
                 var size = allResult?.result?.data!!.size
@@ -82,12 +91,12 @@ class MainActivity() : AppCompatActivity() {
                     Log.d("POKEMON",allResult.result.data[i].toString())
                 }
                 //val test=liste.adapter
-                liste.adapter = ListAdapter(lstItems,applicationContext)
+                liste.adapter = AllPokemonListeAdapter(lstItems,applicationContext)
                 //test?.notifyDataSetChanged()
 
             }
             //test?.notifyDataSetChanged()
-        }
+        }*/
 
 
        /* button.setOnClickListener {
@@ -99,6 +108,55 @@ class MainActivity() : AppCompatActivity() {
 
 
     }
+
+    private fun populateListeAllPokemon() {
+        doAsync {
+            var allResult = api.getListPokemon().execute().body()
+            uiThread {
+                var size = allResult?.result?.data!!.size
+                for (i in 0..size - 1) {
+                    listeAllPokemon.add(allResult.result.data[i].toString())
+
+                    Log.d("POKEMON", allResult.result.data[i].toString())
+                }
+                //val test=liste.adapter
+                //rvAllPokemon.adapter = AllPokemonListeAdapter(listeAllPokemon, applicationContext)
+                //test?.notifyDataSetChanged()
+
+            }
+        }
+    }
+
+    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        when (item.itemId) {
+            R.id.myPokemon -> {
+
+                toolbar.title = "UserList"
+                //val userPokemonFragment = FragmentAllUserPokemon.newInstance()
+                //openFragment(userPokemonFragment)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.pokedex -> {
+                toolbar.title = "Pokedex"
+                val allPokemon = FragmentAllPokemon.newInstance()
+                openFragment(allPokemon)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.settings -> {
+                toolbar.title = "Paramètre"
+                return@OnNavigationItemSelectedListener true
+            }
+        }
+        false
+    }
+
+    private fun openFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.container, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
+    }
+
 
 
 
