@@ -10,9 +10,11 @@ import com.example.lpiem.pokecard.R
 class FragmentAllPokemon : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_user_pokemon, container, false)
+            inflater.inflate(R.layout.fragment_all_pokemon, container, false)
 
     companion object {
         fun newInstance(): FragmentAllPokemon = FragmentAllPokemon()
     }
+
+
 }

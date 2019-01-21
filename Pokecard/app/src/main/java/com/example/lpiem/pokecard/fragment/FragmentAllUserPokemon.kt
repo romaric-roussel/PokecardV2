@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.lpiem.pokecard.R
 
-class UserPokemonlist : Fragment() {
+class FragmentAllUserPokemon : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_user_pokemon, container, false)
 
     companion object {
-        fun newInstance(): UserPokemonlist = UserPokemonlist()
+        fun newInstance(): FragmentAllUserPokemon = FragmentAllUserPokemon()
     }
 }
