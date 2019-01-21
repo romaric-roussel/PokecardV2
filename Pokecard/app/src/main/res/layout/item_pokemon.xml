@@ -21,7 +21,7 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
-            android:id="@+id/tv_title_item_event"
+            android:id="@+id/tv_title_item_pokemon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Pokemon"
@@ -38,7 +38,7 @@
             android:text="Lyon 7ème"
 
             android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@id/tv_title_item_event"
+            app:layout_constraintTop_toBottomOf="@id/tv_title_item_pokemon"
             app:layout_constraintStart_toEndOf="@id/iv_item_pokemon"
             app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -53,7 +53,7 @@
             app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
-            android:id="@+id/tv_date_item_event"
+            android:id="@+id/tv_date_item_pokemon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="14/04/2019"
