@@ -1,7 +1,7 @@
 package com.example.lpiem.pokecard
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
+
 import android.os.Bundle
 import android.os.Parcel
 import android.os.Parcelable
@@ -9,6 +9,8 @@ import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.ListView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import com.facebook.all.All
 import com.google.firebase.auth.FirebaseAuth
 import com.squareup.picasso.Picasso
