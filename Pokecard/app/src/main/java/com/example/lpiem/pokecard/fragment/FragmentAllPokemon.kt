@@ -10,6 +10,7 @@ import com.example.lpiem.pokecard.MainActivity
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.adapter.AllPokemonListeAdapter
 import kotlinx.android.synthetic.main.fragment_all_pokemon.*
+import java.util.ArrayList
 
 
 class FragmentAllPokemon : Fragment() {
@@ -21,7 +22,7 @@ class FragmentAllPokemon : Fragment() {
         val view = inflater.inflate(R.layout.fragment_all_pokemon, container, false)
         adapter = AllPokemonListeAdapter(MainActivity().listeAllPokemon,(MainActivity().context ))
 
-        adapter.notifyDataSetChanged()
+        //adapter.notifyDataSetChanged()
         return view
     }
 

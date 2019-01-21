@@ -130,7 +130,8 @@ class MainActivity : AppCompatActivity() {
                 var size = allResult?.result?.data!!.size
                 for (i in 0..size - 1) {
                     listeAllPokemon.add(allResult.result.data[i].toString())
-                    FragmentAllPokemon().adapter.notifyDataSetChanged()
+                    it.fragmentAllPokemon.adapter.notifyDataSetChanged()
+                    fragmentAllPokemon.rvAllPokemon.adapter = AllPokemonListeAdapter(listeAllPokemon,context)
                     //Log.d("POKEMON", allResult.result.data[i].toString())
                 }
 
