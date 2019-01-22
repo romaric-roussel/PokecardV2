@@ -67,21 +67,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_birthdate_fragment_account_informations" />
 
-            <TextView
-                android:id="@+id/tv_phone_fragment_account_informations"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Telephone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv_mail_fragment_account_informations" />
-
-
-
-
-
 
     |
 

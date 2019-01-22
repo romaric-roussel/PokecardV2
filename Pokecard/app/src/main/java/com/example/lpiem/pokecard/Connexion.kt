@@ -8,6 +8,7 @@ import android.os.Bundle
 
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.facebook.*
@@ -39,6 +40,7 @@ class Connexion : AppCompatActivity() {
 
     private var mCallbackManager: CallbackManager? = null
     lateinit var button: SignInButton
+    lateinit var button_connexion : Button
     lateinit var mAuth: FirebaseAuth
     lateinit var mGoogleApiClient: GoogleApiClient
     lateinit var mAuthListener: FirebaseAuth.AuthStateListener
@@ -53,6 +55,19 @@ class Connexion : AppCompatActivity() {
         val loginButton = findViewById<LoginButton>(R.id.login_button)
         loginButton.setReadPermissions(Arrays.asList("public_profile","email","user_birthday","user_friends"))
         button = findViewById(R.id.sign_in_button)
+        button_connexion = findViewById(R.id.connexion)
+
+        button_connexion.setOnClickListener{
+            val intent = Intent(this, FragmentProfile::class.java)
+
+            intent.putExtra("photo","https://graph.facebook.com/2084209848298504/picture?type=large")
+            intent.putExtra("nom","Benzaied")
+            intent.putExtra("prenom","Sofiane")
+            intent.putExtra("mail","sofiane.benzaied@yahoo.fr")
+            startActivity(intent)
+
+        }
+
 
         button.setOnClickListener { signIn() }
         mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
@@ -175,10 +190,10 @@ class Connexion : AppCompatActivity() {
 
       //  val intent = Intent(this, MainActivity::class.java)
         val intent = Intent(this, FragmentProfile::class.java)
-        var nom="Sofiane Benzaied"
-        var email="sofiane.benzaied@yahoo.fr"
-        var photo="https://graph.facebook.com/2084209848298504/picture?type=large"
         intent.putExtra("photo","https://graph.facebook.com/2084209848298504/picture?type=large")
+        intent.putExtra("nom","Benzaied")
+        intent.putExtra("prenom","Sofiane")
+        intent.putExtra("mail","sofiane.benzaied@yahoo.fr")
         startActivity(intent)
         finish()
 
