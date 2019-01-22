@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.lpiem.pokecard.R
 import kotlinx.android.synthetic.main.item_pokemon.view.*
 
-class AllPokemonListeAdapter(items : ArrayList<String>,ctx: Context) : RecyclerView.Adapter<AllPokemonListeAdapter.ViewHolder>(){
+class AllPokemonListeAdapter(items : ArrayList<String>) : RecyclerView.Adapter<AllPokemonListeAdapter.ViewHolder>(){
 
     var list = items
-    var context = ctx
+   // var context = ctx
+
+
 
     override fun getItemCount(): Int {
         return list.size
@@ -20,11 +22,12 @@ class AllPokemonListeAdapter(items : ArrayList<String>,ctx: Context) : RecyclerV
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder?.name?.text = list[position]
+        holder.name?.text = list[position]
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_pokemon,parent,false))
+        val view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_pokemon, parent, false)
+        return ViewHolder(view)
     }
 
 

@@ -22,6 +22,7 @@ import com.example.lpiem.pokecard.retrofit.GestionRetrofit
 import com.google.android.material.bottomnavigation.BottomNavigationView
 //import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.view.*
+import kotlinx.android.synthetic.main.fragment_all_pokemon.*
 import kotlinx.android.synthetic.main.fragment_all_pokemon.view.*
 //import com.squareup.picasso.Picasso
 import org.jetbrains.anko.doAsync
@@ -40,7 +41,6 @@ class MainActivity : AppCompatActivity() {
         GestionRetrofit.initRetrofit()
     }
 
-    var context : Context = this
     lateinit var fragmentAllPokemon: FragmentAllPokemon
     lateinit var fragmentAllUserPokemon: FragmentAllUserPokemon
     lateinit var button: Button
@@ -52,6 +52,8 @@ class MainActivity : AppCompatActivity() {
     var listeAllPokemon: ArrayList<String> = ArrayList()
 
 
+
+
     override fun onStart() {
         super.onStart()
         //mAuth.addAuthStateListener(mAuthStateListener)
@@ -59,7 +61,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onResume() {
-        populateListeAllPokemon()
+        //populateListeAllPokemon()
         super.onResume()
     }
 
@@ -67,8 +69,8 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        fragmentAllPokemon = FragmentAllPokemon()
-        fragmentAllUserPokemon = FragmentAllUserPokemon()
+        fragmentAllPokemon = FragmentAllPokemon.newInstance()
+        fragmentAllUserPokemon = FragmentAllUserPokemon.newInstance()
         setDefaultFragment(fragmentAllPokemon)
 
         //rvAllPokemon = findViewById(R.id.rv_pokemon_fragment)
@@ -91,6 +93,7 @@ class MainActivity : AppCompatActivity() {
         }*/
 
         //populateListeAllPokemon()
+        //Log.d("POKEMON", listeAllPokemon[0])
        // (rvAllPokemon.adapter as AllPokemonListeAdapter).notifyDataSetChanged()
         //val layoutManager = GridLayoutManager(this,2)
 
@@ -118,22 +121,23 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 */
-
+        //Log.d("POKEMON", fragmentAllPokemon.adapter.list[0]);
 
 
     }
-
-    private fun populateListeAllPokemon() {
+    fun populateListeAllPokemon() {
         doAsync {
             var allResult = api.getListPokemon().execute().body()
-            uiThread { it ->
+            uiThread { _ ->
                 var size = allResult?.result?.data!!.size
                 for (i in 0..size - 1) {
                     listeAllPokemon.add(allResult.result.data[i].toString())
-                    it.fragmentAllPokemon.adapter.notifyDataSetChanged()
-                    fragmentAllPokemon.rvAllPokemon.adapter = AllPokemonListeAdapter(listeAllPokemon,context)
+
                     //Log.d("POKEMON", allResult.result.data[i].toString())
                 }
+                //Log.d("POKEMON", listeAllPokemon[0])
+                fragmentAllPokemon.rvAllPokemon.adapter = AllPokemonListeAdapter(listeAllPokemon)
+
 
                 //onComplete { FragmentAllPokemon().adapter.notifyDataSetChanged() }
 
@@ -143,9 +147,12 @@ class MainActivity : AppCompatActivity() {
 
             }
 
-            
+
         }
     }
+
+
+
 
 
 
@@ -164,8 +171,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.pokedex -> {
                 toolbar.title = "Pokedex"
-                val allPokemon = FragmentAllPokemon.newInstance()
-                openFragment(allPokemon)
+                openFragment(fragmentAllPokemon)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.settings -> {
