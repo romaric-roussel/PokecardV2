@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.facebook.all.All
 import com.google.firebase.auth.FirebaseAuth
-import com.squareup.picasso.Picasso
+
 import kotlinx.android.synthetic.main.activity_display_pokemon.view.*
 import kotlinx.android.synthetic.main.item_pokemon.view.*
 import org.jetbrains.anko.doAsync
@@ -30,7 +30,7 @@ import java.util.ArrayList
 import javax.security.auth.callback.Callback
 
 
-class MainActivity() : AppCompatActivity() {
+class MainActivity: AppCompatActivity() {
 
     val api by lazy {
         GestionRetrofit.initRetrofit()
