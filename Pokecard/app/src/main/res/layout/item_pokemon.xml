@@ -31,36 +31,7 @@
             app:layout_constraintStart_toEndOf="@id/iv_item_pokemon"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_place_item_pokemon"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Lyon 7ème"
 
-            android:textAlignment="center"
-            app:layout_constraintTop_toBottomOf="@id/tv_title_item_pokemon"
-            app:layout_constraintStart_toEndOf="@id/iv_item_pokemon"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/tv_price_item_pokemon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="7 euros"
-
-            app:layout_constraintTop_toBottomOf="@id/tv_place_item_pokemon"
-            app:layout_constraintStart_toEndOf="@id/iv_item_pokemon"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-        <TextView
-            android:id="@+id/tv_date_item_pokemon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="14/04/2019"
-
-            app:layout_constraintTop_toBottomOf="@id/tv_price_item_pokemon"
-            app:layout_constraintStart_toEndOf="@id/iv_item_pokemon"
-            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

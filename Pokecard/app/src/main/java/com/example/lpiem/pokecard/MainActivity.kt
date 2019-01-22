@@ -53,19 +53,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-    override fun onStart() {
-        super.onStart()
-        //mAuth.addAuthStateListener(mAuthStateListener)
-
-    }
-
-    override fun onResume() {
-        //populateListeAllPokemon()
-        super.onResume()
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
+   override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -125,7 +113,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-    fun populateListeAllPokemon() {
+   /* fun populateListeAllPokemon() {
         doAsync {
             var allResult = api.getListPokemon().execute().body()
             uiThread { _ ->
@@ -149,7 +137,7 @@ class MainActivity : AppCompatActivity() {
 
 
         }
-    }
+    }*/
 
 
 
@@ -165,8 +153,7 @@ class MainActivity : AppCompatActivity() {
             R.id.myPokemon -> {
 
                 toolbar.title = "UserList"
-                //val userPokemonFragment = FragmentAllUserPokemon.newInstance()
-                //openFragment(userPokemonFragment)
+                openFragment(fragmentAllUserPokemon)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.pokedex -> {

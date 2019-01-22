@@ -40,16 +40,22 @@ class FragmentAllPokemon : Fragment() {
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_all_pokemon, container, false)
-
+        rvAllPokemon = view.findViewById(R.id.rv_pokemon_fragment)
+        rvAllPokemon.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL, false)
+        adapter = AllPokemonListeAdapter(listeAllPokemon)
+        rvAllPokemon.adapter = adapter
         //adapter.notifyDataSetChanged()
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         setUpRecyclerView(view)
         super.onViewCreated(view, savedInstanceState)
 
     }
+
+
 
     private fun getAllPokemon(getAllPokemonCallback: GetAllPokemonCallback) {
 
@@ -72,7 +78,7 @@ class FragmentAllPokemon : Fragment() {
     }
     private fun setUpRecyclerView(view: View)
     {
-        rvAllPokemon = view.findViewById(R.id.rv_pokemon_fragment)
+
 
         getAllPokemon(object : GetAllPokemonCallback {
             override fun onGetPokemon(resultAllPlants: AllResult?) {
@@ -82,9 +88,7 @@ class FragmentAllPokemon : Fragment() {
 
                     //Log.d("POKEMON", allResult.result.data[i].toString())
                 }
-                rvAllPokemon.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL, false)
-                adapter = AllPokemonListeAdapter(listeAllPokemon)
-                rvAllPokemon.adapter = adapter
+
                 adapter.notifyDataSetChanged()
             }
 
