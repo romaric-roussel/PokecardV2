@@ -1,6 +1,6 @@
 package com.example.lpiem.pokecard.retrofit.API
 
-import com.example.lpiem.pokecard.Model.AllResult
+import com.example.lpiem.pokecard.Model.retrofit.AllResult
 import retrofit2.Call
 import retrofit2.http.GET
 
