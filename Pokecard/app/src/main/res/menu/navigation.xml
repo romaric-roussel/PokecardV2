@@ -3,12 +3,12 @@
 
     <item
         android:id="@+id/myPokemon"
-        android:icon="@drawable/com_facebook_send_button_icon"
+        android:icon="@drawable/ic_pokeball"
         android:title="Mes pokemon"/>
 
     <item
         android:id="@+id/pokedex"
-        android:icon="@drawable/com_facebook_send_button_icon"
+        android:icon="@drawable/ic_pokedex"
         android:title="Pokedex"/>
 
     <item
