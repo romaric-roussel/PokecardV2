@@ -30,8 +30,8 @@ class FragmentAllPokemon : Fragment() {
         GestionRetrofit.initRetrofit()
     }
 
-    lateinit var mainActivity: MainActivity
-    lateinit var fragmentAllPokemonDetail:FragmentAllPokemonDetail
+    //lateinit var mainActivity: MainActivity
+    //lateinit var fragmentAllPokemonDetail:FragmentAllPokemonDetail
     lateinit var rvAllPokemon: RecyclerView
     lateinit var adapter: AllPokemonListeAdapter
     var listeAllPokemon: ArrayList<Pokemon> = ArrayList()
@@ -42,7 +42,8 @@ class FragmentAllPokemon : Fragment() {
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_all_pokemon, container, false)
-        mainActivity = context as MainActivity
+        //mainActivity = context as MainActivity
+        listeAllPokemon.clear()
         rvAllPokemon = view.findViewById(R.id.rv_pokemon_fragment)
         rvAllPokemon.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL, false)
         adapter = AllPokemonListeAdapter(listeAllPokemon)
@@ -102,13 +103,15 @@ class FragmentAllPokemon : Fragment() {
             }
         })
 
-        fragmentAllPokemonDetail = mainActivity.fragmentAllPokemonDetail
+        //fragmentAllPokemonDetail = mainActivity.fragmentAllPokemonDetail
         rvAllPokemon.addOnItemTouchListener(RecyclerTouchListener(
                 activity!!.applicationContext,
                 rvAllPokemon,
                 object : RecyclerTouchListener.ClickListener {
                     override fun onClick(view: View, position: Int) {
-                        MainActivity().openFragment(fragmentAllPokemonDetail)
+                       var fragment =  (activity as MainActivity).fragmentAllPokemonDetail
+                        fragment?.pokemonId = listeAllPokemon[position].id_pokemon
+                        (activity as MainActivity).openFragment(fragment!!)
                     }
 
                     override fun onLongClick(view: View?, position: Int) {

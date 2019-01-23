@@ -23,6 +23,7 @@ class FragmentAllPokemonDetail : Fragment() {
     val api by lazy {
         GestionRetrofit.initRetrofit()
     }
+    var pokemonId = ""
     var pokemon = Pokemon("","","","","")
     lateinit var id : TextView
     lateinit var nom : TextView
@@ -47,11 +48,7 @@ class FragmentAllPokemonDetail : Fragment() {
         image = view.findViewById(R.id.iv_all_pokemon_detail)
         setUpView()
 
-        id.text = pokemon.id_pokemon
-        nom.text = pokemon.nom
-        type1.text = pokemon.type_1
-        type2.text = pokemon.type_2
-        Glide.with(image).load(pokemon.url).into(image)
+
         super.onViewCreated(view, savedInstanceState)
 
     }
@@ -61,7 +58,7 @@ class FragmentAllPokemonDetail : Fragment() {
     private fun getOnePokemon(getOnePokemonCallback: GetOnePokemonCallback) {
 
 
-        api.getOnePokemon("1").enqueue(object : Callback<OneResult> {
+        api.getOnePokemon(pokemonId).enqueue(object : Callback<OneResult> {
             override fun onResponse(call: Call<OneResult>, response: Response<OneResult>) {
                 if (response.isSuccessful) {
                     getOnePokemonCallback.onGetPokemon(response.body())
@@ -86,6 +83,12 @@ class FragmentAllPokemonDetail : Fragment() {
 
             override fun onGetPokemon(oneResult: OneResult?) {
                  pokemon = Pokemon(oneResult?.result?.id_pokemon.toString(),oneResult?.result?.nom.toString(),oneResult?.result?.nom_type_1.toString(),oneResult?.result?.nom_type_2.toString(),oneResult?.result?.url_image.toString())
+                id.text = pokemon.id_pokemon
+                nom.text = pokemon.nom
+                type1.text = pokemon.type_1
+                type2.text = pokemon.type_2
+                Glide.with(image).load(pokemon.url).into(image)
+
                 Log.d("POKEMON", "kek " + pokemon.toString())
             }
         })
@@ -98,10 +101,6 @@ class FragmentAllPokemonDetail : Fragment() {
     }
 
 
-
-    companion object {
-        fun newInstance(): FragmentAllPokemonDetail = FragmentAllPokemonDetail()
-    }
 
 
 }

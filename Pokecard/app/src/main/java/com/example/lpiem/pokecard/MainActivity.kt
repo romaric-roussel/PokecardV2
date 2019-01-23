@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
     lateinit var fragmentAllPokemon: FragmentAllPokemon
     lateinit var fragmentAllUserPokemon: FragmentAllUserPokemon
-    lateinit var fragmentAllPokemonDetail: FragmentAllPokemonDetail
+    var fragmentAllPokemonDetail: FragmentAllPokemonDetail? =null
     lateinit var button: Button
     lateinit var button2 : Button
     lateinit var toolbar: ActionBar
@@ -59,9 +59,9 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        fragmentAllPokemon = FragmentAllPokemon.newInstance()
-        fragmentAllUserPokemon = FragmentAllUserPokemon.newInstance()
-        fragmentAllPokemonDetail = FragmentAllPokemonDetail.newInstance()
+        fragmentAllPokemon = FragmentAllPokemon()
+        fragmentAllUserPokemon = FragmentAllUserPokemon()
+        fragmentAllPokemonDetail = FragmentAllPokemonDetail()
         setDefaultFragment(fragmentAllPokemon)
 
         //rvAllPokemon = findViewById(R.id.rv_pokemon_fragment)
@@ -152,6 +152,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+
         when (item.itemId) {
             R.id.myPokemon -> {
 
@@ -166,7 +167,7 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.settings -> {
                 toolbar.title = "Paramètre"
-                openFragment(fragmentAllPokemonDetail)
+                openFragment(fragmentAllPokemonDetail!!)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -174,11 +175,17 @@ class MainActivity : AppCompatActivity() {
     }
 
      fun openFragment(fragment: Fragment) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
+        if(!isFinishing){
+            val transaction = supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.container, fragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
+
     }
+
+
+
 
 
 
