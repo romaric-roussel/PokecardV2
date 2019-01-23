@@ -1,10 +1,11 @@
-package com.example.lpiem.pokecard
+package com.example.lpiem.pokecard.activity
 
 import android.content.Intent
 
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lpiem.pokecard.R
 
 
 class SplashScreen : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.example.lpiem.pokecard
+package com.example.lpiem.pokecard.activity
 
 
 import android.os.Bundle
@@ -6,6 +6,7 @@ import android.widget.Button
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.fragment.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.view.*

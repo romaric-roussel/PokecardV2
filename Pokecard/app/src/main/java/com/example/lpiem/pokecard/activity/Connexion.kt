@@ -1,4 +1,4 @@
-package com.example.lpiem.pokecard
+package com.example.lpiem.pokecard.activity
 
 
 
@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.lpiem.pokecard.R
 import com.facebook.*
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
