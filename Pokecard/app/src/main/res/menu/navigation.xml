@@ -4,16 +4,16 @@
     <item
         android:id="@+id/myPokemon"
         android:icon="@drawable/ic_pokeball"
-        android:title="Mes pokemon"/>
+        android:title="@string/Mes_pokemon"/>
 
     <item
         android:id="@+id/pokedex"
         android:icon="@drawable/ic_pokedex"
-        android:title="Pokedex"/>
+        android:title="@string/pokedex"/>
 
     <item
         android:id="@+id/settings"
-        android:icon="@drawable/com_facebook_send_button_icon"
-        android:title="Paramètre"/>
+        android:icon="@drawable/ic_baseline_settings_20px"
+        android:title="@string/parametre"/>
 
 </menu>

@@ -9,6 +9,10 @@ import com.bumptech.glide.Glide
 import com.example.lpiem.pokecard.Model.Pokemon
 import com.example.lpiem.pokecard.R
 import kotlinx.android.synthetic.main.item_pokemon.view.*
+import android.R.attr.name
+import android.widget.AdapterView.OnItemClickListener
+
+
 
 class AllPokemonListeAdapter(items : ArrayList<Pokemon>) : RecyclerView.Adapter<AllPokemonListeAdapter.ViewHolder>(){
 
@@ -39,5 +43,10 @@ class AllPokemonListeAdapter(items : ArrayList<Pokemon>) : RecyclerView.Adapter<
         val id = v.tv_id_item_pokemon
         val name = v.tv_name_item_pokemon
         val image = v.iv_item_pokemon
+
+
+
+
+
     }
 }

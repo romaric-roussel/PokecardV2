@@ -17,9 +17,9 @@ class FragmentAllUserPokemon : Fragment() {
 
     lateinit var rvPokemonUser: RecyclerView
     lateinit var adapter: AllPokemonListeAdapter
-    var pokemon1 = Pokemon("25","pikachu","http://www.ray0.be/pokeapi/pokemon-img/fr/pikachu")
-    var pokemon2 = Pokemon("9","tortank","http://www.ray0.be/pokeapi/pokemon-img/fr/tortank")
-    var pokemon3 = Pokemon("13","aspicot","http://www.ray0.be/pokeapi/pokemon-img/fr/aspicot")
+    var pokemon1 = Pokemon("25","pikachu","","","http://www.ray0.be/pokeapi/pokemon-img/fr/pikachu")
+    var pokemon2 = Pokemon("9","tortank","","","http://www.ray0.be/pokeapi/pokemon-img/fr/tortank")
+    var pokemon3 = Pokemon("13","aspicot","","","http://www.ray0.be/pokeapi/pokemon-img/fr/aspicot")
     var tabPokemon = arrayListOf<Pokemon>(pokemon1,pokemon2,pokemon3)
     var listeAllUserPokemon: ArrayList<Pokemon> = ArrayList(tabPokemon)
 

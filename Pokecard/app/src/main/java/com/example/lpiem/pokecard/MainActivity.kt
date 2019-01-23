@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lpiem.pokecard.adapter.AllPokemonListeAdapter
 import com.example.lpiem.pokecard.fragment.FragmentAllPokemon
+import com.example.lpiem.pokecard.fragment.FragmentAllPokemonDetail
 import com.example.lpiem.pokecard.fragment.FragmentAllUserPokemon
 
 import com.example.lpiem.pokecard.retrofit.GestionRetrofit
@@ -37,12 +38,13 @@ import java.util.ArrayList
 class MainActivity : AppCompatActivity() {
 
 
-    val api by lazy {
+    /*val api by lazy {
         GestionRetrofit.initRetrofit()
-    }
+    }*/
 
     lateinit var fragmentAllPokemon: FragmentAllPokemon
     lateinit var fragmentAllUserPokemon: FragmentAllUserPokemon
+    lateinit var fragmentAllPokemonDetail: FragmentAllPokemonDetail
     lateinit var button: Button
     lateinit var button2 : Button
     lateinit var toolbar: ActionBar
@@ -59,6 +61,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         fragmentAllPokemon = FragmentAllPokemon.newInstance()
         fragmentAllUserPokemon = FragmentAllUserPokemon.newInstance()
+        fragmentAllPokemonDetail = FragmentAllPokemonDetail.newInstance()
         setDefaultFragment(fragmentAllPokemon)
 
         //rvAllPokemon = findViewById(R.id.rv_pokemon_fragment)
@@ -163,13 +166,14 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.settings -> {
                 toolbar.title = "Paramètre"
+                openFragment(fragmentAllPokemonDetail)
                 return@OnNavigationItemSelectedListener true
             }
         }
         false
     }
 
-    private fun openFragment(fragment: Fragment) {
+     fun openFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragment)
         transaction.addToBackStack(null)
