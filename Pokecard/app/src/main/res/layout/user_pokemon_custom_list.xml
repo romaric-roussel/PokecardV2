@@ -13,7 +13,7 @@
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/iv_item_pokemon"
+            android:id="@+id/iv_item_pokemon_user"
             android:layout_width="60dp"
             android:layout_height="60dp"
             app:layout_constraintDimensionRatio="1:1"
@@ -22,18 +22,18 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
-        android:id="@+id/tv_id_item_pokemon"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="1"
+            android:id="@+id/tv_id_item_pokemon_user"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="id"
 
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/iv_item_pokemon"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_item_pokemon_user"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_name_item_pokemon"
+            android:id="@+id/tv_name_item_pokemon_user"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
 
@@ -41,9 +41,8 @@
             android:text="Pokemon"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_item_pokemon"
-            app:layout_constraintTop_toBottomOf="@+id/tv_id_item_pokemon" />
-
+            app:layout_constraintStart_toEndOf="@+id/iv_item_pokemon_user"
+            app:layout_constraintTop_toBottomOf="@+id/tv_id_item_pokemon_user" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

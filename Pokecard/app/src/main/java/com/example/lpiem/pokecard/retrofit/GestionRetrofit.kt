@@ -1,5 +1,7 @@
-package com.example.lpiem.pokecard
+package com.example.lpiem.pokecard.retrofit
 
+import com.example.lpiem.pokecard.retrofit.API.API
+import com.example.lpiem.pokecard.retrofit.API.C
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.Retrofit
 

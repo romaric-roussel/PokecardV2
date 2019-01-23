@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">Pokecard</string>
     <string name="se_deconnecter">Se deconnecter</string>
+    <string name="Mes_pokemon">Mes pokemon</string>
+    <string name="pokedex">Pokedex</string>
+    <string name="parametre">Paramètre</string>
 
 
     <string name="facebook_app_id">282683965920671</string>
     <string name="fb_login_protocol_scheme">fb282683965920671</string>
     <string name="se_deconnecter_avec_google">Se deconnecter avec Google</string>
     <string name="title_activity_accueil">Accueil</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
