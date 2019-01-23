@@ -68,9 +68,9 @@
        <!-- <activity
             android:name=".Accueil"
             android:label="@string/title_activity_accueil"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" />-->
         <activity android:name=".Connexion"></activity>
-        <activity android:name=".FragmentProfile"></activity>-->
+
     </application>
 
 </manifest>

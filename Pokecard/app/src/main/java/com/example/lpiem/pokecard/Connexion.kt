@@ -1,7 +1,6 @@
-/*package com.example.lpiem.pokecard
+package com.example.lpiem.pokecard
 
-//3gm6wp3jThW8ssPN1P8ULbiBTrc=
-//https://www.youtube.com/watch?v=mapLbSKNc6I
+
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,8 +14,8 @@ import com.facebook.*
 
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
-import com.google.android.gms.auth.api.Auth
-import com.google.android.gms.auth.api.signin.GoogleSignIn
+/*import com.google.android.gms.auth.api.Auth
+import com.google.android.gms.auth.api.signin.GoogleSignIn*/
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.ConnectionResult
@@ -58,7 +57,7 @@ class Connexion : AppCompatActivity() {
         button_connexion = findViewById(R.id.connexion)
 
         button_connexion.setOnClickListener{
-            val intent = Intent(this, FragmentProfile::class.java)
+            val intent = Intent(this, MainActivity::class.java)
 
             intent.putExtra("photo","https://graph.facebook.com/2084209848298504/picture?type=large")
             intent.putExtra("nom","Benzaied")
@@ -83,11 +82,11 @@ class Connexion : AppCompatActivity() {
                 .build()
 
 
-        mGoogleApiClient = GoogleApiClient.Builder(this)
+     /*   mGoogleApiClient = GoogleApiClient.Builder(this)
                 .enableAutoManage(this) { Toast.makeText(this@Connexion, "Marche pas ", Toast.LENGTH_SHORT).show() }
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build()
-
+*/
 
 
         loginButton.setReadPermissions("email", "public_profile")
@@ -146,8 +145,8 @@ class Connexion : AppCompatActivity() {
 
 
     private fun signIn() {
-        val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
-        startActivityForResult(signInIntent, RC_SIGN_IN)
+        /*val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)*/
+        /*startActivityForResult(signInIntent, RC_SIGN_IN)*/
     }
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
@@ -186,10 +185,10 @@ class Connexion : AppCompatActivity() {
     }
 
     private fun updateUI() {
-        Toast.makeText(this@Connexion, "You're logged in", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(this@Connexion, "You're logged in", Toast.LENGTH_SHORT).show()
 
       //  val intent = Intent(this, MainActivity::class.java)
-        val intent = Intent(this, FragmentProfile::class.java)
+        val intent = Intent(this, MainActivity::class.java)
         intent.putExtra("photo","https://graph.facebook.com/2084209848298504/picture?type=large")
         intent.putExtra("nom","Benzaied")
         intent.putExtra("prenom","Sofiane")
@@ -206,11 +205,11 @@ class Connexion : AppCompatActivity() {
         mCallbackManager!!.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+           /* val task = GoogleSignIn.getSignedInAccountFromIntent(data)*/
             try {
                 // Google Sign In was successful, authenticate with Firebase
-                val account = task.getResult<ApiException>(ApiException::class.java!!)
-                firebaseAuthWithGoogle(account!!)
+               /* val account = task.getResult<ApiException>(ApiException::class.java!!)*/
+                /*firebaseAuthWithGoogle(account!!)*/
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Toast.makeText(this@Connexion, "Marche pas authentification", Toast.LENGTH_SHORT).show()
@@ -254,4 +253,3 @@ class Connexion : AppCompatActivity() {
 
 
 
-*/
