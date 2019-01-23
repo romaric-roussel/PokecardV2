@@ -88,7 +88,7 @@ class FragmentAllPokemon : Fragment() {
                 var size = resultAllPokemon?.result?.data!!.size
                 for (i in 0..size - 1) {
                     //add resultAllPlants.result.data[i].image
-                    var pokemon = Pokemon(resultAllPokemon.result.data[i].id, resultAllPokemon.result.data[i].nom, "", "", resultAllPokemon.result.data[i].url)
+                    var pokemon = Pokemon(resultAllPokemon.result.data[i].id, resultAllPokemon.result.data[i].nom, "", "", resultAllPokemon.result.data[i].image)
                     listeAllPokemon.add(pokemon)
 
                     //Log.d("POKEMON", allResult.result.data[i].toString())
