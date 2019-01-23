@@ -32,6 +32,7 @@ class FragmentProfile : Fragment() {
         prenom.text = (activity as MainActivity).CompteMail
         val boutonFacebook=view.findViewById<Button>(R.id.login_button)
         Glide.with(imageView).load((activity as MainActivity).CompteImage).into(imageView)
+        FirebaseAuth.getInstance().signOut()
         boutonFacebook.setOnClickListener{
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(activity, Connexion::class.java)
