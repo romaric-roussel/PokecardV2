@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.lpiem.pokecard.MainActivity
 import com.example.lpiem.pokecard.R
 
 class FragmentProfile : Fragment() {
@@ -20,17 +21,15 @@ class FragmentProfile : Fragment() {
         val nom = view.findViewById<TextView>(R.id.tv_name_fragment_account_informations)
         val prenom = view.findViewById<TextView>(R.id.tv_birthdate_fragment_account_informations)
         val mail = view.findViewById<TextView>(R.id.tv_mail_fragment_account_informations)
-        var photo = "https://graph.facebook.com/2084209848298504/picture?type=large"
-        var profilenom = "Benzaied"
-        var profileprenom = "Sofiane"
-        var profilemail = "sofiane.benzaied@yahoo.fr"
 
 
-        nom.text = "Benzaied"
-        prenom.text = "Sofiane"
-        mail.text = "sofiane.benzaied@yahoo.fr"
 
-        Glide.with(imageView).load(photo).into(imageView)
+
+        nom.text = (activity as MainActivity).CompteNom
+        prenom.text = (activity as MainActivity).CompteMail
+
+
+        Glide.with(imageView).load((activity as MainActivity).CompteImage).into(imageView)
 
         return view
 

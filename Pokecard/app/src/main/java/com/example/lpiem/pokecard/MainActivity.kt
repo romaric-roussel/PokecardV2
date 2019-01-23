@@ -1,5 +1,6 @@
 package com.example.lpiem.pokecard
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 
@@ -35,6 +36,9 @@ class MainActivity: AppCompatActivity() {
     lateinit var button: Button
     lateinit var button2 : Button
     lateinit var toolbar: ActionBar
+    lateinit var CompteNom:String
+    lateinit var CompteMail:String
+    lateinit var CompteImage:String
     //lateinit var mAuth: FirebaseAuth
     //lateinit var mAuthStateListener: FirebaseAuth.AuthStateListener
     lateinit var bottomNavigation: BottomNavigationView
@@ -53,7 +57,12 @@ class MainActivity: AppCompatActivity() {
         fragmentProfile = FragmentProfile()
         fragmentConnexion = FragmentConnexion()
 
-        setDefaultFragment(fragmentConnexion)
+
+       CompteNom=intent.getStringExtra("nom")
+       CompteMail=intent.getStringExtra("mail")
+       CompteImage=intent.getStringExtra("photo")
+
+        setDefaultFragment(FragmentAllUserPokemon())
 
         //rvAllPokemon = findViewById(R.id.rv_pokemon_fragment)
        // rvAllPokemon.layoutManager = LinearLayoutManager(this)

@@ -43,6 +43,9 @@ class Connexion : AppCompatActivity() {
     lateinit var mAuth: FirebaseAuth
     lateinit var mGoogleApiClient: GoogleApiClient
     lateinit var mAuthListener: FirebaseAuth.AuthStateListener
+    lateinit var CompteNom : String
+    lateinit var CompteMail : String
+    lateinit var CompteImage : String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -104,6 +107,11 @@ class Connexion : AppCompatActivity() {
                     try {
                         //here is the data that you want
                         Log.d("FBLOGIN_JSON_RES", `object`.toString())
+                        CompteNom= response.jsonObject.getString("name")
+                        CompteMail=response.jsonObject.getString("email")
+                        CompteImage= "https://graph.facebook.com/"+response.jsonObject.getString("id")+"/picture?type=large"
+
+
 
                         if (`object`.has("id")) {
                            // handleSignInResultFacebook(`object`)
@@ -187,14 +195,13 @@ class Connexion : AppCompatActivity() {
     private fun updateUI() {
         //Toast.makeText(this@Connexion, "You're logged in", Toast.LENGTH_SHORT).show()
 
-      //  val intent = Intent(this, MainActivity::class.java)
+
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("photo","https://graph.facebook.com/2084209848298504/picture?type=large")
-        intent.putExtra("nom","Benzaied")
-        intent.putExtra("prenom","Sofiane")
-        intent.putExtra("mail","sofiane.benzaied@yahoo.fr")
+        intent.putExtra("photo",CompteImage)
+        intent.putExtra("nom",CompteNom)
+        intent.putExtra("mail",CompteMail)
         startActivity(intent)
-        finish()
+
 
     }
 
