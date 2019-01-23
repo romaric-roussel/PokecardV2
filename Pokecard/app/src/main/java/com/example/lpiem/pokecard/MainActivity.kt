@@ -1,41 +1,26 @@
 package com.example.lpiem.pokecard
 
-import android.content.Context
-import android.content.Intent
-
 import android.os.Bundle
+import android.view.View
 
-
-import android.util.Log
 
 import android.widget.Button
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.lpiem.pokecard.adapter.AllPokemonListeAdapter
-import com.example.lpiem.pokecard.fragment.FragmentAllPokemon
-import com.example.lpiem.pokecard.fragment.FragmentAllPokemonDetail
-import com.example.lpiem.pokecard.fragment.FragmentAllUserPokemon
+import com.example.lpiem.pokecard.fragment.*
 
-import com.example.lpiem.pokecard.retrofit.GestionRetrofit
+//import kotlinx.android.synthetic.main.activity_display_pokemon.view.*
+
 import com.google.android.material.bottomnavigation.BottomNavigationView
 //import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_main.view.*
-import kotlinx.android.synthetic.main.fragment_all_pokemon.*
-import kotlinx.android.synthetic.main.fragment_all_pokemon.view.*
-//import com.squareup.picasso.Picasso
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.notificationManager
-import org.jetbrains.anko.onComplete
-import org.jetbrains.anko.uiThread
 
 
 import java.util.ArrayList
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity: AppCompatActivity() {
 
 
     /*val api by lazy {
@@ -45,6 +30,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var fragmentAllPokemon: FragmentAllPokemon
     lateinit var fragmentAllUserPokemon: FragmentAllUserPokemon
     var fragmentAllPokemonDetail: FragmentAllPokemonDetail? =null
+    lateinit var fragmentProfile: FragmentProfile
+    lateinit var fragmentConnexion: FragmentConnexion
     lateinit var button: Button
     lateinit var button2 : Button
     lateinit var toolbar: ActionBar
@@ -63,6 +50,10 @@ class MainActivity : AppCompatActivity() {
         fragmentAllUserPokemon = FragmentAllUserPokemon()
         fragmentAllPokemonDetail = FragmentAllPokemonDetail()
         setDefaultFragment(fragmentAllPokemon)
+        fragmentProfile = FragmentProfile()
+        fragmentConnexion = FragmentConnexion()
+
+        setDefaultFragment(fragmentConnexion)
 
         //rvAllPokemon = findViewById(R.id.rv_pokemon_fragment)
        // rvAllPokemon.layoutManager = LinearLayoutManager(this)
@@ -72,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         bottomNavigation = findViewById(R.id.navigationView)
         bottomNavigation.selectedItemId = R.id.pokedex
         bottomNavigation.navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-
+        
         //mAuth = FirebaseAuth.getInstance()
 
 
@@ -156,18 +147,19 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.myPokemon -> {
 
-                toolbar.title = "UserList"
+                toolbar.title = getString(R.string.Mes_pokemon)
                 openFragment(fragmentAllUserPokemon)
+
                 return@OnNavigationItemSelectedListener true
             }
             R.id.pokedex -> {
-                toolbar.title = "Pokedex"
+                toolbar.title = getString(R.string.pokedex)
                 openFragment(fragmentAllPokemon)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.settings -> {
-                toolbar.title = "Paramètre"
-                openFragment(fragmentAllPokemonDetail!!)
+                toolbar.title = getString(R.string.parametre)
+                openFragment(fragmentProfile)
                 return@OnNavigationItemSelectedListener true
             }
         }

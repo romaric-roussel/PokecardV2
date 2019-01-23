@@ -8,13 +8,10 @@ import android.os.Bundle
 
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-
-import com.facebook.AccessToken
-import com.facebook.CallbackManager
-import com.facebook.FacebookCallback
-import com.facebook.FacebookException
+import com.facebook.*
 
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
@@ -34,12 +31,16 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import org.json.JSONObject
+import java.net.URL
+import java.util.*
 
 
 class Connexion : AppCompatActivity() {
 
     private var mCallbackManager: CallbackManager? = null
     lateinit var button: SignInButton
+    lateinit var button_connexion : Button
     lateinit var mAuth: FirebaseAuth
     lateinit var mGoogleApiClient: GoogleApiClient
     lateinit var mAuthListener: FirebaseAuth.AuthStateListener
@@ -52,7 +53,21 @@ class Connexion : AppCompatActivity() {
         mAuth = FirebaseAuth.getInstance()
         mCallbackManager = CallbackManager.Factory.create()
         val loginButton = findViewById<LoginButton>(R.id.login_button)
+        loginButton.setReadPermissions(Arrays.asList("public_profile","email","user_birthday","user_friends"))
         button = findViewById(R.id.sign_in_button)
+        button_connexion = findViewById(R.id.connexion)
+
+        button_connexion.setOnClickListener{
+            val intent = Intent(this, FragmentProfile::class.java)
+
+            intent.putExtra("photo","https://graph.facebook.com/2084209848298504/picture?type=large")
+            intent.putExtra("nom","Benzaied")
+            intent.putExtra("prenom","Sofiane")
+            intent.putExtra("mail","sofiane.benzaied@yahoo.fr")
+            startActivity(intent)
+
+        }
+
 
         button.setOnClickListener { signIn() }
         mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
@@ -81,6 +96,36 @@ class Connexion : AppCompatActivity() {
             override fun onSuccess(loginResult: LoginResult) {
                 Log.d("Test", "facebook:onSuccess:$loginResult")
                 handleFacebookAccessToken(loginResult.accessToken)
+                Log.d("FBLOGIN", loginResult.accessToken.token.toString())
+                Log.d("FBLOGIN", loginResult.recentlyDeniedPermissions.toString())
+                Log.d("FBLOGIN", loginResult.recentlyGrantedPermissions.toString())
+
+
+                val request = GraphRequest.newMeRequest(loginResult.accessToken) { `object`, response ->
+                    try {
+                        //here is the data that you want
+                        Log.d("FBLOGIN_JSON_RES", `object`.toString())
+
+                        if (`object`.has("id")) {
+                           // handleSignInResultFacebook(`object`)
+                            Log.d("CA PASSE","name,email,id,picture.type(large)")
+                        } else {
+                            Log.e("FBLOGIN_FAILD", `object`.toString())
+                        }
+
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+
+                    }
+                }
+                //Sofiane Benzaied
+                //sofiane.benzaied@yahoo.fr
+                val parameters = Bundle()
+                parameters.putString("fields", "name,email,id,picture.type(large)")
+                request.parameters = parameters
+                request.executeAsync()
+
+
             }
 
             override fun onCancel() {
@@ -92,16 +137,18 @@ class Connexion : AppCompatActivity() {
                 Log.d("Test", "facebook:onError", error)
                 // ...
             }
+
+
         })
 
     }
+
 
 
     private fun signIn() {
         val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
         startActivityForResult(signInIntent, RC_SIGN_IN)
     }
-
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         Log.d("auth", "firebaseAuthWithGoogle:" + acct.id!!)
@@ -125,6 +172,8 @@ class Connexion : AppCompatActivity() {
                 }
     }
 
+    val photo= URL("https://graph.facebook.com/")
+
     public override fun onStart() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
@@ -139,7 +188,12 @@ class Connexion : AppCompatActivity() {
     private fun updateUI() {
         Toast.makeText(this@Connexion, "You're logged in", Toast.LENGTH_SHORT).show()
 
-        val intent = Intent(this, MainActivity::class.java)
+      //  val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, FragmentProfile::class.java)
+        intent.putExtra("photo","https://graph.facebook.com/2084209848298504/picture?type=large")
+        intent.putExtra("nom","Benzaied")
+        intent.putExtra("prenom","Sofiane")
+        intent.putExtra("mail","sofiane.benzaied@yahoo.fr")
         startActivity(intent)
         finish()
 
