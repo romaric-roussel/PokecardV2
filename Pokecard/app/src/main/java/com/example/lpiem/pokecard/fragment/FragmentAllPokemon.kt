@@ -1,17 +1,13 @@
 package com.example.lpiem.pokecard.fragment
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lpiem.pokecard.MainActivity
+import com.example.lpiem.pokecard.activity.MainActivity
 import com.example.lpiem.pokecard.Model.Pokemon
 import com.example.lpiem.pokecard.Model.retrofit.AllResult
 import com.example.lpiem.pokecard.R

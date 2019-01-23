@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Pokecard</string>
     <string name="se_deconnecter">Se deconnecter</string>
-    <string name="Mes_pokemon">Mes pokemon</string>
+    <string name="Mes_pokemon">Mes Pokemons</string>
     <string name="pokedex">Pokedex</string>
-    <string name="parametre">Paramètre</string>
+    <string name="parametre">Paramètres</string>
 
 
     <string name="facebook_app_id">282683965920671</string>

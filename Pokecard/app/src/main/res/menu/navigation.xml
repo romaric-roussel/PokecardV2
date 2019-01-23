@@ -13,7 +13,7 @@
 
     <item
         android:id="@+id/settings"
-        android:icon="@drawable/ic_baseline_settings_20px"
+        android:icon="@drawable/ic_settings"
         android:title="@string/parametre"/>
 
 </menu>

@@ -22,21 +22,21 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
-        android:id="@+id/tv_id_item_pokemon"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="1"
-
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/iv_item_pokemon"
-        app:layout_constraintTop_toTopOf="parent" />
+            android:id="@+id/tv_id_item_pokemon"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:src="@color/colorText"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_item_pokemon"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_name_item_pokemon"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-
+            android:src="@color/colorText"
             android:layout_marginTop="8dp"
             android:text="Pokemon"
             android:textAlignment="center"

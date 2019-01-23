@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         >
-        <activity android:name=".SplashScreen"
+        <activity android:name=".activity.SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
 
             <intent-filter>
@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".activity.MainActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -69,7 +69,7 @@
             android:name=".Accueil"
             android:label="@string/title_activity_accueil"
             android:theme="@style/AppTheme.NoActionBar" />-->
-        <activity android:name=".Connexion"></activity>
+        <activity android:name=".activity.Connexion"></activity>
 
     </application>
 
