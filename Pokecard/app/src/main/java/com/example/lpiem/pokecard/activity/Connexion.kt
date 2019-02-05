@@ -74,7 +74,7 @@ class Connexion : AppCompatActivity() {
 
                 val request = GraphRequest.newMeRequest(loginResult.accessToken) { `object`, response ->
                     try {
-                        //here is the data that you want
+                        //Recuperation des données JSON Facebook
                         Log.d("FBLOGIN_JSON_RES", `object`.toString())
                         CompteNom= response.jsonObject.getString("name")
                         CompteMail=response.jsonObject.getString("email")

@@ -17,7 +17,6 @@ import android.widget.AdapterView.OnItemClickListener
 class AllPokemonListeAdapter(items : ArrayList<Pokemon>) : RecyclerView.Adapter<AllPokemonListeAdapter.ViewHolder>(){
 
     var list = items
-   // var context = ctx
 
 
 

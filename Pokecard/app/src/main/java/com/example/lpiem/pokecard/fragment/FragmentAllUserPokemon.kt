@@ -26,8 +26,7 @@ class FragmentAllUserPokemon : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_user_pokemon, container, false)
-        //listeAllUserPokemon.clear()
-        //listeAllUserPokemon = tabPokemon
+
         rvPokemonUser = view.findViewById(R.id.rv_pokemon_fragment_user)
         rvPokemonUser.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         adapter = AllPokemonListeAdapter(listeAllUserPokemon)

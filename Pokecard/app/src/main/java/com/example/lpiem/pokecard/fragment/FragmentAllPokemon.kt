@@ -26,8 +26,7 @@ class FragmentAllPokemon : Fragment() {
         GestionRetrofit.initRetrofit()
     }
 
-    //lateinit var mainActivity: MainActivity
-    //lateinit var fragmentAllPokemonDetail:FragmentAllPokemonDetail
+
     lateinit var rvAllPokemon: RecyclerView
     lateinit var adapter: AllPokemonListeAdapter
     var listeAllPokemon: ArrayList<Pokemon> = ArrayList()
@@ -38,13 +37,13 @@ class FragmentAllPokemon : Fragment() {
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_all_pokemon, container, false)
-        //mainActivity = context as MainActivity
+
         listeAllPokemon.clear()
         rvAllPokemon = view.findViewById(R.id.rv_pokemon_fragment)
         rvAllPokemon.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL, false)
         adapter = AllPokemonListeAdapter(listeAllPokemon)
         rvAllPokemon.adapter = adapter
-        //adapter.notifyDataSetChanged()
+
         return view
     }
 
@@ -84,11 +83,10 @@ class FragmentAllPokemon : Fragment() {
             override fun onGetPokemon(resultAllPokemon: AllResult?) {
                 var size = resultAllPokemon?.result?.data!!.size
                 for (i in 0..size - 1) {
-                    //add resultAllPlants.result.data[i].image
+
                     var pokemon = Pokemon(resultAllPokemon.result.data[i].id, resultAllPokemon.result.data[i].nom, "", "", resultAllPokemon.result.data[i].image)
                     listeAllPokemon.add(pokemon)
 
-                    //Log.d("POKEMON", allResult.result.data[i].toString())
                 }
 
                 adapter.notifyDataSetChanged()
@@ -99,7 +97,7 @@ class FragmentAllPokemon : Fragment() {
             }
         })
 
-        //fragmentAllPokemonDetail = mainActivity.fragmentAllPokemonDetail
+
         rvAllPokemon.addOnItemTouchListener(RecyclerTouchListener(
                 activity!!.applicationContext,
                 rvAllPokemon,
