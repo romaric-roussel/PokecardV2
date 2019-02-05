@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lpiem.pokecard.Model.Pokemon
 import com.example.lpiem.pokecard.R
+import com.example.lpiem.pokecard.RecyclerTouchListener
+import com.example.lpiem.pokecard.activity.MainActivity
 import com.example.lpiem.pokecard.adapter.AllPokemonListeAdapter
 import com.example.lpiem.pokecard.adapter.AllPokemonUserListeAdapter
 import java.util.*
@@ -34,6 +36,33 @@ class FragmentAllUserPokemon : Fragment() {
         adapter.notifyDataSetChanged()
         return view
 
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setUpRecyclerView()
+
+    }
+
+    private fun setUpRecyclerView() {
+
+
+
+        rvPokemonUser.addOnItemTouchListener(RecyclerTouchListener(
+                activity!!.applicationContext,
+                rvPokemonUser,
+                object : RecyclerTouchListener.ClickListener {
+                    override fun onClick(view: View, position: Int) {
+                        var fragment =  (activity as MainActivity).fragmentAllPokemonDetail
+                        fragment?.pokemonId = listeAllUserPokemon[position].id_pokemon
+                        (activity as MainActivity).openFragment(fragment!!)
+                    }
+
+                    override fun onLongClick(view: View?, position: Int) {
+                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                    }
+
+                }))
     }
 
 

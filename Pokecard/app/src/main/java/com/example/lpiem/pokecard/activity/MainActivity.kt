@@ -42,9 +42,9 @@ class MainActivity: AppCompatActivity() {
         setDefaultFragment(fragmentAllPokemon)
         fragmentProfile = FragmentProfile()
         fragmentConnexion = FragmentConnexion()
-        CompteNom=intent.getStringExtra("nom")
+       /* CompteNom=intent.getStringExtra("nom")
         CompteMail=intent.getStringExtra("mail")
-        CompteImage=intent.getStringExtra("photo")
+        CompteImage=intent.getStringExtra("photo")*/
         setDefaultFragment(FragmentAllUserPokemon())
         toolbar = supportActionBar!!
         bottomNavigation = findViewById(R.id.navigationView)
