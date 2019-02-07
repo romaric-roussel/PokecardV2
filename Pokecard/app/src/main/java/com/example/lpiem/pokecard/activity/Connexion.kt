@@ -2,13 +2,13 @@ package com.example.lpiem.pokecard.activity
 
 
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.lpiem.pokecard.R
 import com.facebook.*
 import com.facebook.login.LoginManager
@@ -21,17 +21,17 @@ import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.connexion.*
 
 
-class Connexion : BaseActivity() , View.OnClickListener{
+class Connexion : BaseActivity() {
 
 
     private lateinit var mCallbackManager: CallbackManager
-    lateinit var button: SignInButton
-    lateinit var button_connexion : Button
+    lateinit var signInButton: SignInButton
+    lateinit var connexionButton : Button
     lateinit var mAuth: FirebaseAuth
-    lateinit var mAuthListener: FirebaseAuth.AuthStateListener
-    lateinit var CompteNom : String
-    lateinit var CompteMail : String
-    lateinit var CompteImage : String
+    //lateinit var mAuthListener: FirebaseAuth.AuthStateListener
+    lateinit var displayName : String
+    lateinit var mailAdress : String
+    lateinit var profilPicture : String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,11 +39,9 @@ class Connexion : BaseActivity() , View.OnClickListener{
         super.onCreate(savedInstanceState)
         setContentView(R.layout.connexion)
 
-        buttonFacebookSignout.setOnClickListener(this)
-
         mAuth = FirebaseAuth.getInstance()
         mCallbackManager = CallbackManager.Factory.create()
-        val loginButton = findViewById<LoginButton>(R.id.login_button)
+        val loginButton = findViewById<LoginButton>(R.id.fb_login)
         loginButton.setReadPermissions("email", "public_profile")
         loginButton.registerCallback(mCallbackManager, object : FacebookCallback<LoginResult> {
             override fun onSuccess(loginResult: LoginResult) {
@@ -54,23 +52,23 @@ class Connexion : BaseActivity() , View.OnClickListener{
             override fun onCancel() {
                 Log.d(TAG, "facebook:onCancel")
                 // [START_EXCLUDE]
-                updateUI(null)
+                getUserProfilData(null)
                 // [END_EXCLUDE]
             }
 
             override fun onError(error: FacebookException) {
                 Log.d(TAG, "facebook:onError", error)
                 // [START_EXCLUDE]
-                updateUI(null)
+                getUserProfilData(null)
                 // [END_EXCLUDE]
             }
         })
 
 
 
-        button = findViewById(R.id.sign_in_button)
-        button_connexion = findViewById(R.id.connexion)
-        button_connexion.setOnClickListener {
+        signInButton = findViewById(R.id.googleSignIn)
+        connexionButton = findViewById(R.id.connexion)
+       /* connexionButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
 
             intent.putExtra("photo", "https://graph.facebook.com/2084209848298504/picture?type=large")
@@ -79,7 +77,7 @@ class Connexion : BaseActivity() , View.OnClickListener{
             intent.putExtra("mail", "sofiane.benzaied@yahoo.fr")
             startActivity(intent)
 
-        }
+        }*/
 
 
 
@@ -98,21 +96,24 @@ class Connexion : BaseActivity() , View.OnClickListener{
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = mAuth.currentUser
         //mAuth.addAuthStateListener(mAuthListener)
-        updateUI(currentUser)
+        getUserProfilData(currentUser)
+        if(currentUser != null)
+            startActivity(Intent(this@Connexion, MainActivity::class.java))
 
     }
-    private fun updateUI(user: FirebaseUser?) {
+     fun getUserProfilData(user: FirebaseUser?) {
         hideProgressDialog()
         if (user != null) {
-           Log.d(TAG,"test " + user.toString())
 
-            login_button.visibility = View.GONE
-            buttonFacebookSignout.visibility = View.VISIBLE
+            displayName = user.displayName.toString()
+            mailAdress = user.email.toString()
+            profilPicture = user.photoUrl.toString()+"?type=large"
+            saveUserDataInSharePref()
+           // Log.d(TAG,"test " + displayName + mailAdress + profilPicture)
+            fb_login.visibility = View.GONE
         } else {
 
-
-            login_button.visibility = View.VISIBLE
-            buttonFacebookSignout.visibility = View.GONE
+            fb_login.visibility = View.VISIBLE
         }
     }
 
@@ -122,6 +123,17 @@ class Connexion : BaseActivity() , View.OnClickListener{
         // Pass the activity result back to the Facebook SDK
         mCallbackManager.onActivityResult(requestCode, resultCode, data)
 
+    }
+
+    private fun saveUserDataInSharePref(){
+        val sharedPref = this?.getSharedPreferences(
+                getString(R.string.sharePrefName), Context.MODE_PRIVATE) ?: return
+        with(sharedPref.edit()){
+            putString(getString(R.string.keyDisplayName), displayName)
+            putString(getString(R.string.keyMailAdress), mailAdress)
+            putString(getString(R.string.keyProfilPicture), profilPicture)
+            commit()
+        }
     }
 
     private fun handleFacebookAccessToken(token: AccessToken) {
@@ -134,14 +146,14 @@ class Connexion : BaseActivity() , View.OnClickListener{
                         // Sign in success, update UI with the signed-in user's information
                         Log.d("erreur", "signInWithCredential:success")
                         val user = mAuth.currentUser
-                        updateUI(user)
+                        getUserProfilData(user)
                         startActivity(Intent(this@Connexion, MainActivity::class.java))
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("erreur", "signInWithCredential:failure", task.exception)
                         Toast.makeText(this@Connexion, "Authentication failed.",
                                 Toast.LENGTH_SHORT).show()
-                        updateUI(null)
+                        getUserProfilData(null)
                     }
 
                     hideProgressDialog()
@@ -149,21 +161,11 @@ class Connexion : BaseActivity() , View.OnClickListener{
     }
 
     companion object {
-        private val RC_SIGN_IN = 2
+        //private val RC_SIGN_IN = 2
         private const val TAG = "FacebookLogin"
-    }
-    override fun onClick(v: View) {
-        val i = v.id
-        if (i == R.id.buttonFacebookSignout) {
-            signOut()
-        }
-    }
-    fun signOut() {
-        mAuth.signOut()
-        LoginManager.getInstance().logOut()
 
-        updateUI(null)
     }
+
 
 
 }

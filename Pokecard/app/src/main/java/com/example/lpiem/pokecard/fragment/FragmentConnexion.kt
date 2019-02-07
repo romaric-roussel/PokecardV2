@@ -1,3 +1,4 @@
+/*
 package com.example.lpiem.pokecard.fragment
 
 import android.content.Intent
@@ -33,7 +34,8 @@ class FragmentConnexion: Fragment() {
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?{
-    /*
+    */
+/*
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
     val view = inflater.inflate(R.layout.fragment_all_pokemon, container, false)
@@ -45,15 +47,16 @@ class FragmentConnexion: Fragment() {
     //adapter.notifyDataSetChanged()
     return view
 
-}*/
+}*//*
+
 
         val view = inflater.inflate(R.layout.connexion, container, false)
         mainActivity = context as MainActivity
         mAuth = FirebaseAuth.getInstance()
         mCallbackManager = CallbackManager.Factory.create()
-        val loginButton = view.findViewById<LoginButton>(R.id.login_button)
+        val loginButton = view.findViewById<LoginButton>(R.id.fb_login)
         loginButton.setReadPermissions(Arrays.asList("public_profile","email","user_birthday","user_friends"))
-        button = view.findViewById(R.id.sign_in_button)
+        button = view.findViewById(R.id.googleSignIn)
         button_connexion = view.findViewById(R.id.connexion)
         fragmentprofile = mainActivity.fragmentProfile
         button_connexion.setOnClickListener {
@@ -116,10 +119,12 @@ class FragmentConnexion: Fragment() {
         }
 
 
-//        button.setOnClickListener { signIn() }
+//        signInButton.setOnClickListener { signIn() }
       mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
           if (firebaseAuth.currentUser != null) {
-              /*startActivity(Intent(this@Connexion, MainActivity::class.java))*/
+              */
+/*startActivity(Intent(this@Connexion, MainActivity::class.java))*//*
+
           }
       }
 
@@ -171,7 +176,9 @@ class FragmentConnexion: Fragment() {
 //                }
 //    }
 
-    /*val photo= URL("https://graph.facebook.com/")*/
+    */
+/*val photo= URL("https://graph.facebook.com/")*//*
+
 
      override fun onStart() {
         super.onStart()
@@ -194,7 +201,9 @@ class FragmentConnexion: Fragment() {
 //        intent.putExtra("prenom","Sofiane")
 //        intent.putExtra("mail","sofiane.benzaied@yahoo.fr")
 //        startActivity(intent)
-        /*finish()*/
+        */
+/*finish()*//*
+
 
     }
 
@@ -248,3 +257,4 @@ class FragmentConnexion: Fragment() {
 
 
 }
+*/

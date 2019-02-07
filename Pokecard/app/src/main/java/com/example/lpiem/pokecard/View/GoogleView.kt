@@ -23,7 +23,7 @@ import com.google.firebase.auth.GoogleAuthProvider
 class GoogleView : AppCompatActivity(){
 
     private var mCallbackManager: CallbackManager? = null
-    lateinit var button: SignInButton
+    lateinit var signInButton: SignInButton
     lateinit var mAuth: FirebaseAuth
     lateinit var mGoogleApiClient: GoogleApiClient
     lateinit var mAuthListener: FirebaseAuth.AuthStateListener
@@ -35,8 +35,8 @@ class GoogleView : AppCompatActivity(){
 
         mAuth = FirebaseAuth.getInstance()
         mCallbackManager = CallbackManager.Factory.create()
-        button = findViewById(R.id.sign_in_button)
-        button.setOnClickListener { signIn() }
+        signInButton = findViewById(R.id.sign_in_button)
+        signInButton.setOnClickListener { signIn() }
         mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
             if (firebaseAuth.currentUser != null) {
                 startActivity(Intent(this, Accueil::class.java))

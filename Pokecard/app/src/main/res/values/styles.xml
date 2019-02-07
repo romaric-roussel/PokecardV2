@@ -25,4 +25,11 @@
         <item name="android:textColor">@android:color/white</item>
     </style>
 
+    <style name="ThemeFbLogOutProfil">
+        <item name="android:layout_width">@dimen/fb_log_out_profil_width</item>
+        <item name="android:layout_height">@dimen/fb_log_out_profil_height</item>
+        <item name="android:layout_marginStart">@dimen/default_margin</item>
+        <item name="android:layout_marginBottom">@dimen/default_margin</item>
+    </style>
+
 </resources>

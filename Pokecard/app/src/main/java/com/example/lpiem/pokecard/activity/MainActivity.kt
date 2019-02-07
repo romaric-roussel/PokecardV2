@@ -21,7 +21,7 @@ class MainActivity: AppCompatActivity() {
     lateinit var fragmentAllUserPokemon: FragmentAllUserPokemon
              var fragmentAllPokemonDetail: FragmentAllPokemonDetail? =null
     lateinit var fragmentProfile: FragmentProfile
-    lateinit var fragmentConnexion: FragmentConnexion
+    //lateinit var fragmentConnexion: FragmentConnexion
     lateinit var button: Button
     lateinit var toolbar: ActionBar
     lateinit var CompteNom:String
@@ -41,7 +41,7 @@ class MainActivity: AppCompatActivity() {
         fragmentAllPokemonDetail = FragmentAllPokemonDetail()
         setDefaultFragment(fragmentAllPokemon)
         fragmentProfile = FragmentProfile()
-        fragmentConnexion = FragmentConnexion()
+        //fragmentConnexion = FragmentConnexion()
        /* CompteNom=intent.getStringExtra("nom")
         CompteMail=intent.getStringExtra("mail")
         CompteImage=intent.getStringExtra("photo")*/
