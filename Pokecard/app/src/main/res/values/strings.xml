@@ -1,34 +1,47 @@
 <resources>
+                <!-- nav bar -->
     <string name="app_name">Pokecard</string>
     <string name="Mes_pokemon">Mes Pokemons</string>
     <string name="pokedex">Pokedex</string>
     <string name="parametre">Paramètres</string>
 
-
+                <!-- Connexion-->
     <string name="facebook_app_id">282683965920671</string>
     <string name="fb_login_protocol_scheme">fb282683965920671</string>
     <string name="se_deconnecter_avec_google">Se deconnecter avec Google</string>
-    <string name="log_out">Se deconnecter</string>
     <string name="connect">Se connecter</string>
     <string name="password">Mot de passe</string>
     <string name="Identifiant">Identifiant</string>
 
 
+
+
+                 <!--Fragment pokemon detail -->
+    <string name="tv_id_all_pokemon_detail">1</string>
+    <string name="tv_type1_all_pokemon_detail">FEU</string>
+    <string name="tv_type2_all_pokemon_detail">ELECTRIQUE</string>
+    <string name="tv_nom_all_pokemon_detail">Pikachu</string>
+
+                 <!-- Item pokemon -->
+    <string name="tv_id_item_pokemon_user">id</string>
+    <string name="tv_name_item_pokemon_user">Pokemon</string>
+
+                <!-- Fragment user pokemon -->
+    <string name="tv_id_item_pokemon">1</string>
+    <string name="tv_name_item_pokemon">Pokemon</string>
+
+                <!--Fragment user  -->
+    <string name="tv_name_fragment_user">nom</string>
+    <string name="tv_email_fragment_user">mail</string>
+    <string name="log_out">Se deconnecter</string>
+
+
+
     <string name="title_activity_accueil">Accueil</string>
-
-
     <string name="loading">Loading…</string>
-
-
     <string name="sharePrefName">mySharePref</string>
     <string name="keyDisplayName">keyDisplayName</string>
     <string name="keyMailAdress">keyMailAdress</string>
     <string name="keyProfilPicture">keyProfilPicture</string>
-
-
-
-
-
-
 
 </resources>
