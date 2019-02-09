@@ -48,7 +48,7 @@ class MainActivity: AppCompatActivity() {
         setDefaultFragment(FragmentAllUserPokemon())
         toolbar = supportActionBar!!
         bottomNavigation = findViewById(R.id.navigationView)
-        bottomNavigation.selectedItemId = R.id.pokedex
+        bottomNavigation.selectedItemId = R.id.myPokemon
         bottomNavigation.navigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
 
     }
