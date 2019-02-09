@@ -2,29 +2,19 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/constraint_layout"
     android:background="@drawable/pokedex">
 
     <TextView
         android:id="@+id/tv_nom_all_pokemon_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/tv_nom_all_pokemon_detail_height"
-        android:layout_marginStart="@dimen/default_margin"
-        android:layout_marginEnd="@dimen/default_margin"
-        android:layout_marginBottom="@dimen/tv_nom_all_pokemon_detail_marginBottom"
-        android:text="@string/tv_nom_all_pokemon_detail"
+        style="@style/tv_nom_all_pokemon_detail"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/iv_all_pokemon_detail"
-        android:layout_width="@dimen/iv_all_pokemon_detail_width"
-        android:layout_height="@dimen/iv_all_pokemon_detail_height"
-        android:layout_marginStart="@dimen/fab_margin"
-        android:layout_marginTop="@dimen/default_margin"
-        android:layout_marginBottom="@dimen/default_margin"
+        style="@style/iv_all_pokemon_detail"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline"
@@ -32,9 +22,7 @@
 
     <TextView
         android:id="@+id/tv_id_all_pokemon_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tv_id_all_pokemon_detail"
+        style="@style/tv_id_all_pokemon_detail"
         app:layout_constraintBottom_toTopOf="@+id/tv_type1_all_pokemon_detail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_all_pokemon_detail"
@@ -42,55 +30,38 @@
 
     <TextView
         android:id="@+id/tv_type1_all_pokemon_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/default_margin"
-        android:text="@string/tv_type1_all_pokemon_detail"
+        style="@style/tv_type1_all_pokemon_detail"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toEndOf="@+id/iv_all_pokemon_detail"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <TextView
         android:id="@+id/tv_type2_all_pokemon_detail"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_margin"
-        android:layout_marginBottom="@dimen/tv_type2_all_pokemon_detail_marginBottom"
-        android:text="@string/tv_type2_all_pokemon_detail"
+        style="@style/tv_type2_all_pokemon_detail"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toEndOf="@+id/iv_all_pokemon_detail"
         app:layout_constraintTop_toBottomOf="@+id/tv_type1_all_pokemon_detail" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        style="@style/guideline"
         app:layout_constraintGuide_begin="@dimen/guideline_begin" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        style="@style/guideline"
         app:layout_constraintGuide_begin="@dimen/guideline2_begin" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        style="@style/guideline"
         app:layout_constraintGuide_begin="@dimen/guideline3_begin" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        style="@style/guideline"
         app:layout_constraintGuide_begin="@dimen/guideline4_begin" />
 
 

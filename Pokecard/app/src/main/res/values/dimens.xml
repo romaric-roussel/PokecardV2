@@ -36,5 +36,10 @@
     <dimen name="iv_photo_fragment_user_height">150dp</dimen>
     <dimen name="iv_item_pokemon_user_size">60dp</dimen>
 
+    <!--Splash Screen-->
+    <dimen name="splash_height">840dp</dimen>
+    <dimen name="splash_width">478dp</dimen>
+
+
 
 </resources>
