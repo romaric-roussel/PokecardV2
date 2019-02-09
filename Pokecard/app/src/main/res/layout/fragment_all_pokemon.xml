@@ -14,9 +14,9 @@ android:id="@+id/swiperefrsh_fragment_pokemon"
 
 
 <androidx.recyclerview.widget.RecyclerView
-android:id="@+id/rv_pokemon_fragment"
-    android:layout_width="0dp"
-    android:layout_height="0dp"
+    android:id="@+id/rv_pokemon_fragment"
+    android:layout_width="@dimen/rv_pokemon_fragment_size"
+    android:layout_height="@dimen/rv_pokemon_fragment_size"
     android:scrollbars="vertical"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"

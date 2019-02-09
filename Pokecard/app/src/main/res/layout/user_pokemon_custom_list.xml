@@ -5,17 +5,17 @@
     android:id="@+id/cl_item_pokemon"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="16dp">
+    android:layout_margin="@dimen/fab_margin">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="@dimen/default_margin">
 
         <ImageView
             android:id="@+id/iv_item_pokemon_user"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/iv_item_pokemon_user_size"
+            android:layout_height="@dimen/iv_item_pokemon_user_size"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -23,7 +23,7 @@
 
         <TextView
             android:id="@+id/tv_id_item_pokemon_user"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/rv_pokemon_fragment_size"
             android:layout_height="wrap_content"
             android:text="@string/tv_id_item_pokemon_user"
             android:src="@color/colorText"
@@ -34,10 +34,10 @@
 
         <TextView
             android:id="@+id/tv_name_item_pokemon_user"
-            android:layout_width="0dp"
+            android:layout_width="@dimen/rv_pokemon_fragment_size"
             android:layout_height="wrap_content"
             android:src="@color/colorText"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/default_margin"
             android:text="@string/tv_name_item_pokemon_user"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
