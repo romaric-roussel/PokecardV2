@@ -35,8 +35,6 @@
     <string name="tv_email_fragment_user">mail</string>
     <string name="log_out">Se deconnecter</string>
 
-
-
     <string name="title_activity_accueil">Accueil</string>
     <string name="loading">Loading…</string>
     <string name="sharePrefName">mySharePref</string>

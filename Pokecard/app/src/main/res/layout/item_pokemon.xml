@@ -3,19 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cl_item_pokemon"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="16dp">
+    style="@style/cl_item_pokemon">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:padding="@dimen/default_margin">
 
         <ImageView
             android:id="@+id/iv_item_pokemon"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            style="@style/iv_item_pokemon"
             app:layout_constraintDimensionRatio="1:1"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -23,23 +20,14 @@
 
         <TextView
             android:id="@+id/tv_id_item_pokemon"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_id_item_pokemon"
-            android:src="@color/colorText"
-            android:textAlignment="center"
+            style="@style/tv_id_item_pokemon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/iv_item_pokemon"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_name_item_pokemon"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:src="@color/colorText"
-            android:layout_marginTop="8dp"
-            android:text="@string/tv_name_item_pokemon"
-            android:textAlignment="center"
+            style="@style/tv_name_item_pokemon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_item_pokemon"
             app:layout_constraintTop_toBottomOf="@+id/tv_id_item_pokemon" />

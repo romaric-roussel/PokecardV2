@@ -1,50 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    style="@style/constraint_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/googleSignIn"
-        android:layout_width="@dimen/googleSignIn_width"
-        android:layout_height="@dimen/googleSignIn_height"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="@dimen/default_margin"
-        android:layout_marginTop="@dimen/fab_margin"
-        android:layout_marginEnd="@dimen/default_margin"
-        android:onClick="onClick"
+        style="@style/googleSignIn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/connexion" />
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/fb_login"
-        android:layout_width="@dimen/fb_login_width"
-        android:layout_height="@dimen/fb_login_height"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/fb_login_marginTop"
+        style="@style/fb_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/googleSignIn" />
 
     <EditText
         android:id="@+id/Identifiant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/default_margin"
-        android:layout_marginTop="@dimen/Identifiant_marginTop"
-        android:layout_marginEnd="@dimen/default_margin"
-        android:ems="10"
-        android:hint="@string/Identifiant"
-        android:inputType="textPersonName"
+        style="@style/Identifiant"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
@@ -52,26 +28,14 @@
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/password_height"
-        android:layout_marginStart="@dimen/default_margin"
-        android:layout_marginTop="@dimen/default_margin"
-        android:layout_marginEnd="@dimen/default_margin"
-        android:ems="10"
-        android:hint="@string/password"
-        android:inputType="textPassword"
+        style="@style/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Identifiant" />
 
     <Button
         android:id="@+id/connexion"
-        android:layout_width="@dimen/connexion_width"
-        android:layout_height="@dimen/connexion_height"
-        android:layout_marginStart="@dimen/connexion_marginStart"
-        android:layout_marginTop="@dimen/connexion_marginTop"
-        android:layout_marginEnd="@dimen/connexion_marginEnd"
-        android:text="@string/connect"
+        style="@style/connexion"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
@@ -79,13 +43,7 @@
     <ImageView
 
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/imageView_height"
-        android:layout_marginStart="@dimen/default_margin"
-        android:layout_marginTop="@dimen/default_margin"
-        android:layout_marginEnd="@dimen/default_margin"
-        android:layout_marginBottom="@dimen/default_margin"
-        android:src="@drawable/pokemon"
+        style="@style/Connexion_imageView"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
