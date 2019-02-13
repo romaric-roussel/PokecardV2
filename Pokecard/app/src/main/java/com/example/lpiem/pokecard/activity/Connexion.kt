@@ -154,8 +154,12 @@ class Connexion : BaseActivity() {
 //                dispTxt.text = " "
 //                signOut.visibility = View.INVISIBLE
 //                signOut.isClickable = false
-            account.displayName
-            toast(account.displayName.toString())
+           displayName =  account.displayName.toString()
+           mailAdress =   account.email.toString()
+           profilPicture =account.photoUrl.toString()
+            saveUserDataInSharePref()
+
+
             startActivity(Intent(this@Connexion, MainActivity::class.java))
 //            }
 //            }
@@ -179,8 +183,8 @@ class Connexion : BaseActivity() {
         hideProgressDialog()
         if (user != null) {
 
-            displayName = user.displayName.toString()
-            mailAdress = user.email.toString()
+            displayName =   user.displayName.toString()
+            mailAdress =        user.email.toString()
             profilPicture = user.photoUrl.toString()+"?type=large"
             saveUserDataInSharePref()
            // Log.d(TAG,"test " + displayName + mailAdress + profilPicture)
