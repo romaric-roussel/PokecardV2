@@ -10,24 +10,33 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import com.example.lpiem.pokecard.R
+import com.example.lpiem.pokecard.retrofit.API.C.RC_SIGN_IN
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.connexion.*
+import org.jetbrains.anko.toast
 
 
 class Connexion : BaseActivity() {
 
-
+    lateinit var mGoogleSignInClient: GoogleSignInClient
     private lateinit var mCallbackManager: CallbackManager
     lateinit var signInButton: SignInButton
     lateinit var connexionButton : Button
     lateinit var mAuth: FirebaseAuth
+    lateinit var gso: GoogleSignInOptions
     //lateinit var mAuthListener: FirebaseAuth.AuthStateListener
     lateinit var displayName : String
     lateinit var mailAdress : String
@@ -38,12 +47,21 @@ class Connexion : BaseActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.connexion)
+        // Configure Google Sign In
+        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
 
         mAuth = FirebaseAuth.getInstance()
         mCallbackManager = CallbackManager.Factory.create()
         val loginButton = findViewById<LoginButton>(R.id.fb_login)
         loginButton.setReadPermissions("email", "public_profile")
         loginButton.registerCallback(mCallbackManager, object : FacebookCallback<LoginResult> {
+
+
+
+
             override fun onSuccess(loginResult: LoginResult) {
                 Log.d(TAG, "facebook:onSuccess:$loginResult")
                 handleFacebookAccessToken(loginResult.accessToken)
@@ -68,6 +86,14 @@ class Connexion : BaseActivity() {
 
         signInButton = findViewById(R.id.googleSignIn)
         connexionButton = findViewById(R.id.connexion)
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+        signInButton.setOnClickListener {
+            view: View? -> signInGoogle()
+        }
+
+
+
        /* connexionButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
 
@@ -90,6 +116,53 @@ class Connexion : BaseActivity() {
 
     }
 
+    private fun signInGoogle () {
+        val signInIntent: Intent = mGoogleSignInClient.signInIntent
+        startActivityForResult(signInIntent, RC_SIGN_IN)
+    }
+
+
+    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RC_SIGN_IN) {
+            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleResult(task)
+        }else {
+            Toast.makeText(this, "Problem in execution order :(", Toast.LENGTH_LONG).show()
+        }
+
+
+    }*/
+
+        private fun handleResult (completedTask: Task<GoogleSignInAccount>) {
+            try {
+                val account: GoogleSignInAccount = completedTask.getResult(ApiException::class.java)!!
+                updateUI (account)
+            } catch (e: ApiException) {
+                Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()
+                Toast.makeText(this, e.toString(), Toast.LENGTH_LONG).show()
+            }
+        }
+
+        private fun updateUI (account: GoogleSignInAccount) {
+//            val dispTxt = findViewById<View>(R.id.dispTxt) as TextView
+//            dispTxt.text = account.displayName
+//            signOut.visibility = View.VISIBLE
+//            signOut.setOnClickListener {
+//                view: View? ->  mGoogleSignInClient.signOut().addOnCompleteListener {
+//                task: Task<Void> -> if (task.isSuccessful) {
+//                dispTxt.text = " "
+//                signOut.visibility = View.INVISIBLE
+//                signOut.isClickable = false
+            account.displayName
+            toast(account.displayName.toString())
+            startActivity(Intent(this@Connexion, MainActivity::class.java))
+//            }
+//            }
+//            }
+}
+
+
 
     public override fun onStart() {
         super.onStart()
@@ -101,6 +174,7 @@ class Connexion : BaseActivity() {
             startActivity(Intent(this@Connexion, MainActivity::class.java))
 
     }
+
      fun getUserProfilData(user: FirebaseUser?) {
         hideProgressDialog()
         if (user != null) {
@@ -119,6 +193,13 @@ class Connexion : BaseActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_SIGN_IN) {
+            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+            handleResult(task)
+        }else {
+            Toast.makeText(this, "Problem in execution order :(", Toast.LENGTH_LONG).show()
+        }
 
         // Pass the activity result back to the Facebook SDK
         mCallbackManager.onActivityResult(requestCode, resultCode, data)
