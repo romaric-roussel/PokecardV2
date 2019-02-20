@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.lpiem.pokecard.Model.Pokemon
 import com.example.lpiem.pokecard.R
 import kotlinx.android.synthetic.main.item_pokemon.view.*
 import android.R.attr.name
