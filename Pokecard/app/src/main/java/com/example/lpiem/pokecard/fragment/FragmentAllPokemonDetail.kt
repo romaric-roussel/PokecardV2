@@ -18,7 +18,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class FragmentAllPokemonDetail : Fragment() {
+class FragmentAllPokemonDetail : BaseFragment() {
 
     val api by lazy {
         GestionRetrofit.initRetrofit()

@@ -11,12 +11,12 @@ import com.example.lpiem.pokecard.R
 import kotlinx.android.synthetic.main.item_pokemon.view.*
 import android.R.attr.name
 import android.widget.AdapterView.OnItemClickListener
-
+import com.example.lpiem.pokecard.Model.retrofit.ResultData
 
 
 class AllPokemonListeAdapter(private val clickListener: AllPokemonListeAdapterClickListener?) : RecyclerView.Adapter<AllPokemonListeAdapter.ViewHolder>(){
 
-    private var allpokemonList = emptyList<Pokemon>()
+    private var allpokemonList = emptyList<ResultData>()
 
 
 
@@ -24,7 +24,7 @@ class AllPokemonListeAdapter(private val clickListener: AllPokemonListeAdapterCl
         return allpokemonList.size
     }
 
-    fun setData(allpokemonList: List<Pokemon>) {
+    fun setData(allpokemonList: List<ResultData>) {
         this.allpokemonList = allpokemonList
         notifyDataSetChanged()
     }
@@ -46,11 +46,11 @@ class AllPokemonListeAdapter(private val clickListener: AllPokemonListeAdapterCl
 
     class ViewHolder(private val v: View) : RecyclerView.ViewHolder(v){
 
-        fun bind(pokemon: Pokemon) {
+        fun bind(pokemon: ResultData) {
 
-            v.tv_id_item_pokemon.text = pokemon.id_pokemon
-            v.tv_name_item_pokemon.text = pokemon.nom
-            Glide.with(v.iv_item_pokemon).load(pokemon.url).into(v.iv_item_pokemon)
+            v.tv_id_item_pokemon.text = pokemon?.id
+            v.tv_name_item_pokemon.text = pokemon?.name
+            Glide.with(v.iv_item_pokemon).load(pokemon?.image).into(v.iv_item_pokemon)
 
 
         }
@@ -58,6 +58,6 @@ class AllPokemonListeAdapter(private val clickListener: AllPokemonListeAdapterCl
 
     //Listener pour interragir avec l'adapter
     interface AllPokemonListeAdapterClickListener {
-        fun onClick(dataPosition: Int, pokemon: Pokemon)
+        fun onClick(dataPosition: Int, pokemon: ResultData)
     }
 }

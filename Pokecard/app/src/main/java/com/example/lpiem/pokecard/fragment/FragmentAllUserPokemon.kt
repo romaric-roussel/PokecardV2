@@ -31,9 +31,9 @@ class FragmentAllUserPokemon : BaseFragment() {
 
         rvPokemonUser = view.findViewById(R.id.rv_pokemon_fragment_user)
         rvPokemonUser.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        adapter = AllPokemonListeAdapter(listeAllUserPokemon)
-        rvPokemonUser.adapter = adapter
-        adapter.notifyDataSetChanged()
+        //adapter = AllPokemonListeAdapter(listeAllUserPokemon)
+        //rvPokemonUser.adapter = adapter
+        //adapter.notifyDataSetChanged()
         return view
 
     }
