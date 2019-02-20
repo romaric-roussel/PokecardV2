@@ -36,15 +36,6 @@ class MainActivity: AppCompatActivity() {
 
        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        fragmentAllPokemon = FragmentAllPokemon()
-        fragmentAllUserPokemon = FragmentAllUserPokemon()
-        fragmentAllPokemonDetail = FragmentAllPokemonDetail()
-        setDefaultFragment(fragmentAllPokemon)
-        fragmentProfile = FragmentProfile()
-        //fragmentConnexion = FragmentConnexion()
-       /* CompteNom=intent.getStringExtra("nom")
-        CompteMail=intent.getStringExtra("mail")
-        CompteImage=intent.getStringExtra("photo")*/
         setDefaultFragment(FragmentAllUserPokemon())
         toolbar = supportActionBar!!
         bottomNavigation = findViewById(R.id.navigationView)
@@ -54,7 +45,7 @@ class MainActivity: AppCompatActivity() {
     }
 
 
-    private fun setDefaultFragment(defaultFragment: Fragment) {
+    private fun setDefaultFragment(defaultFragment: BaseFragment) {
 
         openFragment(defaultFragment)
 
@@ -66,26 +57,26 @@ class MainActivity: AppCompatActivity() {
         when (item.itemId) {
             R.id.myPokemon -> {
                 toolbar.title = getString(R.string.Mes_pokemon)
-                openFragment(fragmentAllUserPokemon)
+                openFragment(FragmentAllUserPokemon())
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.pokedex -> {
                 toolbar.title = getString(R.string.pokedex)
-                openFragment(fragmentAllPokemon)
+                openFragment(FragmentAllPokemon())
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.settings -> {
                 toolbar.title = getString(R.string.parametre)
-                openFragment(fragmentProfile)
+                openFragment(FragmentProfile())
                 return@OnNavigationItemSelectedListener true
             }
         }
         false
     }
 
-     fun openFragment(fragment: Fragment) {
+     fun openFragment(fragment: BaseFragment) {
         if(!isFinishing){
             val transaction = supportFragmentManager.beginTransaction()
             transaction.replace(R.id.container, fragment)

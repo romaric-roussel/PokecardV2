@@ -15,7 +15,7 @@ import com.example.lpiem.pokecard.adapter.AllPokemonListeAdapter
 import com.example.lpiem.pokecard.adapter.AllPokemonUserListeAdapter
 import java.util.*
 
-class FragmentAllUserPokemon : Fragment() {
+class FragmentAllUserPokemon : BaseFragment() {
 
     lateinit var rvPokemonUser: RecyclerView
     lateinit var adapter: AllPokemonListeAdapter

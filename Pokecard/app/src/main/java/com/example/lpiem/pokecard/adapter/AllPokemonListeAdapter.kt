@@ -14,22 +14,28 @@ import android.widget.AdapterView.OnItemClickListener
 
 
 
-class AllPokemonListeAdapter(items : ArrayList<Pokemon>) : RecyclerView.Adapter<AllPokemonListeAdapter.ViewHolder>(){
+class AllPokemonListeAdapter(private val clickListener: AllPokemonListeAdapterClickListener?) : RecyclerView.Adapter<AllPokemonListeAdapter.ViewHolder>(){
 
-    var list = items
+    private var allpokemonList = emptyList<Pokemon>()
 
 
 
     override fun getItemCount(): Int {
-        return list.size
+        return allpokemonList.size
+    }
+
+    fun setData(allpokemonList: List<Pokemon>) {
+        this.allpokemonList = allpokemonList
+        notifyDataSetChanged()
     }
 
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.name?.text = list[position].nom
-        holder.id.text = list[position].id_pokemon
-        Glide.with(holder.image).load(list[position].url).into(holder.image)
+        holder.itemView.setOnClickListener {
+            clickListener?.onClick(position, allpokemonList[position])
+        }
+        holder.bind(allpokemonList[position])
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,14 +44,20 @@ class AllPokemonListeAdapter(items : ArrayList<Pokemon>) : RecyclerView.Adapter<
     }
 
 
-    class ViewHolder(v: View) : RecyclerView.ViewHolder(v){
-        val id = v.tv_id_item_pokemon
-        val name = v.tv_name_item_pokemon
-        val image = v.iv_item_pokemon
+    class ViewHolder(private val v: View) : RecyclerView.ViewHolder(v){
+
+        fun bind(pokemon: Pokemon) {
+
+            v.tv_id_item_pokemon.text = pokemon.id_pokemon
+            v.tv_name_item_pokemon.text = pokemon.nom
+            Glide.with(v.iv_item_pokemon).load(pokemon.url).into(v.iv_item_pokemon)
 
 
+        }
+    }
 
-
-
+    //Listener pour interragir avec l'adapter
+    interface AllPokemonListeAdapterClickListener {
+        fun onClick(dataPosition: Int, pokemon: Pokemon)
     }
 }

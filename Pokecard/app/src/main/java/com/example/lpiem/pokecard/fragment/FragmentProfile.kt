@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseAuth
 import kotlin.math.absoluteValue
 
 
-class FragmentProfile : Fragment(),View.OnClickListener {
+class FragmentProfile : BaseFragment(),View.OnClickListener {
 
     var displayName : String? = null
     var mailAdress :String? = null

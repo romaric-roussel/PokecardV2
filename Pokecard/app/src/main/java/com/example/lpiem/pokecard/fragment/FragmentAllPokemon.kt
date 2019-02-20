@@ -5,127 +5,44 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.lpiem.pokecard.activity.MainActivity
 import com.example.lpiem.pokecard.Model.Pokemon
 import com.example.lpiem.pokecard.Model.retrofit.AllResult
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.RecyclerTouchListener
 import com.example.lpiem.pokecard.adapter.AllPokemonListeAdapter
-import com.example.lpiem.pokecard.retrofit.GestionRetrofit
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.util.ArrayList
 
 
-class FragmentAllPokemon : Fragment() {
-
-    val api by lazy {
-        GestionRetrofit.initRetrofit()
-    }
+import kotlinx.android.synthetic.main.fragment_all_pokemon.*
 
 
-    lateinit var rvAllPokemon: RecyclerView
-    lateinit var adapter: AllPokemonListeAdapter
-    var listeAllPokemon: ArrayList<Pokemon> = ArrayList()
+class FragmentAllPokemon : BaseFragment() {
 
-    interface GetAllPokemonCallback {
-        fun onGetPokemon(resultAllPokemon: AllResult?)
-        fun onError()
-    }
+    private lateinit var allPokemonViewModel: AllPokemonViewModel
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_all_pokemon, container, false)
-
-        listeAllPokemon.clear()
-        rvAllPokemon = view.findViewById(R.id.rv_pokemon_fragment)
-        rvAllPokemon.layoutManager = LinearLayoutManager(context,RecyclerView.VERTICAL, false)
-        adapter = AllPokemonListeAdapter(listeAllPokemon)
-        rvAllPokemon.adapter = adapter
-
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-
         super.onViewCreated(view, savedInstanceState)
-        setUpRecyclerView()
-
-    }
-
+        //setUpRecyclerView()
+        allPokemonViewModel = ViewModelProviders.of(activity!!).get(AllPokemonViewModel::class.java)
 
 
-    private fun getAllPokemon(getAllPokemonCallback: GetAllPokemonCallback) {
-
-
-        api.getListPokemon().enqueue(object : Callback<AllResult> {
-            override fun onResponse(call: Call<AllResult>, response: Response<AllResult>) {
-                if (response.isSuccessful) {
-                    getAllPokemonCallback.onGetPokemon(response.body())
-                } else {
-                    getAllPokemonCallback.onError()
-                }
-
-
-            }
-
-            override fun onFailure(call: Call<AllResult>, t: Throwable) {
-                error("KO")
-            }
+        rv_pokemon_fragment.layoutManager = LinearLayoutManager(activity)
+        val adapter = AllPokemonListeAdapter(this)
+        rv_pokemon_fragment.adapter = adapter
+        allPokemonViewModel.allPokemonLiveData.observe(this, Observer {
+            adapter.setData(it)
         })
+        allPokemonViewModel.fetchAllPokemon()
+
     }
-    private fun setUpRecyclerView() {
-
-
-        getAllPokemon(object : GetAllPokemonCallback {
-            override fun onGetPokemon(resultAllPokemon: AllResult?) {
-                var size = resultAllPokemon?.result?.data!!.size
-                for (i in 0..size - 1) {
-
-                    var pokemon = Pokemon(resultAllPokemon.result.data[i].id, resultAllPokemon.result.data[i].nom, "", "", resultAllPokemon.result.data[i].image)
-                    listeAllPokemon.add(pokemon)
-
-                }
-
-                adapter.notifyDataSetChanged()
-            }
-
-            override fun onError() {
-
-            }
-        })
-
-
-        rvAllPokemon.addOnItemTouchListener(RecyclerTouchListener(
-                activity!!.applicationContext,
-                rvAllPokemon,
-                object : RecyclerTouchListener.ClickListener {
-                    override fun onClick(view: View, position: Int) {
-                       var fragment =  (activity as MainActivity).fragmentAllPokemonDetail
-                        fragment?.pokemonId = listeAllPokemon[position].id_pokemon
-                        (activity as MainActivity).openFragment(fragment!!)
-                    }
-
-                    override fun onLongClick(view: View?, position: Int) {
-                        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                    }
-
-                }))
-    }
-
-
-
-
-    companion object {
-        fun newInstance(): FragmentAllPokemon = FragmentAllPokemon()
-    }
-
-    override fun onResume() {
-        //adapter.notifyDataSetChanged()
-        super.onResume()
-    }
-
 
 }
