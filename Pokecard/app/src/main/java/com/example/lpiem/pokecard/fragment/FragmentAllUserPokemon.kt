@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.lpiem.pokecard.Model.Pokemon
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.RecyclerTouchListener
 import com.example.lpiem.pokecard.activity.MainActivity
@@ -15,25 +14,23 @@ import com.example.lpiem.pokecard.adapter.AllPokemonListeAdapter
 import com.example.lpiem.pokecard.adapter.AllPokemonUserListeAdapter
 import java.util.*
 
-class FragmentAllUserPokemon : Fragment() {
+class FragmentAllUserPokemon : BaseFragment() {
 
     lateinit var rvPokemonUser: RecyclerView
     lateinit var adapter: AllPokemonListeAdapter
-    var pokemon1 = Pokemon("25","pikachu","","","http://www.ray0.be/pokeapi/pokemon-img/fr/pikachu")
-    var pokemon2 = Pokemon("9","tortank","","","http://www.ray0.be/pokeapi/pokemon-img/fr/tortank")
-    var pokemon3 = Pokemon("13","aspicot","","","http://www.ray0.be/pokeapi/pokemon-img/fr/aspicot")
-    var tabPokemon = arrayListOf<Pokemon>(pokemon1,pokemon2,pokemon3)
-    var listeAllUserPokemon: ArrayList<Pokemon> = ArrayList(tabPokemon)
+
+    //var tabPokemon = arrayListOf<Pokemon>(pokemon1,pokemon2,pokemon3)
+    //var listeAllUserPokemon: ArrayList<Pokemon> = ArrayList(tabPokemon)
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_user_pokemon, container, false)
 
         rvPokemonUser = view.findViewById(R.id.rv_pokemon_fragment_user)
-        rvPokemonUser.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-        adapter = AllPokemonListeAdapter(listeAllUserPokemon)
-        rvPokemonUser.adapter = adapter
-        adapter.notifyDataSetChanged()
+        //rvPokemonUser.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
+        //adapter = AllPokemonListeAdapter(listeAllUserPokemon)
+        //rvPokemonUser.adapter = adapter
+        //adapter.notifyDataSetChanged()
         return view
 
     }
@@ -54,7 +51,7 @@ class FragmentAllUserPokemon : Fragment() {
                 object : RecyclerTouchListener.ClickListener {
                     override fun onClick(view: View, position: Int) {
                         var fragment =  (activity as MainActivity).fragmentAllPokemonDetail
-                        fragment?.pokemonId = listeAllUserPokemon[position].id_pokemon
+                        //fragment?.pokemonId = listeAllUserPokemon[position].id_pokemon
                         (activity as MainActivity).openFragment(fragment!!)
                     }
 

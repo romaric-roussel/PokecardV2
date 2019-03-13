@@ -1,18 +1,15 @@
 package com.example.lpiem.pokecard.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.PointerIcon
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.lpiem.pokecard.Model.Pokemon
+import com.example.lpiem.pokecard.data.model.ResultData
 import com.example.lpiem.pokecard.R
-import kotlinx.android.synthetic.main.item_pokemon.view.*
 import kotlinx.android.synthetic.main.user_pokemon_custom_list.view.*
 
-class AllPokemonUserListeAdapter(items : ArrayList<Pokemon>) : RecyclerView.Adapter<AllPokemonUserListeAdapter.ViewHolder>(){
+class AllPokemonUserListeAdapter(items : ArrayList<ResultData>) : RecyclerView.Adapter<AllPokemonUserListeAdapter.ViewHolder>(){
 
     var list = items
    // var context = ctx
@@ -26,9 +23,9 @@ class AllPokemonUserListeAdapter(items : ArrayList<Pokemon>) : RecyclerView.Adap
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.name?.text = list[position].nom
-        holder.id.text = list[position].id_pokemon
-        Glide.with(holder.image).load(list[position].url).into(holder.image)
+        holder.name?.text = list[position].name
+        holder.id.text = list[position].id
+        Glide.with(holder.image).load(list[position].image).into(holder.image)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

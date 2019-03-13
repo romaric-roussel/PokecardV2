@@ -9,7 +9,6 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
-import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.retrofit.API.C.RC_SIGN_IN
 import com.facebook.*
 import com.facebook.login.LoginManager
@@ -27,6 +26,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.connexion.*
 import org.jetbrains.anko.toast
+import com.example.lpiem.pokecard.R
 
 
 class Connexion : BaseActivity() {
@@ -49,7 +49,7 @@ class Connexion : BaseActivity() {
         setContentView(R.layout.connexion)
         // Configure Google Sign In
         gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                //.requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build()
 
