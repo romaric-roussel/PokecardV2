@@ -1,4 +1,4 @@
-package com.example.lpiem.pokecard.Model.retrofit
+package com.example.lpiem.pokecard.data.model
 
 //add image
 data class ResultData (val id: String, val name : String, val image :String) {

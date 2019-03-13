@@ -37,14 +37,14 @@ class FragmentAllPokemonDetail : BaseFragment() {
         type1 = view.findViewById(R.id.tv_type1_all_pokemon_detail)
         type2 = view.findViewById(R.id.tv_type2_all_pokemon_detail)
         image = view.findViewById(R.id.iv_all_pokemon_detail)
-        setUpView()
+        //setUpView()
 
 
         super.onViewCreated(view, savedInstanceState)
 
     }
 
-    fun setUpView(){
+   /* fun setUpView(){
 
         detailPokemonViewModel = ViewModelProviders.of(activity!!).get(PokemonViewModel::class.java)
 
@@ -60,7 +60,7 @@ class FragmentAllPokemonDetail : BaseFragment() {
         type2.text = detailPokemonViewModel.pokemon?.nom_type_2
         Glide.with(image).load(detailPokemonViewModel.pokemon?.url_image).into(image)
 
-    }
+    }*/
 
 
 }

@@ -1,15 +1,12 @@
 package com.example.lpiem.pokecard.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.PointerIcon
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.lpiem.pokecard.Model.retrofit.ResultData
+import com.example.lpiem.pokecard.data.model.ResultData
 import com.example.lpiem.pokecard.R
-import kotlinx.android.synthetic.main.item_pokemon.view.*
 import kotlinx.android.synthetic.main.user_pokemon_custom_list.view.*
 
 class AllPokemonUserListeAdapter(items : ArrayList<ResultData>) : RecyclerView.Adapter<AllPokemonUserListeAdapter.ViewHolder>(){

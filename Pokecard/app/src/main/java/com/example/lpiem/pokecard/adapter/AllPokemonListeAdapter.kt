@@ -1,6 +1,5 @@
 package com.example.lpiem.pokecard.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,9 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.lpiem.pokecard.R
 import kotlinx.android.synthetic.main.item_pokemon.view.*
-import android.R.attr.name
-import android.widget.AdapterView.OnItemClickListener
-import com.example.lpiem.pokecard.Model.retrofit.ResultData
+import com.example.lpiem.pokecard.data.model.ResultData
 
 
 class AllPokemonListeAdapter(private val clickListener: AllPokemonListeAdapterClickListener?) : RecyclerView.Adapter<AllPokemonListeAdapter.ViewHolder>(){
