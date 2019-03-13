@@ -87,12 +87,13 @@
 
             <Button
                 android:id="@+id/b_signup_fragment"
+
+                android:text="Changer le mot de passe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:text="Changer le mot de passe"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_confirm_password_signup_fragment"
