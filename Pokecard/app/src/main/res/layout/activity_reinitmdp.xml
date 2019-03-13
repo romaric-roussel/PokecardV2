@@ -8,9 +8,6 @@
 
 
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -19,31 +16,8 @@
 
 
 
-
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_lastname_signup_fragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                >
-
-                <EditText
-                    android:id="@+id/et_lastname_signup_fragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Nom"
-                    android:inputType="text"
-                    android:maxLength="100" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_firstname_signup_fragment"
+                android:id="@+id/til_ancien"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
@@ -54,37 +28,18 @@
                 app:layout_constraintTop_toBottomOf="@id/til_lastname_signup_fragment">
 
                 <EditText
-                    android:id="@+id/et_firstname_signup_fragment"
+                    android:id="@+id/et_ancien"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Prénom"
-                    android:inputType="text"
+                    android:hint="Ancien mot de passe"
+                    android:inputType="textPassword"
                     android:maxLength="100" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/til_email_signup_fragment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_firstname_signup_fragment">
 
-                <EditText
-                    android:id="@+id/et_email_signup_fragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Mail"
-                    android:inputType="textEmailAddress"
-                    android:maxLength="100" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_password_signup_fragment"
@@ -95,13 +50,13 @@
                 android:layout_marginEnd="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/til_email_signup_fragment">
+                app:layout_constraintTop_toBottomOf="@id/til_ancien">
 
                 <EditText
                     android:id="@+id/et_password_signup_fragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Mot de passe"
+                    android:hint="Nouveau mot de passe"
                     android:inputType="textPassword"
                     android:maxLength="100" />
 
@@ -122,38 +77,29 @@
                     android:id="@+id/et_confirm_password_signup_fragment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Confirmer mot de passe"
+                    android:hint="Confirmer le nouveau mot de passe"
                     android:inputType="textPassword"
                     android:maxLength="100" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <ProgressBar
-                android:id="@+id/progress_bar_signup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@id/b_signup_fragment"
-                app:layout_constraintTop_toBottomOf="@id/til_confirm_password_signup_fragment"/>
+
 
             <Button
                 android:id="@+id/b_signup_fragment"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginBottom="16dp"
-                android:text="S'inscrire"
+                android:text="Changer le mot de passe"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/til_confirm_password_signup_fragment"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,7 +5,17 @@
     style="@style/constraint_layout">
 
 
-
+    <Button
+        android:id="@+id/b_oubli_mdp"
+        android:layout_width="154dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="136dp"
+        android:text="Mot de passe oublié"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
                 android:id="@+id/iv_photo_fragment_user"

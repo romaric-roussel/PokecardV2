@@ -14,6 +14,7 @@ import com.example.lpiem.pokecard.activity.MainActivity
 
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.activity.Connexion
+import com.example.lpiem.pokecard.activity.OubliMdp
 import com.facebook.login.LoginManager
 import com.google.firebase.auth.FirebaseAuth
 import kotlin.math.absoluteValue
@@ -25,10 +26,12 @@ class FragmentProfile : Fragment(),View.OnClickListener {
     var mailAdress :String? = null
     var profilPicture :String?= null
 
+
     lateinit var userPicture: ImageView
     lateinit var userName: TextView
     lateinit var userMail: TextView
     lateinit var fbBtnLogOut: Button
+    lateinit var bOubli: Button
 
     lateinit var mAuth: FirebaseAuth
 
@@ -41,10 +44,16 @@ class FragmentProfile : Fragment(),View.OnClickListener {
         userName = view.findViewById<TextView>(R.id.tv_name_fragment_user)
         userMail = view.findViewById<TextView>(R.id.tv_email_fragment_user)
         fbBtnLogOut = view.findViewById<Button>(R.id.fb_log_out_profil)
+        bOubli = view.findViewById<Button>(R.id.b_oubli_mdp)
 
         mAuth = FirebaseAuth.getInstance()
 
-
+        bOubli.setOnClickListener {
+            activity?.let{
+                val intent = Intent (it, OubliMdp::class.java)
+                it.startActivity(intent)
+            }
+        }
         return view
 
     }

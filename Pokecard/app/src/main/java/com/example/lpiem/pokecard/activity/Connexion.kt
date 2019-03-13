@@ -112,7 +112,8 @@ class Connexion : BaseActivity() {
                 startActivity(Intent(this@Connexion, MainActivity::class.java))
             }
         }*/
-
+        b_oubli_mdp.setOnClickListener { startActivity(Intent(this@Connexion, OubliMdp::class.java)) }
+        b_inscription.setOnClickListener { startActivity(Intent(this@Connexion, InscriptionActivity::class.java)) }
 
     }
 
@@ -244,6 +245,7 @@ class Connexion : BaseActivity() {
                     hideProgressDialog()
                 }
     }
+
 
     companion object {
         //private val RC_SIGN_IN = 2
