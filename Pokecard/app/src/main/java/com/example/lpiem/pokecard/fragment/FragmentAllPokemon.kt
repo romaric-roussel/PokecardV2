@@ -31,6 +31,9 @@ class FragmentAllPokemon : BaseFragment(),AllPokemonListeAdapter.AllPokemonListe
 
     private lateinit var pokemonViewModel: PokemonViewModel
     private lateinit var viewDialog : ViewDialog
+    private lateinit var adapter : AllPokemonListeAdapter
+    private lateinit var resultDataObserver: Observer <List<ResultData>>
+    private lateinit var stateObserver: Observer <AllPokemonState>
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -45,14 +48,28 @@ class FragmentAllPokemon : BaseFragment(),AllPokemonListeAdapter.AllPokemonListe
         pokemonViewModel = ViewModelProviders.of(activity!!).get(PokemonViewModel::class.java)
 
         rv_pokemon_fragment.layoutManager = LinearLayoutManager(activity)
-        val adapter = AllPokemonListeAdapter(this)
+        adapter = AllPokemonListeAdapter(this)
         rv_pokemon_fragment.adapter = adapter
-        pokemonViewModel.getAllPokemonLiveData().observe(this, Observer {
+        resultDataObserver = Observer {
             adapter.setData(it)
-        })
-        pokemonViewModel.getState().observe(this, Observer { handleState(it) })
-        pokemonViewModel.fetchAllPokemon()
+        }
+        stateObserver = Observer {
+            handleState(it)
+        }
+        pokemonViewModel.getAllPokemonLiveData().observe(this, resultDataObserver)
 
+        pokemonViewModel.state.observe(this, stateObserver)
+
+        //pokemonViewModel.getState().observe(this, Observer { handleState(it) })
+        //showLoadingProgress(context!!)
+        //pokemonViewModel.fetchAllPokemon()
+        //hideLoadingProgress()
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        pokemonViewModel.state.removeObserver(stateObserver)
     }
 
     private fun handleState(state: AllPokemonState?) {
@@ -65,6 +82,8 @@ class FragmentAllPokemon : BaseFragment(),AllPokemonListeAdapter.AllPokemonListe
             return
         }
     }
+
+
 
     fun showLoadingProgress(context: Context){
 

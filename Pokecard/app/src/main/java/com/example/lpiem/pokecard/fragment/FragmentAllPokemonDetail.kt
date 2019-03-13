@@ -1,6 +1,5 @@
 package com.example.lpiem.pokecard.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,12 +11,14 @@ import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.ViewModel.PokemonViewModel
+import com.example.lpiem.pokecard.data.model.ResultOnePokemonData
 
 
 class FragmentAllPokemonDetail : BaseFragment() {
 
 
     private lateinit var detailPokemonViewModel: PokemonViewModel
+    lateinit var onePokemonObserver : Observer<ResultOnePokemonData>
 
     lateinit var id : TextView
     lateinit var nom : TextView
@@ -37,30 +38,33 @@ class FragmentAllPokemonDetail : BaseFragment() {
         type1 = view.findViewById(R.id.tv_type1_all_pokemon_detail)
         type2 = view.findViewById(R.id.tv_type2_all_pokemon_detail)
         image = view.findViewById(R.id.iv_all_pokemon_detail)
-        //setUpView()
+
+
+        detailPokemonViewModel = ViewModelProviders.of(activity!!).get(PokemonViewModel::class.java)
+        onePokemonObserver = Observer {result ->
+            setUpView(result)
+        }
+        detailPokemonViewModel.getOnePokemonLiveData().observe(this, onePokemonObserver)
 
 
         super.onViewCreated(view, savedInstanceState)
 
     }
 
-   /* fun setUpView(){
-
-        detailPokemonViewModel = ViewModelProviders.of(activity!!).get(PokemonViewModel::class.java)
-
-        //showloading
-        detailPokemonViewModel.fetchOnePokemon(context!!).observe(this, Observer {
-            it?.result?.id_pokemon
-            //hideLoading
-        })
-
-        id.text = detailPokemonViewModel.pokemon?.id_pokemon
-        nom.text = detailPokemonViewModel.pokemon?.nom
-        type1.text = detailPokemonViewModel.pokemon?.nom_type_1
-        type2.text = detailPokemonViewModel.pokemon?.nom_type_2
-        Glide.with(image).load(detailPokemonViewModel.pokemon?.url_image).into(image)
-
-    }*/
+    fun setUpView(result : ResultOnePokemonData){
 
 
+
+        id.text = result.id_pokemon
+        nom.text = result.nom
+        type1.text = result.nom_type_1
+        type2.text = result.nom_type_2
+        Glide.with(image).load(result.url_image).into(image)
+
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        detailPokemonViewModel.resultOnePokemonData.removeObserver(onePokemonObserver)
+    }
 }

@@ -1,13 +1,8 @@
 package com.example.lpiem.pokecard.data.repository
 
-import android.content.Context
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.lpiem.pokecard.data.model.AllPokemonState
-import com.example.lpiem.pokecard.data.model.AllResult
-import com.example.lpiem.pokecard.data.model.OneResult
-import com.example.lpiem.pokecard.data.model.ResultData
+import com.example.lpiem.pokecard.data.model.*
 import com.example.lpiem.pokecard.retrofit.GestionRetrofit
 import retrofit2.Call
 import retrofit2.Callback
@@ -15,73 +10,80 @@ import retrofit2.Response
 
 object PokemonRepository {
 
-    private var allPokemonLiveData = MutableLiveData<List<ResultData>>()
+    var allPokemonLiveData = MutableLiveData<List<ResultData>>()
+    var onePokemonLiveData = MutableLiveData<ResultOnePokemonData>()
     private val apiPokemon = GestionRetrofit.initRetrofit()
+    lateinit var pokemonState : AllPokemonState
+    val state = MutableLiveData<AllPokemonState>()
+
 
     fun fetchAllPokemon() : MutableLiveData<List<ResultData>> {
 
         val call = apiPokemon.getListPokemon()
         //showLoadingProgress(context)
-        AllPokemonState().isProgressLoadingShown = true
+        pokemonState = AllPokemonState(true)
+        state.postValue(pokemonState)
 
         //Asynchrone
         call.enqueue(object : Callback<AllResult> {
             override fun onFailure(call: Call<AllResult>, t: Throwable) {
                 //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                AllPokemonState().isProgressLoadingShown = false
+                pokemonState.isProgressLoadingShown = false
+                state.postValue(pokemonState)
+                allPokemonLiveData.postValue(emptyList())
+
             }
 
             override fun onResponse(call: Call<AllResult>, response: Response<AllResult>) {
                 //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                AllPokemonState().isProgressLoadingShown = false
+                pokemonState.isProgressLoadingShown = false
+                state.postValue(pokemonState)
 
                 if (response.isSuccessful) {
                     allPokemonLiveData.postValue(response.body()?.result?.data)
 
                 } else {
-
+                    allPokemonLiveData.postValue(emptyList())
                 }
             }
         })
         return allPokemonLiveData
     }
 
-   /* fun fetchOnePokemon(context: Context) : LiveData<OneResult?> {
+    fun fetchOnePokemon(selectedPokemon : ResultData?) : MutableLiveData<ResultOnePokemonData> {
 
-        //val call = apiPokemon.getOnePokemon(selectedPokemon!!.id)
-        //showLoadingProgress(context)
+        val call = apiPokemon.getOnePokemon(selectedPokemon!!.id)
+        val pokemonFailed = ResultOnePokemonData("0","failed","","","")
 
-        val oneResult = MutableLiveData<OneResult?>()
+        pokemonState = AllPokemonState(true)
+        state.postValue(pokemonState)
 
         //Asynchrone
         call.enqueue(object : Callback<OneResult> {
             override fun onFailure(call: Call<OneResult>, t: Throwable) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                //hideLoadingProgress()
-                oneResult.postValue(null)
 
+                pokemonState.isProgressLoadingShown = false
+                state.postValue(pokemonState)
+                onePokemonLiveData.postValue(pokemonFailed)
             }
 
             override fun onResponse(call: Call<OneResult>, response: Response<OneResult>) {
-                //TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                //hideLoadingProgress()
+
+                pokemonState.isProgressLoadingShown = false
+                state.postValue(pokemonState)
 
                 if (response.isSuccessful) {
-                    //pokemon = response.body()?.result
-                    //pokemonLiveData = response.body()?.result
-                    //pokemonLiveData.postValue(response.body()?.result)
-                    //pokemonLiveData.value = response.body()?.result
-                    oneResult.postValue(response.body())
+
+                    onePokemonLiveData.postValue(response.body()?.result)
 
                 } else {
-                    Log.d("Fail","PETIT FAIL MA GOL")
-                    oneResult.postValue(null)
+                    onePokemonLiveData.postValue(pokemonFailed)
                 }
             }
         })
 
-        return oneResult
-    }*/
+        return onePokemonLiveData
+    }
 
 
 

@@ -15,29 +15,26 @@ import retrofit2.Response
 
 class PokemonViewModel : ViewModel() {
 
-    private var allPokemonLiveData = MutableLiveData<List<ResultData>>()
 
-    private val state = MutableLiveData<AllPokemonState>()
+    var state = MutableLiveData<AllPokemonState>()
+    var selectedPokemon : ResultData? = null
+    var resultOnePokemonData = PokemonRepository.onePokemonLiveData
 
-
-
-    //var pokemonLiveData = MutableLiveData<ResultOnePokemonData>()
-
-    var selectedPokemon: ResultData? = null
-
-    var pokemon: ResultOnePokemonData? = null
-
-
-
-    fun fetchAllPokemon() {
-        allPokemonLiveData = PokemonRepository.fetchAllPokemon()
+    init {
+        PokemonRepository.state.observeForever {
+            state.postValue(it)
+        }
     }
 
-    fun getState(): LiveData<AllPokemonState> {
-        return state
-    }
+
     fun getAllPokemonLiveData(): MutableLiveData<List<ResultData>> {
-        return allPokemonLiveData
+        return PokemonRepository.fetchAllPokemon()
+
+    }
+
+    fun getOnePokemonLiveData(): MutableLiveData<ResultOnePokemonData> {
+        return PokemonRepository.fetchOnePokemon(selectedPokemon)
+
     }
 
 
