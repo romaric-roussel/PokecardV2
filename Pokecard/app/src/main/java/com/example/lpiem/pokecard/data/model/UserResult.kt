@@ -1,4 +1,3 @@
 package com.example.lpiem.pokecard.data.model
 
-data class UserResult (val data :List<UserResultData>){
-}
+data class UserResult (val id_utilisateur:Int)

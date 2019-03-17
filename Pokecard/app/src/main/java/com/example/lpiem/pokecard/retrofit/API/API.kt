@@ -2,6 +2,7 @@ package com.example.lpiem.pokecard.retrofit.API
 
 import com.example.lpiem.pokecard.data.model.AllResult
 import com.example.lpiem.pokecard.data.model.OneResult
+import com.example.lpiem.pokecard.data.model.UserResult
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -27,8 +28,9 @@ interface API {
 
 
     @POST("user/login")
-    fun getUser(@Field("email") email: String,
-                @Field("password") password: String): Call<List<OneResult>>
+    @FormUrlEncoded
+    fun getUser(@Field("login") email: String,
+                @Field("password") password: String): Call<UserResult>
 
 
     @POST("user/forgetPassword")

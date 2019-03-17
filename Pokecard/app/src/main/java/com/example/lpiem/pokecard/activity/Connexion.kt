@@ -27,6 +27,13 @@ import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.connexion.*
 import org.jetbrains.anko.toast
 import com.example.lpiem.pokecard.R
+import com.example.lpiem.pokecard.data.model.UserResult
+import com.example.lpiem.pokecard.data.repository.PokemonRepository
+import com.example.lpiem.pokecard.retrofit.GestionRetrofit
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 
 class Connexion : BaseActivity() {
@@ -92,7 +99,29 @@ class Connexion : BaseActivity() {
             view: View? -> signInGoogle()
         }
 
+        connexionButton.setOnClickListener{
+            val email = Identifiant.text.toString().trim()
+            val mdp = password.text.toString().trim()
 
+            GestionRetrofit.initRetrofit().getUser(email,mdp)
+                    .enqueue(object : Callback<UserResult>{
+                        override fun onFailure(call: Call<UserResult>, t: Throwable) {
+                            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                        }
+
+                        override fun onResponse(call: Call<UserResult>, response: Response<UserResult>) {
+                            if (response.isSuccessful) {
+                                startActivity(Intent(this@Connexion, MainActivity::class.java))
+
+                            } else {
+                                startActivity(Intent(this@Connexion, MainActivity::class.java))
+                            }
+
+                           //To change body of created functions use File | Settings | File Templates.
+                        }
+
+                    })
+        }
 
        /* connexionButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
