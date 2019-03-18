@@ -17,14 +17,14 @@ interface API {
 
 
     @POST("user")
+    @FormUrlEncoded
     fun newUser(
             @Field("nom") nom: String,
             @Field("prenom") prenom: String,
-            @Field("mail") mail: String,
+            @Field("email") email: String,
             @Field("type_connexion") type_connexion: Int,
             @Field("photo") photo: String,
-            @Field("password") password: String,
-            @Field("query") query: String) : Call<List<OneResult>>
+            @Field("password") password: String) : Call<UserResult>
 
 
     @POST("user/login")
