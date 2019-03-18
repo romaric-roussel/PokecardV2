@@ -114,7 +114,7 @@ class Connexion : BaseActivity() {
                                 startActivity(Intent(this@Connexion, MainActivity::class.java))
 
                             } else {
-                                startActivity(Intent(this@Connexion, MainActivity::class.java))
+                             //   startActivity(Intent(this@Connexion, MainActivity::class.java))
                             }
 
                            //To change body of created functions use File | Settings | File Templates.
