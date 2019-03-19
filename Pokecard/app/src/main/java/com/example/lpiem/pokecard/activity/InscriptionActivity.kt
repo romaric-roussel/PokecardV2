@@ -30,12 +30,14 @@ class InscriptionActivity : BaseActivity() {
             GestionRetrofit.initRetrofit().newUser(nom,prenom,mail,type,photo,mdp)
                     .enqueue(object : Callback<UserResult>{
                         override fun onFailure(call: Call<UserResult>, t: Throwable) {
-                            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                            toast("Mail adress already used")
                         }
 
                         override fun onResponse(call: Call<UserResult>, response: Response<UserResult>) {
-                                toast("Compte crée")
-                            startActivity(Intent(this@InscriptionActivity, MainActivity::class.java)) //To change body of created functions use File | Settings | File Templates.
+
+                            if(response.isSuccessful){
+                                startActivity(Intent(this@InscriptionActivity, MainActivity::class.java)) //To change body of created functions use File | Settings | File Templates.
+                            }
                         }
 
 
