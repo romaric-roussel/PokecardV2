@@ -49,10 +49,12 @@ class Connexion : BaseActivity() {
     lateinit var connexionButton : Button
     lateinit var mAuth: FirebaseAuth
     lateinit var gso: GoogleSignInOptions
-    lateinit var displayName : String
-    lateinit var mailAdress : String
-    lateinit var profilPicture : String
-    lateinit var displayId : String
+     var displayName : String? = ""
+     var mailAdress : String? = ""
+     var profilPicture : String? = ""
+     var displayId : String? = ""
+     var status : String? = ""
+     var coderesponse : Int=0
 
     private lateinit var userViewModel: UserViewModel
     private lateinit var userResultDataObserver: Observer<UserResultData>
@@ -107,18 +109,30 @@ class Connexion : BaseActivity() {
 
         userViewModel = ViewModelProviders.of(this!!).get(UserViewModel::class.java)
         userResultDataObserver = Observer {
-            displayName=it.nom+" "+it.prenom
-            mailAdress=it.mail
-            profilPicture=it.photo
-            displayId=it.id.toString()
-            saveUserDataInSharePref()
-            startActivity(Intent(this@Connexion, MainActivity::class.java))
+
+            status=it.status
+            coderesponse=it.code
+            if (coderesponse != 404){
+                displayName=it.nom+" "+it.prenom
+                mailAdress=it.mail
+                profilPicture=it.photo
+                displayId=it.id
+                saveUserDataInSharePref()
+                toast(it.status)
+                startActivity(Intent(this@Connexion, MainActivity::class.java))
+            }else {
+                toast(it.status)
+
+            }
+
+
         }
 
         connexionButton.setOnClickListener{
             val email = Identifiant.text.toString().trim()
             val mdp = password.text.toString().trim()
             userViewModel.getUser(email,mdp).observe(this, userResultDataObserver)
+
         }
 
         b_oubli_mdp.setOnClickListener { startActivity(Intent(this@Connexion, OubliMdp::class.java)) }

@@ -1,5 +1,6 @@
 package com.example.lpiem.pokecard.data.repository
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.lpiem.pokecard.data.model.ResultData
 import com.example.lpiem.pokecard.data.model.UserAllResult
@@ -27,7 +28,6 @@ object UserRepository {
             override fun onResponse(call: Call<UserResultData>, response: Response<UserResultData>) {
               if(response.isSuccessful){
                   userConnexion.postValue(response.body())
-
               }
             }
 
