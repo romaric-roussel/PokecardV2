@@ -67,3 +67,5 @@ fastlane/readme.md
 \.DS_Store
 
 Pokecard/\.idea/
+
+Pokecard/app/build\.gradle

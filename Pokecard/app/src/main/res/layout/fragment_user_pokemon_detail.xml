@@ -6,14 +6,14 @@
     android:background="@drawable/pokedex">
 
     <TextView
-        android:id="@+id/tv_nom_all_pokemon_detail"
+        android:id="@+id/tv_nom_all_pokemon_user_detail"
         style="@style/tv_nom_all_pokemon_detail"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/iv_all_pokemon_detail"
+        android:id="@+id/iv_all_pokemon_user_detail"
         style="@style/iv_all_pokemon_detail"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,20 +21,28 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tv_type1_all_pokemon_detail"
-        style="@style/tv_type1_all_pokemon_detail"
-        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        android:id="@+id/tv_nb_exemplaire"
+        style="@style/tv_id_all_pokemon_detail"
+        app:layout_constraintBottom_toTopOf="@+id/tv_type1_all_pokemon_user_detail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_all_pokemon_detail"
+        app:layout_constraintStart_toEndOf="@+id/iv_all_pokemon_user_detail"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
 
     <TextView
-        android:id="@+id/tv_type2_all_pokemon_detail"
+        android:id="@+id/tv_type1_all_pokemon_user_detail"
+        style="@style/tv_type1_all_pokemon_detail"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/iv_all_pokemon_user_detail"
+        app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+    <TextView
+        android:id="@+id/tv_type2_all_pokemon_user_detail"
         style="@style/tv_type2_all_pokemon_detail"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/iv_all_pokemon_detail"
-        app:layout_constraintTop_toBottomOf="@+id/tv_type1_all_pokemon_detail" />
+        app:layout_constraintStart_toEndOf="@+id/iv_all_pokemon_user_detail"
+        app:layout_constraintTop_toBottomOf="@+id/tv_type1_all_pokemon_user_detail" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -56,22 +64,22 @@
         style="@style/guideline"
         app:layout_constraintGuide_begin="@dimen/guideline4_begin" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.20519836" />
+
     <TextView
-        android:id="@+id/tv_id_all_pokemon_detail"
+        android:id="@+id/tv_id_user_pokemon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="44dp"
         android:layout_marginBottom="24dp"
         android:text="TextView"
-        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.20930232" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
