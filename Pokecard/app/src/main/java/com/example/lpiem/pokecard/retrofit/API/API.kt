@@ -22,7 +22,7 @@ interface API {
             @Field("email") email: String,
             @Field("type_connexion") type_connexion: Int,
             @Field("photo") photo: String,
-            @Field("password") password: String) : Call<UserAllResult>
+            @Field("password") password: String) : Call<UserInscriptionResult>
 
 
     @POST("user/login")
