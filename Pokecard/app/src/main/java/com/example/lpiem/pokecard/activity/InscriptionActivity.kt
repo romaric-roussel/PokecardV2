@@ -42,7 +42,13 @@ class InscriptionActivity : BaseActivity() {
 
         userViewModel = ViewModelProviders.of(this!!).get(UserViewModel::class.java)
         userResultDataObserver= Observer {
-            startActivity(Intent(this@InscriptionActivity, Connexion::class.java))
-        }
+
+
+            if (it!=null)
+            {startActivity(Intent(this@InscriptionActivity, Connexion::class.java))}
+            else{toast("Mail déjà utilisé")}
     }
+}
+
+
 }
