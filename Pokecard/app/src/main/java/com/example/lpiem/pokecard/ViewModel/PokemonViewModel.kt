@@ -18,6 +18,7 @@ class PokemonViewModel : ViewModel() {
 
     var state = MutableLiveData<AllPokemonState>()
     var selectedPokemon : ResultData? = null
+    var selectedUserPokemon : UserPokemonResultData? = null
     var resultOnePokemonData = PokemonRepository.onePokemonLiveData
 
     init {
@@ -34,6 +35,17 @@ class PokemonViewModel : ViewModel() {
 
     fun getOnePokemonLiveData(): MutableLiveData<ResultOnePokemonData> {
         return PokemonRepository.fetchOnePokemon(selectedPokemon)
+
+    }
+
+    fun getOnePokemonUserLiveData(): MutableLiveData<ResultOnePokemonData> {
+        return PokemonRepository.fetchOneUserPokemon(selectedUserPokemon)
+
+    }
+
+
+    fun getAllUserPokemonLiveData(): MutableLiveData<List<UserPokemonResultData>> {
+        return PokemonRepository.fetchAllUserPokemon("64")
 
     }
 
