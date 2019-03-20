@@ -9,14 +9,14 @@ import com.example.lpiem.pokecard.data.repository.UserRepository
 
 class UserViewModel : ViewModel() {
 
-    var userResultData = MutableLiveData<UserResultData>()
+    //var userResultData = MutableLiveData<UserResultData>()
 
 
 
     fun getUser(mail: String, password: String) : MutableLiveData<UserResultData> {
-         userResultData = UserRepository.fetchConnexionUser(mail,password)
-         //return UserRepository.fetchConnexionUser(mail,password)
-        return userResultData
+         //userResultData = UserRepository.fetchConnexionUser(mail,password)
+         return UserRepository.fetchConnexionUser(mail,password)
+        //return userResultData
     }
 
 

@@ -119,7 +119,7 @@ class Connexion : BaseActivity() {
                 displayId=it.id
                 saveUserDataInSharePref()
                 toast(it.status)
-                userViewModel.userResultData.removeObserver(userResultDataObserver)
+                //userViewModel.userResultData.removeObserver(userResultDataObserver)
                 startActivity(Intent(this@Connexion, MainActivity::class.java))
             }else {
                 toast(it.status)
@@ -132,8 +132,8 @@ class Connexion : BaseActivity() {
         connexionButton.setOnClickListener{
             val email = Identifiant.text.toString().trim()
             val mdp = password.text.toString().trim()
-            userViewModel.userResultData.observe(this,userResultDataObserver)
-            userViewModel.getUser(email,mdp)
+            //userViewModel.userResultData.observe(this,userResultDataObserver)
+            userViewModel.getUser(email,mdp).observeOnce(this,userResultDataObserver)
 
         }
 
