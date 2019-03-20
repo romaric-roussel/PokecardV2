@@ -54,7 +54,10 @@ class FragmentAllUserPokemon : BaseFragment(),AllPokemonUserListeAdapter.AllUser
         stateObserver = Observer {
             handleState(it)
         }
-        pokemonViewModel.getAllUserPokemonLiveData().observe(this, resultDataObserver)
+
+        val sharedPref = activity?.getSharedPreferences(resources.getString(R.string.sharePrefName), Context.MODE_PRIVATE) ?: return
+        val displayId = sharedPref.getString(resources.getString(R.string.keyId),"")
+        pokemonViewModel.getAllUserPokemonLiveData(displayId!!).observe(this, resultDataObserver)
 
         pokemonViewModel.state.observe(this, stateObserver)
 

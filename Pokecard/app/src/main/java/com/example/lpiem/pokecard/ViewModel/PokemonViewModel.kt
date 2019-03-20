@@ -21,6 +21,8 @@ class PokemonViewModel : ViewModel() {
     var selectedUserPokemon : UserPokemonResultData? = null
     var resultOnePokemonData = PokemonRepository.onePokemonLiveData
 
+
+
     init {
         PokemonRepository.state.observeForever {
             state.postValue(it)
@@ -44,8 +46,8 @@ class PokemonViewModel : ViewModel() {
     }
 
 
-    fun getAllUserPokemonLiveData(): MutableLiveData<List<UserPokemonResultData>> {
-        return PokemonRepository.fetchAllUserPokemon("64")
+    fun getAllUserPokemonLiveData(id:String): MutableLiveData<List<UserPokemonResultData>> {
+        return PokemonRepository.fetchAllUserPokemon(id)
 
     }
 
