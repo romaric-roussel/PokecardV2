@@ -9,6 +9,8 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.example.lpiem.pokecard.retrofit.API.C.RC_SIGN_IN
 import com.facebook.*
 import com.facebook.login.LoginManager
@@ -27,7 +29,10 @@ import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.connexion.*
 import org.jetbrains.anko.toast
 import com.example.lpiem.pokecard.R
+import com.example.lpiem.pokecard.ViewModel.UserViewModel
+import com.example.lpiem.pokecard.data.model.UserAllResult
 import com.example.lpiem.pokecard.data.model.UserResult
+import com.example.lpiem.pokecard.data.model.UserResultData
 import com.example.lpiem.pokecard.data.repository.PokemonRepository
 import com.example.lpiem.pokecard.retrofit.GestionRetrofit
 import retrofit2.Call
@@ -44,19 +49,20 @@ class Connexion : BaseActivity() {
     lateinit var connexionButton : Button
     lateinit var mAuth: FirebaseAuth
     lateinit var gso: GoogleSignInOptions
-    //lateinit var mAuthListener: FirebaseAuth.AuthStateListener
     lateinit var displayName : String
     lateinit var mailAdress : String
     lateinit var profilPicture : String
+    lateinit var displayId : String
+
+    private lateinit var userViewModel: UserViewModel
+    private lateinit var userResultDataObserver: Observer<UserResultData>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.connexion)
-        // Configure Google Sign In
         gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                //.requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build()
 
@@ -99,48 +105,22 @@ class Connexion : BaseActivity() {
             view: View? -> signInGoogle()
         }
 
+        userViewModel = ViewModelProviders.of(this!!).get(UserViewModel::class.java)
+        userResultDataObserver = Observer {
+            displayName=it.nom+" "+it.prenom
+            mailAdress=it.mail
+            profilPicture=it.photo
+            displayId=it.id.toString()
+            saveUserDataInSharePref()
+            startActivity(Intent(this@Connexion, MainActivity::class.java))
+        }
+
         connexionButton.setOnClickListener{
             val email = Identifiant.text.toString().trim()
             val mdp = password.text.toString().trim()
-
-            GestionRetrofit.initRetrofit().getUser(email,mdp)
-                    .enqueue(object : Callback<UserResult>{
-                        override fun onFailure(call: Call<UserResult>, t: Throwable) {
-                            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                        }
-
-                        override fun onResponse(call: Call<UserResult>, response: Response<UserResult>) {
-                            if (response.isSuccessful) {
-                                startActivity(Intent(this@Connexion, MainActivity::class.java))
-
-                            } else {
-                             //   startActivity(Intent(this@Connexion, MainActivity::class.java))
-                            }
-
-                           //To change body of created functions use File | Settings | File Templates.
-                        }
-
-                    })
+            userViewModel.getUser(email,mdp).observe(this, userResultDataObserver)
         }
 
-       /* connexionButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-
-            intent.putExtra("photo", "https://graph.facebook.com/2084209848298504/picture?type=large")
-            intent.putExtra("nom", "Benzaied")
-            intent.putExtra("prenom", "Sofiane")
-            intent.putExtra("mail", "sofiane.benzaied@yahoo.fr")
-            startActivity(intent)
-
-        }*/
-
-
-
-        /*mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
-            if (firebaseAuth.currentUser != null) {
-                startActivity(Intent(this@Connexion, MainActivity::class.java))
-            }
-        }*/
         b_oubli_mdp.setOnClickListener { startActivity(Intent(this@Connexion, OubliMdp::class.java)) }
         b_inscription.setOnClickListener { startActivity(Intent(this@Connexion, InscriptionActivity::class.java)) }
 
@@ -152,17 +132,7 @@ class Connexion : BaseActivity() {
     }
 
 
-    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) {
-            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-            handleResult(task)
-        }else {
-            Toast.makeText(this, "Problem in execution order :(", Toast.LENGTH_LONG).show()
-        }
 
-
-    }*/
 
         private fun handleResult (completedTask: Task<GoogleSignInAccount>) {
             try {
@@ -175,34 +145,25 @@ class Connexion : BaseActivity() {
         }
 
         private fun updateUI (account: GoogleSignInAccount) {
-//            val dispTxt = findViewById<View>(R.id.dispTxt) as TextView
-//            dispTxt.text = account.displayName
-//            signOut.visibility = View.VISIBLE
-//            signOut.setOnClickListener {
-//                view: View? ->  mGoogleSignInClient.signOut().addOnCompleteListener {
-//                task: Task<Void> -> if (task.isSuccessful) {
-//                dispTxt.text = " "
-//                signOut.visibility = View.INVISIBLE
-//                signOut.isClickable = false
+
            displayName =  account.displayName.toString()
            mailAdress =   account.email.toString()
            profilPicture =account.photoUrl.toString()
+           displayId= account.id.toString()
             saveUserDataInSharePref()
 
 
             startActivity(Intent(this@Connexion, MainActivity::class.java))
-//            }
-//            }
-//            }
+
 }
 
 
 
     public override fun onStart() {
         super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
+
         val currentUser = mAuth.currentUser
-        //mAuth.addAuthStateListener(mAuthListener)
+
         getUserProfilData(currentUser)
         if(currentUser != null)
             startActivity(Intent(this@Connexion, MainActivity::class.java))
@@ -217,7 +178,6 @@ class Connexion : BaseActivity() {
             mailAdress =        user.email.toString()
             profilPicture = user.photoUrl.toString()+"?type=large"
             saveUserDataInSharePref()
-           // Log.d(TAG,"test " + displayName + mailAdress + profilPicture)
             fb_login.visibility = View.GONE
         } else {
 
@@ -247,6 +207,8 @@ class Connexion : BaseActivity() {
             putString(getString(R.string.keyDisplayName), displayName)
             putString(getString(R.string.keyMailAdress), mailAdress)
             putString(getString(R.string.keyProfilPicture), profilPicture)
+            putString(getString(R.string.keyId),displayId)
+
             commit()
         }
     }

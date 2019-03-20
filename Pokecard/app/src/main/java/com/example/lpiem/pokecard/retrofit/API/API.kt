@@ -1,8 +1,6 @@
 package com.example.lpiem.pokecard.retrofit.API
 
-import com.example.lpiem.pokecard.data.model.AllResult
-import com.example.lpiem.pokecard.data.model.OneResult
-import com.example.lpiem.pokecard.data.model.UserResult
+import com.example.lpiem.pokecard.data.model.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -24,13 +22,13 @@ interface API {
             @Field("email") email: String,
             @Field("type_connexion") type_connexion: Int,
             @Field("photo") photo: String,
-            @Field("password") password: String) : Call<UserResult>
+            @Field("password") password: String) : Call<UserAllResult>
 
 
     @POST("user/login")
     @FormUrlEncoded
     fun getUser(@Field("login") email: String,
-                @Field("password") password: String): Call<UserResult>
+                @Field("password") password: String): Call<UserResultData>
 
 
     @POST("user/forgetPassword")

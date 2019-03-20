@@ -25,6 +25,7 @@ class FragmentProfile : BaseFragment(),View.OnClickListener {
     var displayName : String? = null
     var mailAdress :String? = null
     var profilPicture :String?= null
+    var displayId :String?= null
 
 
     lateinit var userPicture: ImageView
@@ -75,6 +76,8 @@ class FragmentProfile : BaseFragment(),View.OnClickListener {
         displayName = sharedPref.getString(resources.getString(R.string.keyDisplayName),"")
         mailAdress = sharedPref.getString(resources.getString(R.string.keyMailAdress),"")
         profilPicture = sharedPref.getString(resources.getString(R.string.keyProfilPicture),"")
+        displayId = sharedPref.getString(resources.getString(R.string.keyId),"")
+
     }
 
     override fun onClick(v: View) {

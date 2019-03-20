@@ -1,6 +1,6 @@
 package com.example.lpiem.pokecard.data.model
 
-data class UserResultData (val id_utilisateur: String, val nom : String, val prenom :String,val photo :String) {
+data class UserResultData (val id: String, val nom : String, val prenom :String,val mail: String,val photo :String) {
     override fun toString(): String {
-        return "UserResultData(id_utilisateur='$id_utilisateur', nom='$nom', prenom='$prenom', photo='$photo')"}
+        return "UserResultData(id='$id', nom='$nom', prenom='$prenom',mail='$mail', photo='$photo')"}
 }
