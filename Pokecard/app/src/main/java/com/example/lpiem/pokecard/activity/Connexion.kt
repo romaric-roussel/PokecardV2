@@ -107,7 +107,7 @@ class Connexion : BaseActivity() {
             view: View? -> signInGoogle()
         }
 
-        userViewModel = ViewModelProviders.of(this!!).get(UserViewModel::class.java)
+        userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
         userResultDataObserver = Observer {
 
             status=it.status
@@ -119,6 +119,7 @@ class Connexion : BaseActivity() {
                 displayId=it.id
                 saveUserDataInSharePref()
                 toast(it.status)
+                userViewModel.userResultData.removeObserver(userResultDataObserver)
                 startActivity(Intent(this@Connexion, MainActivity::class.java))
             }else {
                 toast(it.status)
@@ -131,7 +132,8 @@ class Connexion : BaseActivity() {
         connexionButton.setOnClickListener{
             val email = Identifiant.text.toString().trim()
             val mdp = password.text.toString().trim()
-            userViewModel.getUser(email,mdp).observe(this, userResultDataObserver)
+            userViewModel.userResultData.observe(this,userResultDataObserver)
+            userViewModel.getUser(email,mdp)
 
         }
 

@@ -22,7 +22,7 @@ object UserRepository {
         val call = apiUser.getUser(mail,password)
         call.enqueue(object : Callback<UserResultData>{
             override fun onFailure(call: Call<UserResultData>, t: Throwable) {
-
+                //TODO
             }
 
             override fun onResponse(call: Call<UserResultData>, response: Response<UserResultData>) {
@@ -43,7 +43,7 @@ object UserRepository {
 
     call.enqueue(object : Callback<UserInscriptionResult>{
         override fun onFailure(call: Call<UserInscriptionResult>, t: Throwable) {
-
+            //TODO
         }
 
         override fun onResponse(call: Call<UserInscriptionResult>, response: Response<UserInscriptionResult>) {
