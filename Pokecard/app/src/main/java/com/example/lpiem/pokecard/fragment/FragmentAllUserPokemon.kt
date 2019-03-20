@@ -23,6 +23,7 @@ class FragmentAllUserPokemon : BaseFragment(),AllPokemonUserListeAdapter.AllUser
     override fun onClick(dataPosition: Int, pokemon: UserPokemonResultData) {
 
         pokemonViewModel.selectedUserPokemon = pokemon
+        saveNbExemplairePokemon(pokemon)
         (activity as MainActivity).openFragment(FragmentAllUserPokemonDetail())
     }
 
@@ -89,6 +90,17 @@ class FragmentAllUserPokemon : BaseFragment(),AllPokemonUserListeAdapter.AllUser
 
     fun hideLoadingProgress(){
         viewDialog.hideDialog()
+    }
+
+    fun saveNbExemplairePokemon(pokemon:UserPokemonResultData){
+        val sharedPref = context?.getSharedPreferences(
+                getString(R.string.sharePrefName), Context.MODE_PRIVATE) ?: return
+        with(sharedPref.edit()){
+            putInt(getString(R.string.keyNbExemplaire), pokemon.nb_exemplaire)
+
+
+            commit()
+        }
     }
 
 

@@ -1,5 +1,6 @@
 package com.example.lpiem.pokecard.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -61,6 +62,7 @@ class FragmentAllUserPokemonDetail : BaseFragment() {
         nom.text = result.nom
         type1.text = result.nom_type_1
         type2.text = result.nom_type_2
+        nbExemplaire.text = getSharePref().toString()
         Glide.with(image).load(result.url_image).into(image)
 
     }
@@ -68,5 +70,11 @@ class FragmentAllUserPokemonDetail : BaseFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         detailPokemonViewModel.resultOnePokemonData.removeObserver(onePokemonObserver)
+    }
+
+    private fun getSharePref():Int {
+        val sharedPref = activity?.getSharedPreferences(resources.getString(R.string.sharePrefName), Context.MODE_PRIVATE)
+        return sharedPref!!.getInt(resources.getString(R.string.keyNbExemplaire),0)
+
     }
 }
