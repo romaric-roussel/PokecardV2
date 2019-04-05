@@ -5,40 +5,54 @@
     android:id="@+id/cl_item_pokemon"
     style="@style/cl_item_pokemon">
 
-    <androidx.constraintlayout.widget.ConstraintLayout style="@style/constraint_layout">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <ImageView
-            android:id="@+id/iv_item_pokemon_user"
-            style="@style/iv_item_pokemon"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.138"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+        <Button
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:text="Supprimer"
+            tools:layout_editor_absoluteX="229dp"
+            tools:layout_editor_absoluteY="66dp" />
 
-        <ImageView
-            android:id="@+id/imageView4"
-            style="@style/iv_item_pokemon"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.852"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            tools:srcCompat="@tools:sample/avatars" />
+        <EditText
+            android:id="@+id/sonpok"
+            android:layout_width="134dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="son pokemon"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="229dp"
+            tools:layout_editor_absoluteY="0dp" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/vs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="contre"
-            tools:layout_editor_absoluteX="146dp"
-            tools:layout_editor_absoluteY="20dp" />
+            tools:layout_editor_absoluteX="168dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <EditText
+            android:id="@+id/tonpok"
+            android:layout_width="134dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="votre pokemon"
+            android:inputType="textPersonName"
+            tools:layout_editor_absoluteX="3dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <Button
+            android:id="@+id/validate"
+            android:layout_width="wrap_content"
+            android:layout_height="49dp"
+            android:text="Valider"
+            tools:layout_editor_absoluteX="64dp"
+            tools:layout_editor_absoluteY="66dp" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

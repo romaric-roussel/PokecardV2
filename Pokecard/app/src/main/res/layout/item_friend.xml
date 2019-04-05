@@ -19,18 +19,15 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
-            android:id="@+id/tv_id_item_pokemon"
-            style="@style/tv_id_item_pokemon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/iv_item_pokemon"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_name_item_pokemon"
+            android:id="@+id/tv_friend"
             style="@style/tv_name_item_pokemon"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="Mon ami"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_item_pokemon"
-            app:layout_constraintTop_toBottomOf="@+id/tv_id_item_pokemon" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
