@@ -70,9 +70,11 @@ class Connexion : BaseActivity() {
 
         mAuth = FirebaseAuth.getInstance()
         mCallbackManager = CallbackManager.Factory.create()
-        val loginButton = findViewById<LoginButton>(R.id.fb_login)
-        loginButton.setReadPermissions("email", "public_profile")
-        loginButton.registerCallback(mCallbackManager, object : FacebookCallback<LoginResult> {
+      //  val loginButton = findViewById<LoginButton>(R.id.fb_login)
+        FacebookSdk.setIsDebugEnabled(true);
+        FacebookSdk.addLoggingBehavior(LoggingBehavior.INCLUDE_ACCESS_TOKENS);
+        fb_login.setReadPermissions("email", "public_profile")
+        fb_login.registerCallback(mCallbackManager, object : FacebookCallback<LoginResult> {
 
 
 
@@ -229,8 +231,8 @@ class Connexion : BaseActivity() {
 
     private fun handleFacebookAccessToken(token: AccessToken) {
         Log.d("test", "handleFacebookAccessToken:$token")
-        showProgressDialog()
         val credential = FacebookAuthProvider.getCredential(token.token)
+        showProgressDialog()
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
@@ -245,6 +247,8 @@ class Connexion : BaseActivity() {
                         Toast.makeText(this@Connexion, "Authentication failed.",
                                 Toast.LENGTH_SHORT).show()
                         getUserProfilData(null)
+
+                       Log.d("task error" ,task.exception.toString())
                     }
 
                     hideProgressDialog()
