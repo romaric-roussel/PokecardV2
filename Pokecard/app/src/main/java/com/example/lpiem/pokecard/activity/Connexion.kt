@@ -31,10 +31,12 @@ import org.jetbrains.anko.toast
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.ViewModel.UserViewModel
 import com.example.lpiem.pokecard.data.model.UserAllResult
+import com.example.lpiem.pokecard.data.model.UserInscriptionResult
 import com.example.lpiem.pokecard.data.model.UserResult
 import com.example.lpiem.pokecard.data.model.UserResultData
 import com.example.lpiem.pokecard.data.repository.PokemonRepository
 import com.example.lpiem.pokecard.retrofit.GestionRetrofit
+import kotlinx.android.synthetic.main.fragment_sign_up.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -58,6 +60,7 @@ class Connexion : BaseActivity() {
 
     private lateinit var userViewModel: UserViewModel
     private lateinit var userResultDataObserver: Observer<UserResultData>
+    private lateinit var userResultDataObserver2: Observer<UserInscriptionResult>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -208,7 +211,7 @@ class Connexion : BaseActivity() {
             val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
             handleResult(task)
         }else {
-            Toast.makeText(this, "Problem in execution order :(", Toast.LENGTH_LONG).show()
+         //   Toast.makeText(this, "Problem in execution order :(", Toast.LENGTH_LONG).show()
         }
 
         // Pass the activity result back to the Facebook SDK
@@ -240,6 +243,30 @@ class Connexion : BaseActivity() {
                         Log.d("erreur", "signInWithCredential:success")
                         val user = mAuth.currentUser
                         getUserProfilData(user)
+
+                        val nom = user!!.displayName.toString().trim()
+                        val prenom ="".trim()
+                        val mail = user!!.email.toString().trim()
+                        val type=0
+                        val photo = user.photoUrl.toString()+"?type=large".trim()
+                        val mdp ="".trim()
+                        val confirmmdp ="".trim()
+                        if (mdp==confirmmdp){
+
+                            userViewModel.newUser(nom,prenom,mail,type,photo,mdp,confirmmdp).observe(this, userResultDataObserver2)
+
+                        }
+
+                        userViewModel = ViewModelProviders.of(this!!).get(UserViewModel::class.java)
+                        userResultDataObserver2= Observer {
+
+
+                            if (it!=null)
+                            {}
+                            else{toast("Mail déjà utilisé")}
+                        }
+
+
                         startActivity(Intent(this@Connexion, MainActivity::class.java))
                     } else {
                         // If sign in fails, display a message to the user.

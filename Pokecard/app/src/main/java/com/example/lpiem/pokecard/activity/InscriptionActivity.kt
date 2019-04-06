@@ -17,7 +17,7 @@ import retrofit2.Response
 
 class InscriptionActivity : BaseActivity() {
     private lateinit var userViewModel: UserViewModel
-    private lateinit var userResultDataObserver: Observer<UserInscriptionResult>
+    private lateinit var userResultDataObserver2: Observer<UserInscriptionResult>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_sign_up)
@@ -34,14 +34,14 @@ class InscriptionActivity : BaseActivity() {
 
             if (mdp==confirmmdp){
 
-                userViewModel.newUser(nom,prenom,mail,type,photo,mdp,confirmmdp).observe(this, userResultDataObserver)
+                userViewModel.newUser(nom,prenom,mail,type,photo,mdp,confirmmdp).observe(this, userResultDataObserver22)
 
             }
         }
 
 
         userViewModel = ViewModelProviders.of(this!!).get(UserViewModel::class.java)
-        userResultDataObserver= Observer {
+        userResultDataObserver2= Observer {
 
 
             if (it!=null)
