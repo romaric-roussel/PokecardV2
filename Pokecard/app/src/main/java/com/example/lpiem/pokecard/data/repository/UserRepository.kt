@@ -2,10 +2,7 @@ package com.example.lpiem.pokecard.data.repository
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.lpiem.pokecard.data.model.ResultData
-import com.example.lpiem.pokecard.data.model.UserAllResult
-import com.example.lpiem.pokecard.data.model.UserInscriptionResult
-import com.example.lpiem.pokecard.data.model.UserResultData
+import com.example.lpiem.pokecard.data.model.*
 import com.example.lpiem.pokecard.retrofit.GestionRetrofit
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,6 +13,7 @@ object UserRepository {
     val userInscription = MutableLiveData<UserInscriptionResult>()
     val userConnexion= MutableLiveData<UserResultData>()
     private val apiUser = GestionRetrofit.initRetrofit()
+    val userListAmis = MutableLiveData<List<UserListAmis>>()
 
 
     fun fetchConnexionUser(mail:String,password:String): MutableLiveData<UserResultData> {
@@ -53,4 +51,23 @@ object UserRepository {
         })
     return userInscription
     }
+
+
+    fun fetchListAmi(id:String): MutableLiveData<List<UserListAmis>> {
+        val call = apiUser.listAmis(id)
+        call.enqueue(object : Callback<UserListAmis>{
+            override fun onFailure(call: Call<UserListAmis>, t: Throwable) {
+
+            }
+
+            override fun onResponse(call: Call<UserListAmis>, response: Response<UserListAmis>) {
+                if(response.isSuccessful){
+                    userListAmis.postValue(response.body()?.data)
+                }
+            }
+
+        })
+        return userListAmis
+    }
+
 }

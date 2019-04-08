@@ -38,6 +38,8 @@ interface API {
                        @Field("password") password: String,
                        @Field("query") query: String): Call<List<OneResult>>
 
-
+    @POST("user/{id}/friends")
+    @FormUrlEncoded
+    fun listAmis(@Path("id") id: String): Call<UserListAmis>
 
 }

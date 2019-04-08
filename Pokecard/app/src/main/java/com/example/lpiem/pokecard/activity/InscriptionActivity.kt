@@ -34,7 +34,7 @@ class InscriptionActivity : BaseActivity() {
 
             if (mdp==confirmmdp){
 
-                userViewModel.newUser(nom,prenom,mail,type,photo,mdp,confirmmdp).observe(this, userResultDataObserver22)
+                userViewModel.newUser(nom,prenom,mail,type,photo,mdp,confirmmdp).observe(this, userResultDataObserver2)
 
             }
         }

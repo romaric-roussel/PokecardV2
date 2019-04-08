@@ -13,7 +13,7 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_pokemon_fragment_user"
+            android:id="@+id/rv_pokemon_fragment_user_friend"
             style="@style/rv_pokemon_fragment"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
