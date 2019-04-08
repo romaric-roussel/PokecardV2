@@ -6,15 +6,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.lpiem.pokecard.data.model.UserListAmis
+import com.example.lpiem.pokecard.data.model.UserOneAmi
 import kotlinx.android.synthetic.main.item_friend.view.*
-
+import com.example.lpiem.pokecard.R
 import kotlinx.android.synthetic.main.item_pokemon.view.*
 
 class AllUserFriend (private val clickListener: AllUserFriendsAdapterClickListener?) : RecyclerView.Adapter<AllUserFriend.ViewHolder>(){
 
 
 
-    private var allfriends = emptyList<UserListAmis>()
+    private var allfriends = emptyList<UserOneAmi>()
 
 
 
@@ -22,7 +23,7 @@ class AllUserFriend (private val clickListener: AllUserFriendsAdapterClickListen
         return allfriends.size
     }
 
-    fun setData(allfriends: List<UserListAmis>) {
+    fun setData(allfriends: List<UserOneAmi>) {
         this.allfriends = allfriends
         notifyDataSetChanged()
     }
@@ -46,7 +47,7 @@ class AllUserFriend (private val clickListener: AllUserFriendsAdapterClickListen
 
     class ViewHolder(private val v: View) : RecyclerView.ViewHolder(v){
 
-        fun bind(ami: UserListAmis) {
+        fun bind(ami: UserOneAmi) {
 
             //v.tv_id_item_pokemon.text = pokemon?.idAmis.toString()
             v.tv_friend.text = ami?.nom+" "+ami?.prenom
@@ -58,7 +59,7 @@ class AllUserFriend (private val clickListener: AllUserFriendsAdapterClickListen
 
 
     interface AllUserFriendsAdapterClickListener {
-        fun onClick(dataPosition: Int, pokemon: UserListAmis)
+        fun onClick(dataPosition: Int, pokemon: UserOneAmi)
     }
 }
 

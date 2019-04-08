@@ -2,10 +2,7 @@ package com.example.lpiem.pokecard.ViewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.lpiem.pokecard.data.model.ResultData
-import com.example.lpiem.pokecard.data.model.UserInscriptionResult
-import com.example.lpiem.pokecard.data.model.UserListAmis
-import com.example.lpiem.pokecard.data.model.UserResultData
+import com.example.lpiem.pokecard.data.model.*
 import com.example.lpiem.pokecard.data.repository.UserRepository
 
 class UserViewModel : ViewModel() {
@@ -23,7 +20,7 @@ class UserViewModel : ViewModel() {
         return UserRepository.fetchInscription(nom,prenom,email,type_connexion,photo,password,confirm)
     }
 
-    fun listAmis(id : String) : MutableLiveData<List<UserListAmis>>{
+    fun listAmis(id : String) : MutableLiveData<List<UserOneAmi>>{
 
         return UserRepository.fetchListAmi(id)
     }

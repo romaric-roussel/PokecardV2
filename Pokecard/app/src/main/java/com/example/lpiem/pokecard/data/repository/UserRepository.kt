@@ -13,7 +13,7 @@ object UserRepository {
     val userInscription = MutableLiveData<UserInscriptionResult>()
     val userConnexion= MutableLiveData<UserResultData>()
     private val apiUser = GestionRetrofit.initRetrofit()
-    val userListAmis = MutableLiveData<List<UserListAmis>>()
+    val userListAmis = MutableLiveData<List<UserOneAmi>>()
 
 
     fun fetchConnexionUser(mail:String,password:String): MutableLiveData<UserResultData> {
@@ -53,16 +53,16 @@ object UserRepository {
     }
 
 
-    fun fetchListAmi(id:String): MutableLiveData<List<UserListAmis>> {
+    fun fetchListAmi(id:String): MutableLiveData<List<UserOneAmi>> {
         val call = apiUser.listAmis(id)
-        call.enqueue(object : Callback<UserListAmis>{
-            override fun onFailure(call: Call<UserListAmis>, t: Throwable) {
+        call.enqueue(object : Callback<UserListAmiResult>{
+            override fun onFailure(call: Call<UserListAmiResult>, t: Throwable) {
 
             }
 
-            override fun onResponse(call: Call<UserListAmis>, response: Response<UserListAmis>) {
+            override fun onResponse(call: Call<UserListAmiResult>, response: Response<UserListAmiResult>) {
                 if(response.isSuccessful){
-                    userListAmis.postValue(response.body()?.data)
+                    userListAmis.postValue(response.body()?.result!!.data)
                 }
             }
 

@@ -18,17 +18,19 @@ import com.example.lpiem.pokecard.adapter.AllUserFriend
 import com.example.lpiem.pokecard.data.model.AllPokemonState
 import com.example.lpiem.pokecard.data.model.ResultData
 import com.example.lpiem.pokecard.data.model.UserListAmis
+import com.example.lpiem.pokecard.data.model.UserOneAmi
 import kotlinx.android.synthetic.main.fragment_friend.*
 
 class FragmentFriend : BaseFragment(),AllUserFriend.AllUserFriendsAdapterClickListener {
-    override fun onClick(dataPosition: Int, pokemon: UserListAmis) {
+    override fun onClick(dataPosition: Int, pokemon: UserOneAmi) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
 
     private lateinit var userViewModel: UserViewModel
     private lateinit var viewDialog : ViewDialog
     private lateinit var adapter : AllUserFriend
-    private lateinit var resultDataObserver: Observer<List<UserListAmis>>
+    private lateinit var resultDataObserver: Observer<List<UserOneAmi>>
   //  private lateinit var stateObserver: Observer<AllPokemonState>
 
 
