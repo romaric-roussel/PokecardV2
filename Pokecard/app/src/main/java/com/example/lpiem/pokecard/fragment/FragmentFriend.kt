@@ -13,6 +13,7 @@ import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.ViewDialog
 import com.example.lpiem.pokecard.ViewModel.PokemonViewModel
 import com.example.lpiem.pokecard.ViewModel.UserViewModel
+import com.example.lpiem.pokecard.activity.MainActivity
 import com.example.lpiem.pokecard.adapter.AllPokemonListeAdapter
 import com.example.lpiem.pokecard.adapter.AllUserFriend
 import com.example.lpiem.pokecard.data.model.AllPokemonState
@@ -22,8 +23,9 @@ import com.example.lpiem.pokecard.data.model.UserOneAmi
 import kotlinx.android.synthetic.main.fragment_friend.*
 
 class FragmentFriend : BaseFragment(),AllUserFriend.AllUserFriendsAdapterClickListener {
-    override fun onClick(dataPosition: Int, pokemon: UserOneAmi) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onClick(dataPosition: Int, user: UserOneAmi) {
+        userViewModel.selectedIdAmi=user.idAmis
+        (activity as MainActivity).openFragment(FragmentExchangeAmi())
     }
 
 

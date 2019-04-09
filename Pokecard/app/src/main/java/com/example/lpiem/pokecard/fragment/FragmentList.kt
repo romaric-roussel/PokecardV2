@@ -11,6 +11,9 @@ import kotlinx.android.synthetic.main.fragment_exchange_list.*
 
 class FragmentList : BaseFragment() {
 
+
+
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_exchange_list, container, false)

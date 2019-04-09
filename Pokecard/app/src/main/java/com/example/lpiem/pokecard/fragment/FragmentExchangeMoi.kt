@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_exchange.*
 
 
 class FragmentExchangeMoi : BaseFragment(),ExchangeAdapter.ExchangeAdapterAdapterClickListener {
-    override fun onClick(dataPosition: Int, pokemon: UserExchangePokemon) {
+    override fun onClick(dataPosition: Int, user: UserExchangePokemon) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 

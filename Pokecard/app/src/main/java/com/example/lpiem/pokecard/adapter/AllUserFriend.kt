@@ -59,7 +59,7 @@ class AllUserFriend (private val clickListener: AllUserFriendsAdapterClickListen
 
 
     interface AllUserFriendsAdapterClickListener {
-        fun onClick(dataPosition: Int, pokemon: UserOneAmi)
+        fun onClick(dataPosition: Int, user: UserOneAmi)
     }
 }
 

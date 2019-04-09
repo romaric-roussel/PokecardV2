@@ -8,7 +8,7 @@ import com.example.lpiem.pokecard.data.repository.UserRepository
 class UserViewModel : ViewModel() {
 
 
-
+    var selectedIdAmi : Int? = null
 
 
     fun getUser(mail: String, password: String) : MutableLiveData<UserResultData> {
