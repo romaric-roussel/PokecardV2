@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.activity.MainActivity
 import com.example.lpiem.pokecard.data.model.ResultData
-import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.ViewDialog
 import com.example.lpiem.pokecard.ViewModel.PokemonViewModel
 import com.example.lpiem.pokecard.adapter.AllPokemonListeAdapter

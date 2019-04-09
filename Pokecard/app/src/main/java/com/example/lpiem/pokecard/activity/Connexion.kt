@@ -11,8 +11,8 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.retrofit.API.C.RC_SIGN_IN
-import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.facebook.login.widget.LoginButton
@@ -26,21 +26,14 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import kotlinx.android.synthetic.main.connexion.*
 import org.jetbrains.anko.toast
-import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.ViewModel.UserViewModel
 import com.example.lpiem.pokecard.data.model.UserAllResult
 import com.example.lpiem.pokecard.data.model.UserInscriptionResult
 import com.example.lpiem.pokecard.data.model.UserResult
 import com.example.lpiem.pokecard.data.model.UserResultData
-import com.example.lpiem.pokecard.data.repository.PokemonRepository
-import com.example.lpiem.pokecard.retrofit.GestionRetrofit
-import kotlinx.android.synthetic.main.fragment_sign_up.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-
+import com.facebook.*
+import kotlinx.android.synthetic.main.connexion.*
 
 
 class Connexion : BaseActivity() {

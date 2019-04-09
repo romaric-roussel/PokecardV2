@@ -7,24 +7,27 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.lpiem.pokecard.data.model.UserExchangePokemon
 import kotlinx.android.synthetic.main.item_exchange.view.*
 import com.example.lpiem.pokecard.R
-import kotlinx.android.synthetic.main.item_friend.view.*
 
-class ExchangeAdapter (private val clickListener: ExchangeAdapterAdapterClickListener?) : RecyclerView.Adapter<ExchangeAdapter.ViewHolder>(){
+class ExchangeAdapterMe (private val clickListener: ExchangeAdapterAdapterClickListener?) : RecyclerView.Adapter<ExchangeAdapterMe.ViewHolder>(){
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
-            clickListener?.onClick(position, allexchange[position])
+            clickListener?.onClick(position, allExchangeMe[position])
         }
-        holder.bind(allexchange[position])
+        holder.bind(allExchangeMe[position])
     }
 
-    private var allexchange = emptyList<UserExchangePokemon>()
+    //voir mutable live data
+    //private var allExchange = emptyList<UserExchangePokemon>()
+    private var allExchangeMe = emptyList<UserExchangePokemon>()
+    //private var allExchangeFriend = MutableLiveData<UserExchangePokemon>()
 
     override fun getItemCount(): Int {
-        return allexchange.size
+        return allExchangeMe.size
     }
 
-    fun setData(allfriends: List<UserExchangePokemon>) {
-        this.allexchange = allfriends
+    //ici aussi
+    fun setData(myExchangeList: List<UserExchangePokemon>) {
+        this.allExchangeMe = myExchangeList
         notifyDataSetChanged()
     }
 

@@ -29,8 +29,8 @@ class FragmentList : BaseFragment() {
     }
     private fun setupViewPager() {
         val adapter = ExchangeViewPager(childFragmentManager)
-        adapter.addFragment(FragmentExchangeMoi.newInstance(), getString(R.string.ma_liste))
-        adapter.addFragment(FragmentExchangeAmi.newInstance(), getString(R.string.mes_amis))
+        adapter.addFragment(FragmentExchangeMoi(), getString(R.string.ma_liste))
+        adapter.addFragment(FragmentExchangeAmi(), getString(R.string.mes_amis))
         vp_exchange_fragment.adapter = adapter
         tl_exchange_fragment.setupWithViewPager(vp_exchange_fragment)
     }

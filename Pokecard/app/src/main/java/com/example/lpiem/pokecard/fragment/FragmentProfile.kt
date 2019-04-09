@@ -10,9 +10,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
+import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.activity.MainActivity
 
-import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.activity.Connexion
 import com.example.lpiem.pokecard.activity.OubliMdp
 import com.facebook.login.LoginManager

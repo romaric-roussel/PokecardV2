@@ -58,6 +58,7 @@ object UserRepository {
         val call = apiUser.listAmis(id)
         call.enqueue(object : Callback<UserListAmiResult>{
             override fun onFailure(call: Call<UserListAmiResult>, t: Throwable) {
+                userListAmis.postValue(emptyList())
 
             }
 
@@ -76,7 +77,7 @@ object UserRepository {
         val call = apiUser.listPokUser(id)
         call.enqueue(object : Callback<UserExchangeResult>{
             override fun onFailure(call: Call<UserExchangeResult>, t: Throwable) {
-
+                userListExchange.postValue(emptyList())
             }
 
             override fun onResponse(call: Call<UserExchangeResult>, response: Response<UserExchangeResult>) {

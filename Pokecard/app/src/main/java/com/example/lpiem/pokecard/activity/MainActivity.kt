@@ -78,7 +78,7 @@ class MainActivity: AppCompatActivity() {
             R.id.liste->{
 
                 toolbar.title = getString(R.string.ma_liste)
-                openFragment(FragmentList())
+                openFragment(FragmentExchangeMoi())
                 return@OnNavigationItemSelectedListener true
 
             }
