@@ -25,4 +25,12 @@ class UserViewModel : ViewModel() {
         return UserRepository.fetchListAmi(id)
     }
 
+    fun listUserPok(id : String) : MutableLiveData<List<UserExchangePokemon>>{
+
+        return UserRepository.fetchListPokExchange(id)
+    }
+
+
+
+
 }

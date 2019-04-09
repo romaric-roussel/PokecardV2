@@ -41,4 +41,9 @@ interface API {
     @GET("user/{id}/friends")
     fun listAmis(@Path("id") id: String): Call<UserListAmiResult>
 
+    @GET("exchangeList/user/{id}")
+    fun listPokUser(@Path("id") id: String): Call<UserExchangeResult>
+
+
+
 }
