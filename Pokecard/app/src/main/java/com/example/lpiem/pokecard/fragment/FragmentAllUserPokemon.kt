@@ -28,6 +28,7 @@ class FragmentAllUserPokemon : BaseFragment(),AllPokemonUserListeAdapter.AllUser
 
     private lateinit var pokemonViewModel: PokemonViewModel
     private lateinit var viewDialog: ViewDialog
+
     private lateinit var adapter: AllPokemonUserListeAdapter
     private lateinit var resultDataObserver: Observer<List<UserPokemonResultData>>
     private lateinit var stateObserver: Observer<AllPokemonState>

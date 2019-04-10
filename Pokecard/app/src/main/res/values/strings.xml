@@ -42,5 +42,9 @@
     <string name="keyMailAdress">keyMailAdress</string>
     <string name="keyProfilPicture">keyProfilPicture</string>
     <string name="keyId">keyId</string>
+    <string name="mes_amis">Mes amis</string>
+    <string name="ma_liste">Ma liste</string>
+
+    <string name="liste_amis">Liste amis</string>
 
 </resources>

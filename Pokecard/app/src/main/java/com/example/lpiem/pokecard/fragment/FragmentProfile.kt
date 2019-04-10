@@ -9,12 +9,15 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
+import com.example.lpiem.pokecard.R
+import com.example.lpiem.pokecard.ViewModel.UserViewModel
 import com.example.lpiem.pokecard.activity.MainActivity
 
-import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.activity.Connexion
 import com.example.lpiem.pokecard.activity.OubliMdp
+import com.example.lpiem.pokecard.data.model.UserResultData
 import com.facebook.login.LoginManager
 import com.google.firebase.auth.FirebaseAuth
 import kotlin.math.absoluteValue
@@ -36,11 +39,21 @@ class FragmentProfile : BaseFragment(),View.OnClickListener {
 
     lateinit var mAuth: FirebaseAuth
 
+    private lateinit var userViewModel: UserViewModel
+    lateinit var userResultDataObserver: Observer<UserResultData>
+
+
+    companion object {
+        lateinit var observer: Observer<UserResultData>
+        fun getOberver(obs:Observer<UserResultData>){
+            observer = obs
+        }
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         super.onCreate(savedInstanceState)
         val view = inflater.inflate(R.layout.fragment_user, container, false)
-
+        userViewModel = UserViewModel()
         userPicture = view.findViewById<ImageView>(R.id.iv_photo_fragment_user)
         userName = view.findViewById<TextView>(R.id.tv_name_fragment_user)
         userMail = view.findViewById<TextView>(R.id.tv_email_fragment_user)
@@ -69,6 +82,8 @@ class FragmentProfile : BaseFragment(),View.OnClickListener {
 
         fbBtnLogOut.setOnClickListener(this)
 
+
+
     }
 
     private fun getSharePref() {
@@ -84,8 +99,11 @@ class FragmentProfile : BaseFragment(),View.OnClickListener {
         val i = v.id
         if (i == R.id.fb_log_out_profil) {
             signOut()
+            userViewModel.disconnect()
             val intent = Intent(activity, Connexion::class.java)
             startActivity(intent)
+            activity?.finish()
+
         }
     }
 

@@ -23,6 +23,7 @@
     <TextView
         android:id="@+id/tv_nb_exemplaire"
         style="@style/tv_id_all_pokemon_detail"
+        android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/tv_type1_all_pokemon_user_detail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_all_pokemon_user_detail"

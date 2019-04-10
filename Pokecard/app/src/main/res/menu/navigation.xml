@@ -12,6 +12,16 @@
         android:title="@string/pokedex"/>
 
     <item
+        android:id="@+id/amis"
+        android:icon="@drawable/ic_baseline_group_24px"
+        android:title="@string/mes_amis" />
+
+    <item
+        android:id="@+id/liste"
+        android:icon="@drawable/ic_baseline_mail_outline_24px"
+        android:title="@string/ma_liste" />
+
+    <item
         android:id="@+id/settings"
         android:icon="@drawable/ic_settings"
         android:title="@string/parametre"/>

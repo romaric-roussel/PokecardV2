@@ -38,6 +38,19 @@ interface API {
                        @Field("password") password: String,
                        @Field("query") query: String): Call<List<OneResult>>
 
+    @POST("exchange")
+    @FormUrlEncoded
+    fun exchangePokemon(@Field("id_user_send") idUserSend: String,
+                       @Field("id_user_receive") idUserReceive: String,
+                       @Field("id_pokemon_send") idPokemonSend: String,
+                        @Field("id_pokemon_receive") idPokemonReceive: String): Call<ExchangeResult>
+
+    @GET("user/{id}/friends")
+    fun listAmis(@Path("id") id: String): Call<UserListAmiResult>
+
+    @GET("exchangeList/user/{id}")
+    fun listPokUser(@Path("id") id: String): Call<UserExchangeResult>
+
 
 
 }

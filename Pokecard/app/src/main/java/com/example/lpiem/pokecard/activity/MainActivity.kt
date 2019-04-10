@@ -21,6 +21,8 @@ class MainActivity: AppCompatActivity() {
     lateinit var fragmentAllUserPokemon: FragmentAllUserPokemon
              var fragmentAllPokemonDetail: FragmentAllPokemonDetail? =null
     lateinit var fragmentProfile: FragmentProfile
+    lateinit var fragmentFriend: FragmentFriend
+    lateinit var fragmentList: FragmentList
     //lateinit var fragmentConnexion: FragmentConnexion
     lateinit var button: Button
     lateinit var toolbar: ActionBar
@@ -66,6 +68,21 @@ class MainActivity: AppCompatActivity() {
                 openFragment(FragmentAllPokemon())
                 return@OnNavigationItemSelectedListener true
             }
+
+            R.id.amis->{
+                toolbar.title = getString(R.string.mes_amis)
+                openFragment(FragmentFriend())
+                return@OnNavigationItemSelectedListener true
+            }
+
+            R.id.liste->{
+
+                toolbar.title = getString(R.string.ma_liste)
+                openFragment(FragmentExchangeMoi())
+                return@OnNavigationItemSelectedListener true
+
+            }
+
 
             R.id.settings -> {
                 toolbar.title = getString(R.string.parametre)

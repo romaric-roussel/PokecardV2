@@ -21,7 +21,7 @@ class FragmentAllUserPokemonDetail : BaseFragment() {
     lateinit var onePokemonObserver : Observer<ResultOnePokemonData>
 
     lateinit var id : TextView
-    lateinit var nbExemplaire : TextView
+    //lateinit var nbExemplaire : TextView
     lateinit var nom : TextView
     lateinit var type1 : TextView
     lateinit var type2 :TextView
@@ -35,7 +35,7 @@ class FragmentAllUserPokemonDetail : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         id = view.findViewById(R.id.tv_id_user_pokemon)
-        nbExemplaire = view.findViewById(R.id.tv_nb_exemplaire)
+        //nbExemplaire = view.findViewById(R.id.tv_nb_exemplaire)
         nom = view.findViewById(R.id.tv_nom_all_pokemon_user_detail)
         type1 = view.findViewById(R.id.tv_type1_all_pokemon_user_detail)
         type2 = view.findViewById(R.id.tv_type2_all_pokemon_user_detail)
@@ -59,6 +59,7 @@ class FragmentAllUserPokemonDetail : BaseFragment() {
 
         id.text = result.id_pokemon
         nom.text = result.nom
+        //nbExemplaire.text = result.nb_exemplaire
         type1.text = result.nom_type_1
         type2.text = result.nom_type_2
         Glide.with(image).load(result.url_image).into(image)
