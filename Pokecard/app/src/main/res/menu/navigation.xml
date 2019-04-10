@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/myPokemon"
+        android:icon="@drawable/ic_pokeball"
+        android:title="@string/Mes_pokemon"/>
+
+    <item
+        android:id="@+id/pokedex"
+        android:icon="@drawable/ic_pokedex"
+        android:title="@string/pokedex"/>
+
+    <item
+        android:id="@+id/amis"
+        android:icon="@drawable/ic_baseline_group_24px"
+        android:title="@string/mes_amis" />
+
+    <item
+        android:id="@+id/liste"
+        android:icon="@drawable/ic_baseline_mail_outline_24px"
+        android:title="@string/ma_liste" />
+
+    <item
+        android:id="@+id/settings"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/parametre"/>
+
+</menu>

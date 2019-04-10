@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_item_pokemon"
+    style="@style/cl_item_pokemon">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+       style="@style/constraint_layout">
+
+        <ImageView
+            android:id="@+id/iv_item_pokemon_user"
+            style="@style/iv_item_pokemon"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_id_item_pokemon_user"
+            style="@style/tv_id_item_pokemon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_item_pokemon_user"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_name_item_pokemon_user"
+            style="@style/tv_name_item_pokemon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/iv_item_pokemon_user"
+            app:layout_constraintTop_toBottomOf="@+id/tv_id_item_pokemon_user" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

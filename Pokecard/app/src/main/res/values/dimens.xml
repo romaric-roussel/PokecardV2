@@ -1,3 +1,45 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="default_margin">8dp</dimen>
+            <!-- fragment user -->
+    <dimen name="fb_log_out_profil_height">40dp</dimen>
+    <dimen name="fb_log_out_profil_width">180dp</dimen>
+            <!-- Connexion-->
+    <dimen name="connexion_width">180dp</dimen>
+    <dimen name="connexion_height">40dp</dimen>
+    <dimen name="connexion_marginStart">8dp</dimen>
+    <dimen name="connexion_marginTop">32dp</dimen>
+    <dimen name="connexion_marginEnd">8dp</dimen>
+    <dimen name="imageView_height">40dp</dimen>
+    <dimen name="password_height">46dp</dimen>
+    <dimen name="fb_login_width">180dp</dimen>
+    <dimen name="fb_login_height">40dp</dimen>
+    <dimen name="fb_login_marginTop">24dp</dimen>
+    <dimen name="Identifiant_marginTop">80dp</dimen>
+    <dimen name="googleSignIn_height">40dp</dimen>
+    <dimen name="googleSignIn_width">180dp</dimen>
+
+            <!--Fragment all pokemon-->
+    <dimen name="rv_pokemon_fragment_size">0dp</dimen>
+
+            <!--Fragment all pokemon detail-->
+    <dimen name="tv_nom_all_pokemon_detail_height">30dp</dimen>
+    <dimen name="tv_nom_all_pokemon_detail_marginBottom">28dp</dimen>
+    <dimen name="iv_all_pokemon_detail_width">171dp</dimen>
+    <dimen name="iv_all_pokemon_detail_height">183dp</dimen>
+    <dimen name="tv_type2_all_pokemon_detail_marginBottom">40dp</dimen>
+    <dimen name="guideline_begin">185dp</dimen>
+    <dimen name="guideline2_begin">406dp</dimen>
+    <dimen name="guideline3_begin">428dp</dimen>
+    <dimen name="guideline4_begin">494dp</dimen>
+            <!--Fragment User-->
+    <dimen name="iv_photo_fragment_user_height">150dp</dimen>
+    <dimen name="iv_item_pokemon_user_size">60dp</dimen>
+
+    <!--Splash Screen-->
+    <dimen name="splash_height">840dp</dimen>
+    <dimen name="splash_width">478dp</dimen>
+
+
+
 </resources>

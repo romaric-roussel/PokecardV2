@@ -17,4 +17,226 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="ThemeOverlay.MyDarkButton" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="colorButtonNormal">@color/grey_500</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:layout_marginRight">4dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+
+                        <!--Connexion-->
+    <style name="googleSignIn">
+       <item name="android:layout_width">@dimen/googleSignIn_width</item>
+       <item name="android:layout_height">@dimen/googleSignIn_height</item>
+       <item name="android:layout_alignParentStart">true</item>
+       <item name="android:layout_alignParentTop">true</item>
+       <item name="android:layout_alignParentEnd">true</item>
+       <item name="android:layout_alignParentBottom">true</item>
+       <item name="android:layout_marginStart">@dimen/default_margin</item>
+       <item name="android:layout_marginTop">@dimen/fab_margin</item>
+       <item name="android:layout_marginEnd">@dimen/default_margin</item>
+       <item name="android:onClick">onClick</item>
+    </style>
+
+    <style name="fb_login">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/fb_login_marginTop</item>
+    </style>
+
+    <style name="Identifiant">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/default_margin</item>
+        <item name="android:layout_marginTop">@dimen/Identifiant_marginTop</item>
+        <item name="android:layout_marginEnd">@dimen/default_margin</item>
+        <item name="android:ems">10</item>
+        <item name="android:hint">@string/Identifiant</item>
+        <item name="android:inputType">textPersonName</item>
+    </style>
+
+    <style name="password">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">@dimen/default_margin</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:layout_marginEnd">@dimen/default_margin</item>
+        <item name="android:ems">10</item>
+        <item name="android:hint">@string/password</item>
+        <item name="android:inputType">textPassword</item>
+    </style>
+
+    <style name="connexion">
+        <item name="android:layout_width">@dimen/connexion_width</item>
+        <item name="android:layout_height">@dimen/connexion_height</item>
+        <item name="android:layout_marginStart">@dimen/default_margin</item>
+        <item name="android:layout_marginTop">@dimen/connexion_marginTop</item>
+        <item name="android:layout_marginEnd">@dimen/default_margin</item>
+        <item name="android:text">@string/connect</item>
+    </style>
+
+    <style name="Connexion_imageView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/imageView_height</item>
+        <item name="android:layout_marginStart">@dimen/default_margin</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:layout_marginEnd">@dimen/default_margin</item>
+        <item name="android:layout_marginBottom">@dimen/default_margin</item>
+        <item name="android:src">@drawable/pokemon</item>
+    </style>
+
+                    <!--Fragment all pokemon detail-->
+    <style name="tv_nom_all_pokemon_detail">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/tv_nom_all_pokemon_detail_height</item>
+        <item name="android:layout_marginStart">@dimen/default_margin</item>
+        <item name="android:layout_marginEnd">@dimen/default_margin</item>
+        <item name="android:layout_marginBottom">@dimen/tv_nom_all_pokemon_detail_marginBottom</item>
+        <item name="android:text">@string/tv_nom_all_pokemon_detail</item>
+    </style>
+
+    <style name="iv_all_pokemon_detail">
+        <item name="android:layout_width">@dimen/iv_all_pokemon_detail_width</item>
+        <item name="android:layout_height">@dimen/iv_all_pokemon_detail_height</item>
+        <item name="android:layout_marginStart">@dimen/fab_margin</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:layout_marginBottom">@dimen/default_margin</item>
+        <item name="android:text">@string/tv_nom_all_pokemon_detail</item>
+    </style>
+
+    <style name="tv_id_all_pokemon_detail">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/tv_id_all_pokemon_detail</item>
+    </style>
+
+    <style name="tv_type1_all_pokemon_detail">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">@dimen/default_margin</item>
+        <item name="android:text">@string/tv_type1_all_pokemon_detail</item>
+    </style>
+
+    <style name="tv_type2_all_pokemon_detail">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:layout_marginBottom">@dimen/tv_type2_all_pokemon_detail_marginBottom</item>
+        <item name="android:text">@string/tv_type2_all_pokemon_detail</item>
+    </style>
+
+    <style name="guideline">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+
+
+                    <!--Fragment user-->
+
+    <style name="iv_photo_fragment_user">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/iv_photo_fragment_user_height</item>
+        <item name="android:layout_marginTop">@dimen/fab_margin</item>
+    </style>
+
+    <style name="tv_name_fragment_user">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/fab_margin</item>
+        <item name="android:text">@string/tv_name_fragment_user</item>
+        <item name="android:src">@color/colorText</item>
+    </style>
+
+    <style name="tv_email_fragment_user">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/fab_margin</item>
+        <item name="android:text">@string/tv_email_fragment_user</item>
+        <item name="android:src">@color/colorText</item>
+        <item name="android:visibility">visible</item>
+    </style>
+
+    <style name="ThemeFbLogOutProfil">
+        <item name="android:layout_width">@dimen/fb_log_out_profil_width</item>
+        <item name="android:layout_height">@dimen/fb_log_out_profil_height</item>
+        <item name="android:layout_marginStart">@dimen/default_margin</item>
+        <item name="android:layout_marginBottom">@dimen/default_margin</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_alignParentEnd">true</item>
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:text">@string/log_out</item>
+    </style>
+
+
+
+    <!--Item pokemon-->
+    <style name="cl_item_pokemon">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_margin">@dimen/fab_margin</item>
+    </style>
+
+    <style name="iv_item_pokemon">
+        <item name="android:layout_width">@dimen/iv_item_pokemon_user_size</item>
+        <item name="android:layout_height">@dimen/iv_item_pokemon_user_size</item>
+    </style>
+
+    <style name="tv_id_item_pokemon">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/tv_id_item_pokemon</item>
+        <item name="android:src">@color/colorText</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="tv_name_item_pokemon">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:src">@color/colorText</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:text">@string/tv_name_item_pokemon</item>
+        <item name="android:textAlignment">center</item>
+</style>
+
+
+
+
+    <!--Fragment all pokemon-->
+
+    <style name="rv_pokemon_fragment">
+        <item name="android:layout_width">@dimen/rv_pokemon_fragment_size</item>
+        <item name="android:layout_height">@dimen/rv_pokemon_fragment_size</item>
+        <item name="android:scrollbars">vertical</item>
+    </style>
+
+    <!-- Constraint Layout-->
+    <style name="constraint_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+
+    <!--Splash Screen-->
+    <style name="splashscreen">
+        <item name="android:layout_width">@dimen/splash_width</item>
+        <item name="android:layout_height">@dimen/splash_height</item>
+        <item name="android:layout_marginStart">@dimen/default_margin</item>
+        <item name="android:layout_marginTop">@dimen/default_margin</item>
+        <item name="android:layout_marginEnd">@dimen/default_margin</item>
+        <item name="android:layout_marginBottom">@dimen/default_margin</item>
+        <item name="android:src">@drawable/pokemonsplash</item>
+    </style>
+
+
 </resources>
