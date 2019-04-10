@@ -59,7 +59,6 @@ object UserRepository {
         call.enqueue(object : Callback<UserListAmiResult>{
             override fun onFailure(call: Call<UserListAmiResult>, t: Throwable) {
                 userListAmis.postValue(emptyList())
-
             }
 
             override fun onResponse(call: Call<UserListAmiResult>, response: Response<UserListAmiResult>) {

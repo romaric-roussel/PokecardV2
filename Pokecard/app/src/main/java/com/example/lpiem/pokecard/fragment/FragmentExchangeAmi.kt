@@ -15,6 +15,7 @@ import com.example.lpiem.pokecard.adapter.ExchangeAdapterFriends
 import com.example.lpiem.pokecard.adapter.ExchangeAdapterMe
 import com.example.lpiem.pokecard.data.model.UserExchangePokemon
 import kotlinx.android.synthetic.main.fragment_exchange.*
+import kotlinx.android.synthetic.main.fragment_exchange_friend.*
 
 
 class FragmentExchangeAmi : BaseFragment(), ExchangeAdapterFriends.ExchangeAdapterAdapterClickListener {
@@ -30,13 +31,13 @@ class FragmentExchangeAmi : BaseFragment(), ExchangeAdapterFriends.ExchangeAdapt
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_exchange, container, false)
+        return inflater.inflate(R.layout.fragment_exchange_friend, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         userViewModel = ViewModelProviders.of(activity!!).get(UserViewModel::class.java)
-        rv_pokemon_fragment_user.layoutManager = LinearLayoutManager(activity)
+        rv_pokemon_exchange_friend.layoutManager = LinearLayoutManager(activity)
         adapter = ExchangeAdapterFriends(this)
         rv_pokemon_fragment_user.adapter=adapter
         resultDataObserver = Observer {
