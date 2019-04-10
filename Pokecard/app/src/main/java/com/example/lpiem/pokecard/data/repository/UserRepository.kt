@@ -1,5 +1,6 @@
 package com.example.lpiem.pokecard.data.repository
 
+import android.os.Handler
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -60,11 +61,14 @@ object UserRepository {
         state.postValue(pokemonState)
     call.enqueue(object : Callback<UserInscriptionResult>{
         override fun onFailure(call: Call<UserInscriptionResult>, t: Throwable) {
+            Log.d("onfail","OUF ${t.localizedMessage}")
             pokemonState.isProgressLoadingShown = false
             state.postValue(pokemonState)
+
         }
 
         override fun onResponse(call: Call<UserInscriptionResult>, response: Response<UserInscriptionResult>) {
+            Log.d("onfail"," PAS OUF $response")
             pokemonState.isProgressLoadingShown = false
             state.postValue(pokemonState)
             userInscription.postValue(response.body())
