@@ -50,6 +50,8 @@ class Connexion : BaseActivity() {
      var displayId : String? = ""
      var status : String? = ""
      var coderesponse : Int=0
+    lateinit var mailfb : String
+    lateinit var passfb : String
 
     private lateinit var userViewModel: UserViewModel
     private lateinit var userResultDataObserver: Observer<UserResultData>
@@ -119,8 +121,25 @@ class Connexion : BaseActivity() {
                 saveUserDataInSharePref()
                 toast(it.status)
                 startActivity(Intent(this@Connexion, MainActivity::class.java))
+                finish()
             }else {
                 toast(it.status)
+
+            }
+
+
+        }
+        userResultDataObserver2= Observer {
+
+            if (it!=null)
+            {Log.d("ConnFB","Premiere co")
+              }
+            else{Log.d("ConnFB","de co")
+                Log.d("mailfb",mailfb)
+                Log.d("passfb", passfb)
+         //       userViewModel.getUser(mailfb,passfb).observe(this, userResultDataObserver)
+                userViewModel.getUser(mailfb,passfb).observe(this, userResultDataObserver)
+
 
             }
 
@@ -243,27 +262,25 @@ class Connexion : BaseActivity() {
                         val nom = user!!.displayName.toString().trim()
                         val prenom ="".trim()
                         val mail = user!!.email.toString().trim()
-                        val type=0
+                        val type=1
                         val photo = user.photoUrl.toString()+"?type=large".trim()
-                        val mdp ="".trim()
-                        val confirmmdp ="".trim()
+                        val mdp ="test".trim()
+                        val confirmmdp ="test".trim()
+                        if (mail!=null){
+                            mailfb=mail
+                            passfb=mdp
+
+                            }
+
                         if (mdp==confirmmdp){
 
                             userViewModel.newUser(nom,prenom,mail,type,photo,mdp,confirmmdp).observe(this, userResultDataObserver2)
 
-                        }
 
-                        userViewModel = ViewModelProviders.of(this!!).get(UserViewModel::class.java)
-                        userResultDataObserver2= Observer {
-
-
-                            if (it!=null)
-                            {}
-                            else{toast("Mail déjà utilisé")}
                         }
 
 
-                        startActivity(Intent(this@Connexion, MainActivity::class.java))
+
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("erreur", "signInWithCredential:failure", task.exception)
