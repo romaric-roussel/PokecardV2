@@ -33,7 +33,9 @@ class FragmentFriend : BaseFragment(),AllUserFriend.AllUserFriendsAdapterClickLi
     private lateinit var viewDialog : ViewDialog
     private lateinit var adapter : AllUserFriend
     private lateinit var resultDataObserver: Observer<List<UserOneAmi>>
-  //  private lateinit var stateObserver: Observer<AllPokemonState>
+    private lateinit var stateObserver: Observer <AllPokemonState>
+
+    //  private lateinit var stateObserver: Observer<AllPokemonState>
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +46,7 @@ class FragmentFriend : BaseFragment(),AllUserFriend.AllUserFriendsAdapterClickLi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewDialog =  ViewDialog()
         userViewModel = ViewModelProviders.of(activity!!).get(UserViewModel::class.java)
         rv_pokemon_fragment_user_friend.layoutManager = LinearLayoutManager(activity)
         adapter = AllUserFriend(this)
@@ -51,12 +54,42 @@ class FragmentFriend : BaseFragment(),AllUserFriend.AllUserFriendsAdapterClickLi
         resultDataObserver = Observer {
             adapter.setData(it)
         }
+        stateObserver = Observer {
+            handleState(it)
+        }
         val sharedPref = activity?.getSharedPreferences(resources.getString(R.string.sharePrefName), Context.MODE_PRIVATE) ?: return
         val displayId = sharedPref.getString(resources.getString(R.string.keyId),"")
         userViewModel.listAmis(displayId!!).observe(this, resultDataObserver)
+        userViewModel.state.observe(this, stateObserver)
 
 
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        userViewModel.state.removeObserver(stateObserver)
+    }
+
+    private fun handleState(state: AllPokemonState?) {
+        if(state?.isProgressLoadingShown == true){
+            showLoadingProgress(context!!)
+            return
+        }
+        if(state?.isProgressLoadingShown == false){
+            hideLoadingProgress()
+            return
+        }
+    }
+
+    fun showLoadingProgress(context: Context){
+
+        viewDialog.ViewDialog(context)
+        viewDialog.showDialog()
+    }
+
+    fun hideLoadingProgress(){
+        viewDialog.hideDialog()
     }
 
 

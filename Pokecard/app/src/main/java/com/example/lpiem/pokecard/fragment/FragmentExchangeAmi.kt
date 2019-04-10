@@ -1,5 +1,6 @@
 package com.example.lpiem.pokecard.fragment
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import com.example.lpiem.pokecard.ViewModel.UserViewModel
 import com.example.lpiem.pokecard.activity.MainActivity
 import com.example.lpiem.pokecard.adapter.ExchangeAdapterFriends
 import com.example.lpiem.pokecard.adapter.ExchangeAdapterMe
+import com.example.lpiem.pokecard.data.model.AllPokemonState
 import com.example.lpiem.pokecard.data.model.ExchangeResult
 import com.example.lpiem.pokecard.data.model.UserExchangePokemon
 import kotlinx.android.synthetic.main.fragment_exchange.*
@@ -32,6 +34,7 @@ class FragmentExchangeAmi : BaseFragment(), ExchangeAdapterFriends.ExchangeAdapt
     private lateinit var adapter : ExchangeAdapterFriends
     private lateinit var resultDataObserver: Observer<List<UserExchangePokemon>>
     private lateinit var resultExchangeObserver: Observer<ExchangeResult>
+    private lateinit var stateObserver: Observer <AllPokemonState>
 
 
 
@@ -43,6 +46,7 @@ class FragmentExchangeAmi : BaseFragment(), ExchangeAdapterFriends.ExchangeAdapt
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewDialog =  ViewDialog()
         userViewModel = ViewModelProviders.of(activity!!).get(UserViewModel::class.java)
         rv_pokemon_exchange_friend.layoutManager = LinearLayoutManager(activity)
         adapter = ExchangeAdapterFriends(this)
@@ -51,14 +55,45 @@ class FragmentExchangeAmi : BaseFragment(), ExchangeAdapterFriends.ExchangeAdapt
         resultDataObserver = Observer {
             adapter.setData(it)
         }
+        stateObserver = Observer {
+            handleState(it)
+        }
         resultExchangeObserver = Observer {
             (activity as MainActivity).openFragment(FragmentAllUserPokemon())        }
         //Log.d("IDAMI",  userViewModel.selectedIdAmi.toString())
 
+
         userViewModel.exchangeFriendPokemonList(userViewModel.selectedIdAmi.toString()!!).observe(this, resultDataObserver)
+        userViewModel.state.observe(this, stateObserver)
 
 
 
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        userViewModel.state.removeObserver(stateObserver)
+    }
+
+    private fun handleState(state: AllPokemonState?) {
+        if(state?.isProgressLoadingShown == true){
+            showLoadingProgress(context!!)
+            return
+        }
+        if(state?.isProgressLoadingShown == false){
+            hideLoadingProgress()
+            return
+        }
+    }
+
+    fun showLoadingProgress(context: Context){
+
+        viewDialog.ViewDialog(context)
+        viewDialog.showDialog()
+    }
+
+    fun hideLoadingProgress(){
+        viewDialog.hideDialog()
     }
 
 

@@ -56,6 +56,7 @@ class Connexion : BaseActivity() {
     private lateinit var userResultDataObserver2: Observer<UserInscriptionResult>
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -125,6 +126,8 @@ class Connexion : BaseActivity() {
 
 
         }
+        Connexion.observer = userResultDataObserver
+
 
         connexionButton.setOnClickListener{
             val email = Identifiant.text.toString().trim()
@@ -279,9 +282,12 @@ class Connexion : BaseActivity() {
     companion object {
         //private val RC_SIGN_IN = 2
         private const val TAG = "FacebookLogin"
+        lateinit var observer: Observer<UserResultData>
+        fun getOberver(obs:Observer<UserResultData>){
+            observer = obs
+        }
 
     }
-
 
 
 }

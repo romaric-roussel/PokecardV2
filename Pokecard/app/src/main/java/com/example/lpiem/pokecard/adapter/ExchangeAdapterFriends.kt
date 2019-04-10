@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.lpiem.pokecard.data.model.UserExchangePokemon
 import kotlinx.android.synthetic.main.item_exchange.view.*
 import com.example.lpiem.pokecard.R
@@ -54,18 +55,22 @@ class ExchangeAdapterFriends (private val clickListener: ExchangeAdapterAdapterC
         fun bind(user: UserExchangePokemon) {
 
             //v.tv_id_item_pokemon.text = pokemon?.idAmis.toString()
-            v.tonpok.setText(user?.name_pokemon_utilisateur_1)
-            v.sonpok.setText(user?.name_pokemon_utilisateur_2)
-            /*v.validate.setOnClickListener(View.OnClickListener { v->
+            //v.tonpok.setText(user?.name_pokemon_utilisateur_1)
+            //v.sonpok.setText(user?.name_pokemon_utilisateur_2)
+            //v.validate.setOnClickListener(View.OnClickListener { v->
+            Glide.with(v.iv_send).load(user?.image_pokemon_utilisateur_1).into(v.iv_send)
+            Glide.with(v.iv_receive).load(user?.image_pokemon_utilisateur_2).into(v.iv_receive)
+            v.delete.visibility = View.INVISIBLE
+            //v.validate.visibility = View.INVISIBLE
 
 
-                Log.d("lol",idAmis)
-                Log.d("lol",getSharedPrefUserId(v.context))
-                Log.d("lol",user.id_pokemon_utilisateur_1.toString())
-                Log.d("lol",user.id_pokemon_utilisateur_2.toString())
+            /* Log.d("lol",idAmis)
+             Log.d("lol",getSharedPrefUserId(v.context))
+             Log.d("lol",user.id_pokemon_utilisateur_1.toString())
+             Log.d("lol",user.id_pokemon_utilisateur_2.toString())
 
 
-            })*/
+         })*/
             //    Glide.with(v.iv_item_pokemon).load(pokemon?.image).into(v.iv_item_pokemon)
 
 

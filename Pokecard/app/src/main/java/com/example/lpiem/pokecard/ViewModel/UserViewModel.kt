@@ -9,7 +9,17 @@ class UserViewModel : ViewModel() {
 
 
     var selectedIdAmi : Int? = null
+    var state = MutableLiveData<AllPokemonState>()
 
+    init {
+        UserRepository.state.observeForever {
+            state.postValue(it)
+        }
+    }
+
+    fun disconnect() {
+        return UserRepository.disconnect()
+    }
 
     fun getUser(mail: String, password: String) : MutableLiveData<UserResultData> {
         return UserRepository.fetchConnexionUser(mail,password)
