@@ -15,6 +15,7 @@ object UserRepository {
     private val apiUser = GestionRetrofit.initRetrofit()
     val userListAmis = MutableLiveData<List<UserOneAmi>>()
     val userListExchange = MutableLiveData<List<UserExchangePokemon>>()
+    val exchangeResult = MutableLiveData<ExchangeResult>()
 
 
     fun fetchConnexionUser(mail:String,password:String): MutableLiveData<UserResultData> {
@@ -87,6 +88,23 @@ object UserRepository {
 
         })
         return userListExchange
+    }
+
+    fun doExchange(idUserSend : String,idUserReceive : String,idPokemonSend : String,idPokemonReceive : String): MutableLiveData<ExchangeResult> {
+        val call = apiUser.exchangePokemon(idUserSend,idUserReceive,idPokemonSend,idPokemonReceive)
+        call.enqueue(object : Callback<ExchangeResult>{
+            override fun onFailure(call: Call<ExchangeResult>, t: Throwable) {
+                exchangeResult.postValue(null)
+            }
+
+            override fun onResponse(call: Call<ExchangeResult>, response: Response<ExchangeResult>) {
+                if(response.isSuccessful){
+                    exchangeResult.postValue(response.body())
+                }
+            }
+
+        })
+        return exchangeResult
     }
 
 }

@@ -11,26 +11,33 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lpiem.pokecard.R
 import com.example.lpiem.pokecard.ViewDialog
 import com.example.lpiem.pokecard.ViewModel.UserViewModel
+import com.example.lpiem.pokecard.activity.MainActivity
 import com.example.lpiem.pokecard.adapter.ExchangeAdapterFriends
 import com.example.lpiem.pokecard.adapter.ExchangeAdapterMe
+import com.example.lpiem.pokecard.data.model.ExchangeResult
 import com.example.lpiem.pokecard.data.model.UserExchangePokemon
 import kotlinx.android.synthetic.main.fragment_exchange.*
 import kotlinx.android.synthetic.main.fragment_exchange_friend.*
+import kotlinx.android.synthetic.main.fragment_friend.*
 
 
 class FragmentExchangeAmi : BaseFragment(), ExchangeAdapterFriends.ExchangeAdapterAdapterClickListener {
-    override fun onClick(dataPosition: Int, pokemon: UserExchangePokemon) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun onClick(idAmis: String, idUser: String, idPokemonUser1: String, idPokemonUser2: String) {
+        userViewModel.exchangePokemon(idAmis,idUser,idPokemonUser1,idPokemonUser2).observe(this,resultExchangeObserver)
     }
+
 
     private lateinit var userViewModel: UserViewModel
     private lateinit var viewDialog : ViewDialog
     private lateinit var adapter : ExchangeAdapterFriends
     private lateinit var resultDataObserver: Observer<List<UserExchangePokemon>>
+    private lateinit var resultExchangeObserver: Observer<ExchangeResult>
+
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
+
         return inflater.inflate(R.layout.fragment_exchange_friend, container, false)
     }
 
@@ -39,11 +46,14 @@ class FragmentExchangeAmi : BaseFragment(), ExchangeAdapterFriends.ExchangeAdapt
         userViewModel = ViewModelProviders.of(activity!!).get(UserViewModel::class.java)
         rv_pokemon_exchange_friend.layoutManager = LinearLayoutManager(activity)
         adapter = ExchangeAdapterFriends(this)
-        rv_pokemon_fragment_user.adapter=adapter
+        rv_pokemon_exchange_friend.adapter=adapter
+        adapter.idAmis = userViewModel.selectedIdAmi.toString()
         resultDataObserver = Observer {
             adapter.setData(it)
         }
-        Log.d("IDAMI",  userViewModel.selectedIdAmi.toString())
+        resultExchangeObserver = Observer {
+            (activity as MainActivity).openFragment(FragmentAllUserPokemon())        }
+        //Log.d("IDAMI",  userViewModel.selectedIdAmi.toString())
 
         userViewModel.exchangeFriendPokemonList(userViewModel.selectedIdAmi.toString()!!).observe(this, resultDataObserver)
 

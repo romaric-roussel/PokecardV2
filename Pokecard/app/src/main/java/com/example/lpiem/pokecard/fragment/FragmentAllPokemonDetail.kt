@@ -40,6 +40,7 @@ class FragmentAllPokemonDetail : BaseFragment() {
         image = view.findViewById(R.id.iv_all_pokemon_detail)
 
 
+
         detailPokemonViewModel = ViewModelProviders.of(activity!!).get(PokemonViewModel::class.java)
         onePokemonObserver = Observer {result ->
             setUpView(result)

@@ -54,7 +54,7 @@ object PokemonRepository {
     fun fetchOnePokemon(selectedPokemon : ResultData?) : MutableLiveData<ResultOnePokemonData> {
 
         val call = apiPokemon.getOnePokemon(selectedPokemon!!.id)
-        val pokemonFailed = ResultOnePokemonData("0","failed","","","")
+        val pokemonFailed = ResultOnePokemonData("0","0","","","")
 
         pokemonState = AllPokemonState(true)
         state.postValue(pokemonState)
@@ -122,7 +122,7 @@ object PokemonRepository {
     fun fetchOneUserPokemon(selectedPokemon : UserPokemonResultData?) : MutableLiveData<ResultOnePokemonData> {
 
         val call = apiPokemon.getOnePokemon(selectedPokemon!!.id)
-        val pokemonFailed = ResultOnePokemonData("0","failed","","","")
+        val pokemonFailed = ResultOnePokemonData("0","0","","","")
 
         pokemonState = AllPokemonState(true)
         state.postValue(pokemonState)

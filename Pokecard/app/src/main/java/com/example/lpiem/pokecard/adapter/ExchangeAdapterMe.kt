@@ -1,5 +1,6 @@
 package com.example.lpiem.pokecard.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.lpiem.pokecard.data.model.UserExchangePokemon
 import kotlinx.android.synthetic.main.item_exchange.view.*
 import com.example.lpiem.pokecard.R
+import com.example.lpiem.pokecard.fragment.FragmentExchangeMoi
 
 class ExchangeAdapterMe (private val clickListener: ExchangeAdapterAdapterClickListener?) : RecyclerView.Adapter<ExchangeAdapterMe.ViewHolder>(){
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -49,6 +51,7 @@ class ExchangeAdapterMe (private val clickListener: ExchangeAdapterAdapterClickL
 
         }
     }
+
     interface ExchangeAdapterAdapterClickListener {
         fun onClick(dataPosition: Int, pokemon: UserExchangePokemon)
     }

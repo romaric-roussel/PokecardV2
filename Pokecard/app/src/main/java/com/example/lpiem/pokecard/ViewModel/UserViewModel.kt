@@ -35,6 +35,11 @@ class UserViewModel : ViewModel() {
         return UserRepository.fetchListPokExchange(id)
     }
 
+    fun exchangePokemon(idUserSend : String,idUserReceive : String,idPokemonSend : String,idPokemonReceive : String) : MutableLiveData<ExchangeResult>{
+
+        return UserRepository.doExchange(idUserSend,idUserReceive,idPokemonSend,idPokemonReceive)
+    }
+
 
 
 
